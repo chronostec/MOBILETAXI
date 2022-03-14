@@ -1,0 +1,27 @@
+{
+    "id": 1,
+    "immatriculation": "112233AZE",
+    "marque": "PEUGEO",
+    "modele": "PEUGEO",
+    "couleur": "Rouge",
+    "annee": "2012",
+    "categorie": "ORDINAIRE",
+    "status": 0,
+    "VehiculeLibre": {
+        "id": 46,
+        "immatriculation": "TEST",
+        "categorie_id": 2,
+        "proprietaire_id": 2,
+        "chauffeur_id": null,
+        "marque": "TEST",
+        "modele": "TEST",
+        "couleur": "TEST",
+        "annee": "TEST",
+        "gps_longitude": null,
+        "gps_latitude": null,
+        "created_at": null,
+        "updated_at": null,
+        "statut": 1,
+        "etat": 0
+    }
+}

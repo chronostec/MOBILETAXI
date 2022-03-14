@@ -1,0 +1,121 @@
+{
+    "bSuccess": true,
+    "message": "succes",
+    "objet": [
+        {
+            "duree": 8,
+            "distance": 2.884,
+            "montant": "4774",
+            "date": "2022-02-04 17:29:57",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 8,
+            "distance": 2.884,
+            "montant": "4774",
+            "date": "2022-02-04 17:41:47",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 30,
+            "distance": 17.325,
+            "montant": "4765",
+            "date": "2022-02-04 18:20:17",
+            "espece": "0",
+            "dematerialise": "4765"
+        },
+        {
+            "duree": 44,
+            "distance": 21.188,
+            "montant": "4774",
+            "date": "2022-02-04 18:27:35",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 28,
+            "distance": 8.627,
+            "montant": "4810",
+            "date": "2022-02-04 20:14:52",
+            "espece": "0",
+            "dematerialise": "4810"
+        },
+        {
+            "duree": 28,
+            "distance": 9.204,
+            "montant": "4810",
+            "date": "2022-02-04 20:28:59",
+            "espece": "0",
+            "dematerialise": "4810"
+        },
+        {
+            "duree": 26,
+            "distance": 7.958,
+            "montant": "4720",
+            "date": "2022-02-04 20:39:01",
+            "espece": "0",
+            "dematerialise": "4720"
+        },
+        {
+            "duree": 29,
+            "distance": 9.472,
+            "montant": "4810",
+            "date": "2022-02-04 21:08:31",
+            "espece": "0",
+            "dematerialise": "4810"
+        },
+        {
+            "duree": 10,
+            "distance": 3.344,
+            "montant": "4774",
+            "date": "2022-02-04 21:15:37",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 10,
+            "distance": 3.344,
+            "montant": "4774",
+            "date": "2022-02-04 21:27:47",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 10,
+            "distance": 3.344,
+            "montant": "4774",
+            "date": "2022-02-04 21:30:45",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 10,
+            "distance": 3.344,
+            "montant": "4774",
+            "date": "2022-02-04 21:38:43",
+            "espece": "0",
+            "dematerialise": "4774"
+        },
+        {
+            "duree": 2,
+            "distance": 0.276,
+            "montant": "4750",
+            "date": "2022-02-04 22:09:22",
+            "espece": "0",
+            "dematerialise": "4750"
+        },
+        {
+            "duree": 10,
+            "distance": 2.891,
+            "montant": "4769",
+            "date": "2022-02-04 22:13:54",
+            "espece": "0",
+            "dematerialise": "4769"
+        }
+    ],
+    "totaux": "71572",
+    "espece": "0",
+    "dematerialise": "71572"
+}

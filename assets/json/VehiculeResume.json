@@ -1,0 +1,17 @@
+{
+    "id": 1,
+    "immatriculation": "112233AZE",
+    "marque": "PEUGEO",
+    "modele": "PEUGEO",
+    "couleur": "Rouge",
+    "annee": "2012",
+    "categorie_id": 1,
+    "status": 0,
+    "driver_id": 1,
+    "driver_nom": "KONAN",
+    "driver_prenom": "FABRICE",
+    "driver_telephone": "0757777500",
+    "distance_jour": 5,
+    "duree_jour": 76,
+    "montant_jour": "23894"
+}
