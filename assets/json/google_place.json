@@ -1,0 +1,186 @@
+[
+   {
+      "description" : "Siporex, Boulevard Principal, Abidjan, Côte d'Ivoire",
+      "matched_substrings" : [
+         {
+            "length" : 7,
+            "offset" : 0
+         }
+      ],
+      "place_id" : "ChIJD4TbyR_BwQ8ROdwgkt3N_SE",
+      "reference" : "ChIJD4TbyR_BwQ8ROdwgkt3N_SE",
+      "structured_formatting" : {
+         "main_text" : "Siporex",
+         "main_text_matched_substrings" : [
+            {
+               "length" : 7,
+               "offset" : 0
+            }
+         ],
+         "secondary_text" : "Boulevard Principal, Abidjan, Côte d'Ivoire"
+      },
+      "terms" : [
+         {
+            "offset" : 0,
+            "value" : "Siporex"
+         },
+         {
+            "offset" : 9,
+            "value" : "Boulevard Principal"
+         },
+         {
+            "offset" : 30,
+            "value" : "Abidjan"
+         },
+         {
+            "offset" : 39,
+            "value" : "Côte d'Ivoire"
+         }
+      ],
+      "types" : [ "pharmacy", "health", "point_of_interest", "store", "establishment" ]
+   },
+   {
+      "description" : "Pharmacie SIPOREX, Abidjan, Côte d'Ivoire",
+      "matched_substrings" : [
+         {
+            "length" : 7,
+            "offset" : 10
+         }
+      ],
+      "place_id" : "ChIJcy7gXSHAwQ8RjTqRM_WVjhc",
+      "reference" : "ChIJcy7gXSHAwQ8RjTqRM_WVjhc",
+      "structured_formatting" : {
+         "main_text" : "Pharmacie SIPOREX",
+         "main_text_matched_substrings" : [
+            {
+               "length" : 7,
+               "offset" : 10
+            }
+         ],
+         "secondary_text" : "Abidjan, Côte d'Ivoire"
+      },
+      "terms" : [
+         {
+            "offset" : 0,
+            "value" : "Pharmacie SIPOREX"
+         },
+         {
+            "offset" : 19,
+            "value" : "Abidjan"
+         },
+         {
+            "offset" : 28,
+            "value" : "Côte d'Ivoire"
+         }
+      ],
+      "types" : [ "pharmacy", "health", "point_of_interest", "store", "establishment" ]
+   },
+   {
+      "description" : "Siporex, Abidjan, Côte d'Ivoire",
+      "matched_substrings" : [
+         {
+            "length" : 7,
+            "offset" : 0
+         }
+      ],
+      "place_id" : "ChIJhTmTzXu_wQ8RGAkSSThctio",
+      "reference" : "ChIJhTmTzXu_wQ8RGAkSSThctio",
+      "structured_formatting" : {
+         "main_text" : "Siporex",
+         "main_text_matched_substrings" : [
+            {
+               "length" : 7,
+               "offset" : 0
+            }
+         ],
+         "secondary_text" : "Abidjan, Côte d'Ivoire"
+      },
+      "terms" : [
+         {
+            "offset" : 0,
+            "value" : "Siporex"
+         },
+         {
+            "offset" : 9,
+            "value" : "Abidjan"
+         },
+         {
+            "offset" : 18,
+            "value" : "Côte d'Ivoire"
+         }
+      ],
+      "types" : [ "point_of_interest", "clothing_store", "store", "establishment" ]
+   },
+   {
+      "description" : "Siporex 1, Abidjan, Côte d'Ivoire",
+      "matched_substrings" : [
+         {
+            "length" : 7,
+            "offset" : 0
+         }
+      ],
+      "place_id" : "ChIJf_z_pmLBwQ8Re6h9Ck7BAlE",
+      "reference" : "ChIJf_z_pmLBwQ8Re6h9Ck7BAlE",
+      "structured_formatting" : {
+         "main_text" : "Siporex 1",
+         "main_text_matched_substrings" : [
+            {
+               "length" : 7,
+               "offset" : 0
+            }
+         ],
+         "secondary_text" : "Abidjan, Côte d'Ivoire"
+      },
+      "terms" : [
+         {
+            "offset" : 0,
+            "value" : "Siporex 1"
+         },
+         {
+            "offset" : 11,
+            "value" : "Abidjan"
+         },
+         {
+            "offset" : 20,
+            "value" : "Côte d'Ivoire"
+         }
+      ],
+      "types" : [ "school", "point_of_interest", "establishment" ]
+   },
+   {
+      "description" : "EPP SIPOREX 8, Abidjan, Côte d'Ivoire",
+      "matched_substrings" : [
+         {
+            "length" : 7,
+            "offset" : 4
+         }
+      ],
+      "place_id" : "ChIJ6QI96CnAwQ8RC3kk8k18pAw",
+      "reference" : "ChIJ6QI96CnAwQ8RC3kk8k18pAw",
+      "structured_formatting" : {
+         "main_text" : "EPP SIPOREX 8",
+         "main_text_matched_substrings" : [
+            {
+               "length" : 7,
+               "offset" : 4
+            }
+         ],
+         "secondary_text" : "Abidjan, Côte d'Ivoire"
+      },
+      "terms" : [
+         {
+            "offset" : 0,
+            "value" : "EPP SIPOREX 8"
+         },
+         {
+            "offset" : 15,
+            "value" : "Abidjan"
+         },
+         {
+            "offset" : 24,
+            "value" : "Côte d'Ivoire"
+         }
+      ],
+      "types" : [ "primary_school", "school", "point_of_interest", "establishment" ]
+   }
+]

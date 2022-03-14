@@ -1,0 +1,14 @@
+export 'login_provider.dart';
+export 'google_places_provider.dart';
+export 'recherche_evaluation_provider.dart';
+export 'commande_provider.dart';
+export 'vehicule_libre_provider.dart';
+export 'distance_matrix_provider.dart';
+export 'annulation_taxi_provider.dart';
+export 'chatbox_provider.dart';
+export 'historique_provider.dart';
+export 'message_support_provider.dart';
+export 'motif_annulationt_provider.dart';
+export 'notes_provider.dart';
+export 'partage_provider.dart';
+export 'paiement_provider.dart';

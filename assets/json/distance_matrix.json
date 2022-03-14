@@ -1,0 +1,34 @@
+{
+    "destination": {
+        "latitude": 0.0,
+        "longitude": 0.0
+    },
+    "origin": {
+        "latitude": 0.0,
+        "longitude": 0.0
+    },
+    "destination_addresses": [
+        "3520 Fulton St, San Francisco, CA 94118, États-Unis"
+    ],
+    "origin_addresses": [
+        "3426 Fulton St, San Francisco, CA 94118, États-Unis"
+    ],
+    "rows": [
+        {
+            "elements": [
+                {
+                    "distance": {
+                        "text": "0,5 km",
+                        "value": 516
+                    },
+                    "duration": {
+                        "text": "2 minutes",
+                        "value": 118
+                    },
+                    "status": "OK"
+                }
+            ]
+        }
+    ],
+    "status": "OK"
+}

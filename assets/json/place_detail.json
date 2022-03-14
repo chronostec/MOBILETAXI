@@ -1,0 +1,20 @@
+{
+    "name": "Pharmacie SIPOREX",
+    "place_id": "ChIJcy7gXSHAwQ8RjTqRM_WVjhc",
+    "geometry": {
+        "location": {
+            "lat": 5.355537899999999,
+            "lng": -4.074410199999999
+        },
+        "viewport": {
+            "northeast": {
+                "lat": 5.356973780291501,
+                "lng": -4.073063169708496
+            },
+            "southwest": {
+                "lat": 5.354275819708496,
+                "lng": -4.075761130291501
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "id": 2,
+    "telephone": "",
+    "gps_latitude": 0.0,
+    "gps_longitude": 0.0,
+    "noted": "",
+    "status": false,
+    "materiel": "",
+    "language": "",
+    "theme": ""
+}
