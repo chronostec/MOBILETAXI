@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "nom": "",
+    "prenom": "",
+    "telephone": "",
+    "password": "",
+    "gps_latitude": "",
+    "gps_longitude": "",
+    "proprio_id": 1,
+    "vehicule_id": 1,
+    "immatriculation": "",
+    "language": "",
+    "theme": ""
+}

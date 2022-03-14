@@ -1,0 +1,16 @@
+{
+    "id": 2,
+    "duree": "",
+    "distance": "",
+    "montant_reel": "",
+    "montant_percu": "",
+    "dest_libelle": "",
+    "dest_latitude": -1.1,
+    "dest_longitude": -0.1,
+    "client_libelle": "",
+    "client_latitude": -1.1,
+    "client_longitude": -1.1,
+    "client_id": 0,
+    "client_telephone": "",
+    "status": ""
+}
