@@ -81,7 +81,7 @@ class _MaPickerState extends State<MaPicker> {
                       // notify map is moving
                       mapPickerController.mapMoving!();
                       ctlRecherche.departTC.text = ""; //TODO BE CAREFULL
-                      textController.text = "recherche en cours ...";
+                      textController.text = "valider votre destination";
                     },
                     onCameraMove: (cameraPosition) {
                       ctlHome.cameraPosition.value = cameraPosition;
@@ -89,26 +89,8 @@ class _MaPickerState extends State<MaPicker> {
                     onCameraIdle: () async {
                       // notify map stopped moving
                       mapPickerController.mapFinishedMoving!();
-
-                      //get address name from camera position
-                      List<Placemark> originemarks =
-                          await placemarkFromCoordinates(
-                        ctlRecherche.departGps.value.latitude,
-                        ctlRecherche.departGps.value.longitude,
-                      );
-                      List<Placemark> placemarks =
-                          await placemarkFromCoordinates(
-                        ctlHome.cameraPosition.value.target.latitude,
-                        ctlHome.cameraPosition.value.target.longitude,
-                      );
-
-                      // update the ui with the address
-                      ctlRecherche.departTC.text =
-                          '${originemarks.first.street},${originemarks.first.name}, ${originemarks.first.administrativeArea}';
-                      ctlRecherche.arriveeTC.text =
-                          '${placemarks.first.street},${placemarks.first.name}, ${placemarks.first.administrativeArea}';
-                      textController.text =
-                          '${placemarks.first.street},${placemarks.first.name}, ${placemarks.first.administrativeArea}';
+                      ctlHome.cameraIsMoved.value = true;
+                      /////////////////TODO
                     },
                   ),
                 )),
@@ -155,24 +137,58 @@ class _MaPickerState extends State<MaPicker> {
                           child: SizedBox(
                             height: 50,
                             width: 100.w,
-                            child: TextButton(
-                                child: const Text(
-                                  "Commander maintenant",
+                            child: TextButton.icon(
+                                icon: Icon(
+                                  ctlHome.cameraIsMoved.value
+                                      ? CupertinoIcons.map_pin_ellipse
+                                      : CupertinoIcons.checkmark,
+                                  color: Color(0xFFFFFFFF),
+                                ),
+                                label: Text(
+                                  ctlHome.cameraIsMoved.value
+                                      ? "Valider Position"
+                                      : "Commander maintenant",
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w800,
                                     fontStyle: FontStyle.normal,
                                     color: Color(0xFFFFFFFF),
                                     fontSize: 19,
                                     // height: 19/19,
                                   ),
                                 ),
-                                onPressed: () {
-                                  if (textController.text.isNotEmpty) {
-                                    rechercherSelectiondestination(
-                                        context, textController.text);
+                                onPressed: () async {
+                                  if (ctlHome.cameraIsMoved.value) {
+                                    ///`place sur la carte sélectionnée`
+                                    //get address name from camera position
+                                    List<Placemark> originemarks =
+                                        await placemarkFromCoordinates(
+                                      ctlRecherche.departGps.value.latitude,
+                                      ctlRecherche.departGps.value.longitude,
+                                    );
+                                    List<Placemark> placemarks =
+                                        await placemarkFromCoordinates(
+                                      ctlHome
+                                          .cameraPosition.value.target.latitude,
+                                      ctlHome.cameraPosition.value.target
+                                          .longitude,
+                                    );
+
+                                    // update the ui with the address
+                                    ctlRecherche.departTC.text =
+                                        '${originemarks.first.street},${originemarks.first.name}, ${originemarks.first.administrativeArea}';
+                                    ctlRecherche.arriveeTC.text =
+                                        '${placemarks.first.street},${placemarks.first.name}, ${placemarks.first.administrativeArea}';
+                                    textController.text =
+                                        '${placemarks.first.street},${placemarks.first.name}, ${placemarks.first.administrativeArea}';
+                                    ctlHome.cameraIsMoved.value = false;
                                   } else {
-                                    Get.snackbar("Recherche destination",
-                                        "Veuillez choisir une destion en déplaçant l'icone avant!");
+                                    if (textController.text.isNotEmpty) {
+                                      rechercherSelectiondestination(
+                                          context, textController.text);
+                                    } else {
+                                      Get.snackbar("Recherche destination",
+                                          "Veuillez choisir une destion en déplaçant l'icone avant!");
+                                    }
                                   }
                                 },
                                 style: ButtonStyle(

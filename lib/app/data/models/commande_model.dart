@@ -64,8 +64,8 @@ class Commande {
     driverPrenom = json['driver_prenom'];
     numeroPermis = json['numero_permis'];
     telephone = json['telephone'];
-    driverLong = json['driver_long'];
-    driverLat = json['driver_lat'];
+    driverLong = double.parse(json['driver_long'].toString());
+    driverLat = double.parse(json['driver_lat'].toString());
     rdvLong = json['rdv_long'];
     rdvLat = json['rdv_lat'];
     rdvLibelle = json['rdv_libelle'];

@@ -130,8 +130,7 @@ class RechercheController extends GetxController {
       duree: temps,
       distance: dist,
     );
-    if (propositionsList.isNotEmpty)
-      print("PBI : ${propositionsList.first.montant}");
+
     return propositionsList;
   }
 

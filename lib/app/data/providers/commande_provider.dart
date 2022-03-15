@@ -41,6 +41,7 @@ class CommandeProvider {
     var _list = <Commande>[];
 
     final response = await http.get(Uri.parse(url));
+    print("MA COMMANDE");
     if (response.statusCode == 200) {
       if (json.decode(response.body)["message"] == "succes") {
         _list = parseDrivers(response.body);

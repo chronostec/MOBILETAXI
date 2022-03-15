@@ -3,8 +3,10 @@ import 'package:alfred_taxi_client/app/common/keywords.dart';
 import 'package:alfred_taxi_client/app/modules/utils/images_path.dart';
 import 'package:alfred_taxi_client/app/modules/utils/spinkit_dialog.dart';
 import 'package:alfred_taxi_client/app/routes/app_pages.dart';
+import 'package:alfred_taxi_client/app/themes/styles/app_colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -45,58 +47,62 @@ class CategorieModalFit extends StatelessWidget {
               onTap: () => Navigator.of(context).pop(),
             ),
             Divider(),
-            // for (var category in ctlSearch.rechevaluationList)
-            for (var i = 0; i < ctlRecherche.propositionsList.length; i++)
-              ListTile(
-                title: Text(
-                  '${ctlRecherche.propositionsList[i].libelle}',
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing:
-                    Text('${ctlRecherche.propositionsList[i].montant} Fcfa'),
-                leading: Container(
-                  height: 100.0,
-                  width: 90.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imgList[i]),
-                      fit: BoxFit.fill,
-                    ),
-                    // shape: BoxShape.circle,
+            if (ctlRecherche.propositionsList.length == 0)
+              SizedBox(
+                child: SpinKitCircle(color: AppColor.CREDO),
+              )
+            else
+              for (var i = 0; i < ctlRecherche.propositionsList.length; i++)
+                ListTile(
+                  title: Text(
+                    '${ctlRecherche.propositionsList[i].libelle}',
+                    style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
-                onTap: () async {
-                  ctlRecherche.proposition_id.value =
-                      ctlRecherche.propositionsList[i].id;
-                  showEndedCoursetDialog(context: context);
-                  Future.delayed(
-                    Duration(seconds: 4),
-                    () => Get.back,
-                  );
-                  ctlHome.verifierIdentite();
+                  trailing:
+                      Text('${ctlRecherche.propositionsList[i].montant} Fcfa'),
+                  leading: Container(
+                    height: 100.0,
+                    width: 90.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(imgList[i]),
+                        fit: BoxFit.fill,
+                      ),
+                      // shape: BoxShape.circle,
+                    ),
+                  ),
+                  onTap: () async {
+                    ctlRecherche.proposition_id.value =
+                        ctlRecherche.propositionsList[i].id;
+                    showEndedCoursetDialog(context: context);
+                    Future.delayed(
+                      Duration(seconds: 4),
+                      () => Get.back,
+                    );
+                    ctlHome.verifierIdentite();
 
-                  if (ctlHome.user_is_connected.value) {
-                    ctlRecherche.passerCommandeToApi().then((value) {
-                      if (value == "succes") {
-                        ctlMapCourse.statuscommand.value =
-                            CMDSTATUS.COMMAND_TRAITEMENT;
-                        Get.back();
-                        Get.back();
-                        Get.back();
-                        // Get.offAllNamed(Routes.MA_COURSE);
-                      }
-                    });
-                  } else {
-                    Get.back();
-                    ctlLogin.isOTPview.value = false;
-                    Get.toNamed(Routes.LOGIN);
-                  }
-                  // TODO
-                },
-              ),
+                    if (ctlHome.user_is_connected.value) {
+                      ctlRecherche.passerCommandeToApi().then((value) {
+                        if (value == "succes") {
+                          ctlMapCourse.statuscommand.value =
+                              CMDSTATUS.COMMAND_TRAITEMENT;
+                          Get.back();
+                          Get.back();
+                          Get.back();
+                          // Get.offAllNamed(Routes.MA_COURSE);
+                        }
+                      });
+                    } else {
+                      Get.back();
+                      ctlLogin.isOTPview.value = false;
+                      Get.toNamed(Routes.LOGIN);
+                    }
+                    // TODO
+                  },
+                ),
           ],
         ),
       ),

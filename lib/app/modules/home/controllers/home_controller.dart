@@ -19,6 +19,7 @@ class HomeController extends GetxController {
   Rx<LatLng> currentPosition = LatLng(0, 0).obs;
   final user_is_connected = false.obs;
   final showbottom = false.obs;
+  RxBool cameraIsMoved = false.obs;
   final user = User(id: 1).obs;
 
   final GlobalKey<ScaffoldState> ghomeKey = GlobalKey<ScaffoldState>();
@@ -67,6 +68,10 @@ class HomeController extends GetxController {
             forceAndroidLocationManager: true)
         .then((Position position) async {
       currentPosition.value = LatLng(position.latitude, position.longitude);
+      cameraPosition.value = CameraPosition(
+        target: LatLng(position.latitude, position.longitude),
+        zoom: 16,
+      );
     }).catchError((e) {
       print(e);
     });
