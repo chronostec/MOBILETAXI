@@ -8,6 +8,7 @@ import 'package:alfred_taxi_client/app/modules/ma_course/controllers/ma_course_c
 import 'package:alfred_taxi_client/app/modules/ma_course/controllers/partage_controller.dart';
 import 'package:alfred_taxi_client/app/modules/map_course/controllers/map_course_controller.dart';
 import 'package:alfred_taxi_client/app/modules/note/controllers/note_controller.dart';
+import 'package:alfred_taxi_client/app/modules/recherche/controllers/negociation_controller.dart';
 import 'package:alfred_taxi_client/app/modules/recherche/controllers/recherche_controller.dart';
 import 'package:alfred_taxi_client/app/modules/support/controllers/support_controller.dart';
 import 'package:get/get.dart';
@@ -23,3 +24,4 @@ AnnulationController ctlAnnuler = Get.put(AnnulationController());
 NoteController ctlNote = Get.put(NoteController());
 HistoryController ctlHistorique = Get.put(HistoryController());
 SupportController ctlSupport = Get.put(SupportController());
+NegociationController ctlNegociation = Get.put(NegociationController());

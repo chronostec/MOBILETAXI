@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  count_stepper:
+    dependency: "direct main"
+    description:
+      name: count_stepper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   country_code_picker:
     dependency: "direct main"
     description:

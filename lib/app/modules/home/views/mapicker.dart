@@ -142,7 +142,9 @@ class _MaPickerState extends State<MaPicker> {
                                   ctlHome.cameraIsMoved.value
                                       ? CupertinoIcons.map_pin_ellipse
                                       : CupertinoIcons.checkmark,
-                                  color: Color(0xFFFFFFFF),
+                                  color: ctlHome.cameraIsMoved.value
+                                      ? AppColor.CREDO
+                                      : AppColor.CGREY,
                                 ),
                                 label: Text(
                                   ctlHome.cameraIsMoved.value
@@ -151,7 +153,9 @@ class _MaPickerState extends State<MaPicker> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w800,
                                     fontStyle: FontStyle.normal,
-                                    color: Color(0xFFFFFFFF),
+                                    color: ctlHome.cameraIsMoved.value
+                                        ? AppColor.CREDO
+                                        : AppColor.CGREY,
                                     fontSize: 19,
                                     // height: 19/19,
                                   ),
@@ -194,7 +198,9 @@ class _MaPickerState extends State<MaPicker> {
                                 style: ButtonStyle(
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                            AppColor.CREDO),
+                                            ctlHome.cameraIsMoved.value
+                                                ? AppColor.CGREY
+                                                : AppColor.CREDO),
                                     shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
