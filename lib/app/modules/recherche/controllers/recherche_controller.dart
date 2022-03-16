@@ -159,7 +159,7 @@ class RechercheController extends GetxController {
         commande_id: maCommande.value.id ?? 0);
     printInfo(
         info:
-            "CHAUFFEUR==================================>${maCommande.value.gpsLat}, ${maCommande.value.gpsLon}");
+            "CHAUFFEUR========================>${maCommande.value.gpsLat}, ${maCommande.value.gpsLon}");
     if (resultat.isNotEmpty) {
       if (resultat.isNotEmpty &&
           resultat[0].status != CMDSTATUS.COMMAND_ANNULEE) {
