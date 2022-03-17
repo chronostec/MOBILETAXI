@@ -29,9 +29,7 @@ class CommandeProvider extends GetConnect {
   }
 
   //////////////////////////////
-  Future<List<Commande>> getCommandeDetail({
-    required cmde_id,
-  }) async {
+  Future<List<Commande>> getCommandeDetail({required cmde_id}) async {
     var url = APPURL.BASE_URL + APPURL.GET_DETAIL_CMDE + "cmde_id=$cmde_id";
 
     var _list = <Commande>[];
@@ -72,6 +70,20 @@ class CommandeProvider extends GetConnect {
     }
   }
 
+  Future<Resultat> putRefuserCommande({
+    required commande_id_saisir,
+    required chauffeur_id_saisir,
+  }) async {
+    var url = APPURL.BASE_URL +
+        APPURL.PUT_REFUSER_CMDE +
+        "commande_id_saisir=$commande_id_saisir&chauffeur_id_saisir=$chauffeur_id_saisir";
+
+    var _res = Resultat();
+    final response = await http.put(Uri.parse(url));
+    if (response.statusCode == 200) _res = parseResultats(response.body);
+    return _res;
+  }
+
   Future<Resultat> putManagerCommande({
     required status,
     required driver_id,
@@ -84,7 +96,7 @@ class CommandeProvider extends GetConnect {
     var _res = Resultat();
     final response = await http.put(Uri.parse(url));
     // print(response.body);
-    if (response.statusCode != 429) _res = parseResultats(response.body);
+    if (response.statusCode == 200) _res = parseResultats(response.body);
     return _res;
   }
 

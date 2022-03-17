@@ -4,6 +4,7 @@ class Commande {
   var distance;
   var montantReel;
   var montantPercu;
+  int? montantNegocie;
   var destLibelle;
   var destLatitude;
   var destLongitude;
@@ -20,6 +21,7 @@ class Commande {
       this.distance,
       this.montantReel,
       this.montantPercu,
+      this.montantNegocie,
       this.destLibelle,
       this.destLatitude,
       this.destLongitude,
@@ -36,6 +38,7 @@ class Commande {
     distance = json['distance'];
     montantReel = json['montant_reel'].toString();
     montantPercu = json['montant_percu'].toString();
+    montantNegocie = json['montant_negocie'];
     destLibelle = json['dest_libelle'];
     destLatitude = json['dest_latitude'];
     destLongitude = json['dest_longitude'];
@@ -54,6 +57,7 @@ class Commande {
     data['distance'] = distance;
     data['montant_reel'] = montantReel;
     data['montant_percu'] = montantPercu;
+    data['montant_negocie'] = montantNegocie;
     data['dest_libelle'] = destLibelle;
     data['dest_latitude'] = destLatitude;
     data['dest_longitude'] = destLongitude;

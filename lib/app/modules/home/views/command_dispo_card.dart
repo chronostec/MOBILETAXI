@@ -28,7 +28,10 @@ Padding ComandeDispoCard(Commande commande) {
         });
       },
       child: Container(
-        height: 10.h,
+        height: commande.montantNegocie.toString() !=
+                commande.montantPercu.toString()
+            ? 15.h
+            : 10.h,
         decoration: BoxDecoration(
             color: AppColors.DWHITE0,
             borderRadius: BorderRadius.circular(10.0)),
@@ -39,11 +42,33 @@ Padding ComandeDispoCard(Commande commande) {
             children: [
               ComandDispoCardItem(
                   titre: "Destination", lieu: commande.destLibelle),
-              // ComandDispoCardItem(
-              //     titre: "Po
-              //sition client", lieu: commande.clientLibelle),
               ComandDispoCardDureeMontant(
                   montant: commande.montantPercu, duree: commande.duree),
+              commande.montantNegocie.toString() !=
+                      commande.montantPercu.toString()
+                  ? Container(
+                      color: Colors.amber.shade50,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Négocié à :",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 18),
+                            ),
+                            Flexible(
+                                child: Text(
+                              "${commande.montantNegocie} F",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18,
+                                  fontStyle: FontStyle.italic),
+                            ))
+                          ]),
+                    )
+                  : const SizedBox()
             ],
           ),
         ),
@@ -61,7 +86,7 @@ Row ComandDispoCardItem({
     children: [
       Text(
         "$titre :",
-        style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+        style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
       ),
       Flexible(
         child: Text(
@@ -87,11 +112,11 @@ Row ComandDispoCardDureeMontant({
     children: [
       Text(
         "MT : $montant F",
-        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
       ),
       Text(
         "Durée:  $duree min",
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 18,
         ),

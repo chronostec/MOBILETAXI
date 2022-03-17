@@ -29,6 +29,7 @@ class APPURL {
 
   ///` COMMANDE`
   static const PUT_MANAGER_CMDE = "postManagerCommande?";
+  static const PUT_REFUSER_CMDE = "driverUpdateStatusRelationCommandeVehicule?";
   static const GET_LISTER_CMDE = "getListerCommandeDisponible?";
   static const GET_DETAIL_CMDE = "getDetailCommande?";
   static const GET_DETAIL_CMDE_ACCEPTEE = "getCommandeAccepter?";

@@ -72,6 +72,7 @@ class CommandeController extends GetxController {
     if (_res.isNotEmpty) {
       listCommande.value = _res;
     }
+    listCommande.value = _res;
   }
 
   ///`DETAIL COMMAND`
@@ -80,7 +81,7 @@ class CommandeController extends GetxController {
     var _resultat =
         await proCommande.getCommandeDetail(cmde_id: commande.value.id);
 
-    if (_resultat.isNotEmpty && _resultat[0].status != 2) {
+    if (_resultat.isNotEmpty) {
       commande.value = _resultat[0];
       changeZoom(_resultat[0].status as int);
       _isOk = true;
@@ -191,6 +192,7 @@ class CommandeController extends GetxController {
           }
         }
 
+        updateDriverPositionRemaingDistMatrix();
         Get.off(() => const CommandeDrivingView());
       } else {
         Get.snackbar("ACCEPTATION COMMANDE",
@@ -238,14 +240,30 @@ class CommandeController extends GetxController {
   /// ANNULER COURSE
   annulerCourse() async {
     await postManagerCmde(
-            driver_id: ctlHome.driver.value.id as int,
-            cmde_id: commande.value.id!.toInt(),
+            driver_id: ctlHome.driver.value.id ?? 0,
+            cmde_id: commande.value.id ?? 0,
             status: CMDSTATUS.COMMAND_ANNULEE)
         .then((value) {
       if (value.bSuccess) {
-        ctlHome.rebaseCommandes().then((value) => Get.offAllNamed(Routes.HOME));
+        ctlHome.rebaseCommandes().then((value) => Get.back());
       } else {
         Get.snackbar("ANNULER COURSE",
+            "Quelque chose de s'est mal passé, veuillez recommencer svp !");
+      }
+    });
+  }
+
+  /// ANNULER COURSE
+  refuserCourse() async {
+    await proCommande
+        .putRefuserCommande(
+            commande_id_saisir: commande.value.id ?? 0,
+            chauffeur_id_saisir: ctlHome.driver.value.id ?? 0)
+        .then((value) {
+      if (value.bSuccess) {
+        ctlHome.rebaseCommandes().then((value) => Get.back());
+      } else {
+        Get.snackbar("REFUSER COURSE",
             "Quelque chose de s'est mal passé, veuillez recommencer svp !");
       }
     });

@@ -77,7 +77,7 @@ AppBar CommandeAppBarView() {
                           style: TextStyle(color: AppColors.DWHITE0),
                         ),
                         Text(
-                          "${ctlcommande.commande.value.montantPercu ?? ''} F",
+                          "${ctlcommande.commande.value.montantPercu} F",
                           style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 20,

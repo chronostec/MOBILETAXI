@@ -49,10 +49,11 @@ class CommandeDetailBottomButtons extends StatelessWidget {
                       ],
                     );
                     print(res);
-                    if (res == KEYWORD.YES) {
+                    if (res.toString().toLowerCase() ==
+                        KEYWORD.YES.toString().toLowerCase()) {
                       ctlcommande.changeStatus(CMDSTATUS.COMMAND_EMPTY);
-                      ctlcommande.listCommande.removeWhere((element) =>
-                          element.id == ctlcommande.commande.value.id);
+                      // ctlcommande.listCommande.removeWhere((element) =>
+                      //     element.id == ctlcommande.commande.value.id);
 
                       Get.offAllNamed(Routes.HOME);
                     }

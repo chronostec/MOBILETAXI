@@ -39,11 +39,11 @@ class HomeController extends GetxController {
   void onReady() {
     // ctlHome.rebaseCommandes();
     ctlcommande.getCommandeDisponible();
-    updateDriverPositionRemaingDistMatrix();
+
     checkCommandedisponiblePeriodicEvent();
     // onMapCreated(mapController);
     // readCommandeLocalInfo();
-
+    updateDriverPosition();
     super.onReady();
   }
 

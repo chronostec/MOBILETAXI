@@ -38,25 +38,23 @@ Future checkEchangePeriodicEvent() async {
   });
 }
 
-Future pdateDriverPosition() async {
-  LatLng gps = const LatLng(0, 0);
+Future updateDriverPosition() async {
+  // LatLng gps = const LatLng(0, 0);
   Timer.periodic(const Duration(seconds: 30), (Timer timer) async {
     if (ctlHome.driverGPS.value.latitude == 0 &&
         ctlHome.driverGPS.value.longitude == 0) {
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) async {
-        gps = LatLng(position.latitude, position.longitude);
-      }).catchError((e) {
-        print(e);
-      });
+      var _pos = await Geolocator.getCurrentPosition();
 
-      if (gps.latitude != 0 && gps.longitude != 0) {
+      if (_pos.latitude != 0 && _pos.longitude != 0) {
         proDriver.putDriverPosition(
             vehicule_id: ctlHome.driver.value.vehiculeId,
-            latitude: gps.latitude,
-            longitude: gps.longitude);
+            latitude: _pos.latitude,
+            longitude: _pos.longitude);
+      } else {
+        proDriver.putDriverPosition(
+            vehicule_id: ctlHome.driver.value.vehiculeId,
+            latitude: ctlHome.driverGPS.value.latitude,
+            longitude: ctlHome.driverGPS.value.longitude);
       }
     } else {
       proDriver.putDriverPosition(
@@ -68,36 +66,34 @@ Future pdateDriverPosition() async {
 }
 
 Future updateDriverPositionRemaingDistMatrix() async {
-  LatLng gps = const LatLng(0, 0);
   Timer.periodic(const Duration(seconds: 6), (Timer timer) async {
-    if (ctlHome.driverGPS.value.latitude == 0 &&
-        ctlHome.driverGPS.value.longitude == 0) {
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) async {
-        gps = LatLng(position.latitude, position.longitude);
-      }).catchError((e) {
-        print(e);
-      });
+    if (ctlcommande.commande.value.status == CMDSTATUS.COMMAND_ACCEPTEE ||
+        ctlcommande.commande.value.status == CMDSTATUS.COMMAND_COMMENCEE ||
+        ctlcommande.commande.value.status == CMDSTATUS.COMMAND_PAIEMENT) {
+      if (ctlHome.driverGPS.value.latitude == 0 &&
+          ctlHome.driverGPS.value.longitude == 0) {
+        var _pos = await Geolocator.getCurrentPosition();
 
-      if (gps.latitude != 0 && gps.longitude != 0) {
+        if (_pos.latitude != 0 && _pos.longitude != 0) {
+          proDriver.updateDriverPositionRemaingDistMatrix(
+              id_commande: ctlcommande.commande.value.id ?? 0,
+              gps_latitude: _pos.latitude,
+              gps_longitude: _pos.longitude,
+              distance_en_metre: ctlDrivermap.distanceDuree.value.distance ?? 0,
+              duree_en_seconde: ctlDrivermap.distanceDuree.value.duree ?? 0);
+          print(
+              "CHAUFFEUR=================>${LatLng(double.parse(_pos.latitude.toString()), double.parse(_pos.longitude.toString()))}");
+        }
+      } else {
         proDriver.updateDriverPositionRemaingDistMatrix(
             id_commande: ctlcommande.commande.value.id ?? 0,
-            gps_latitude: gps.latitude,
-            gps_longitude: gps.longitude,
+            gps_latitude: ctlHome.driverGPS.value.latitude,
+            gps_longitude: ctlHome.driverGPS.value.longitude,
             distance_en_metre: ctlDrivermap.distanceDuree.value.distance ?? 0,
             duree_en_seconde: ctlDrivermap.distanceDuree.value.duree ?? 0);
-        print(
-            "CHAUFFEUR==================================>${LatLng(double.parse(gps.latitude.toString()), double.parse(gps.longitude.toString()))}");
       }
     } else {
-      proDriver.updateDriverPositionRemaingDistMatrix(
-          id_commande: ctlcommande.commande.value.id ?? 0,
-          gps_latitude: ctlHome.driverGPS.value.latitude,
-          gps_longitude: ctlHome.driverGPS.value.longitude,
-          distance_en_metre: ctlDrivermap.distanceDuree.value.distance ?? 0,
-          duree_en_seconde: ctlDrivermap.distanceDuree.value.duree ?? 0);
+      timer.cancel();
     }
   });
 }
