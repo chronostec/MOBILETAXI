@@ -95,6 +95,7 @@ class ValidationLoginView extends GetView {
               ctlLogin.envoyerCodeOTP(pin: code).then((value) {
                 if (value.bSuccess == true) {
                   Get.back();
+                  Get.back();
                   Get.snackbar("Félicitation !!!",
                       "Code confirmé avec succès, veuillez confirmer votre commande maintenant.");
                 } else {
@@ -106,7 +107,17 @@ class ValidationLoginView extends GetView {
             onCodeChanged: (code) {
               ctlLogin.smsCode.value = ctlLogin.smsCode.value;
               if (code!.length == 4) {
-                ctlLogin.envoyerCodeOTP(pin: code);
+                ctlLogin.envoyerCodeOTP(pin: code).then((value) {
+                  if (value.bSuccess == true) {
+                    Get.back();
+                    Get.back();
+                    Get.snackbar("Félicitation !!!",
+                        "Code confirmé avec succès, veuillez confirmer votre commande maintenant.");
+                  } else {
+                    Get.snackbar("Echec Code",
+                        "Code erronné !\nVeuillez recommencer svp.");
+                  }
+                });
                 FocusScope.of(context).requestFocus(FocusNode());
                 // ctlLogin.envoyerCodeOTP(pin: code);
               }
