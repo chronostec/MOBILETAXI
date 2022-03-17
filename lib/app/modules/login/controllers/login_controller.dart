@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class LoginController extends GetxController {
+class LoginController extends GetxController with CodeAutoFill {
   final isRequesting = false.obs;
   final isPhoneSending = false.obs;
   final isCodeSending = false.obs;
@@ -22,9 +22,19 @@ class LoginController extends GetxController {
   TextEditingController phoneTF = TextEditingController();
   final initialCountry = 'CI'.obs;
   final number = PhoneNumber(isoCode: 'CI').obs;
+  RxString appSignature = ''.obs;
+  RxString otpCode = ''.obs;
+
+  @override
+  void codeUpdated() {
+    smsCode.value = otpCode.value;
+  }
 
   @override
   void onInit() {
+    SmsAutoFill().getAppSignature.then((signature) {
+      appSignature.value = signature;
+    });
     super.onInit();
   }
 
@@ -54,7 +64,8 @@ class LoginController extends GetxController {
     );
     isOTPview.value = true;
     isPhoneSending.value = false;
-    onClose();
+    await SmsAutoFill().listenForCode;
+
     return resultat;
   }
 
@@ -85,8 +96,9 @@ class LoginController extends GetxController {
     }
     print("VERIFICATION TERMINEE");
     ctlHome.verifierIdentite();
-    isCodeSending.value = false;
 
+    isCodeSending.value = false;
+    onClose();
     return res;
   }
 }

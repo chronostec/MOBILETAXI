@@ -27,7 +27,7 @@ class PartageController extends GetxController {
     var resultat = await provPartage.postPartage(
         numeropartage: numeropartage, commande_id: commande_id);
     if (resultat.message == "succes") {
-      is_partage_requesting.value = false;
+      // is_partage_requesting.value = false;
       Get.back();
       Get.snackbar("COURSE PARTAGEE",
           "Votre course a été partagée avec succès et votre correspondant peut suivre votre course !",
@@ -36,7 +36,7 @@ class PartageController extends GetxController {
           colorText: Colors.white,
           snackPosition: SnackPosition.TOP);
     } else {
-      is_partage_requesting.value = false;
+      // is_partage_requesting.value = false;
       Get.snackbar(
           "PARTAGE", "Quelque chose s'est mal passée, veuillez recmmencer svp!",
           duration: const Duration(seconds: 5),
@@ -44,7 +44,7 @@ class PartageController extends GetxController {
           colorText: Colors.white,
           snackPosition: SnackPosition.TOP);
     }
-
+    is_partage_requesting.value = false;
     return resultat.message ?? "echec";
   }
 }

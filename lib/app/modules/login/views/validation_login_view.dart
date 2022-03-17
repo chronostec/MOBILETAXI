@@ -82,26 +82,6 @@ class ValidationLoginView extends GetView {
               ),
             ),
           ),
-          // Center(
-          //   child: OTPTextField(
-          //     length: 4,
-          //     width: MediaQuery.of(context).size.width,
-          //     textFieldAlignment: MainAxisAlignment.spaceAround,
-          //     fieldWidth: 55,
-          //     fieldStyle: FieldStyle.box,
-          //     outlineBorderRadius: 15,
-          //     style: TextStyle(fontSize: 17),
-          //     onChanged: (pin) async {},
-          //     onCompleted: (pin) async {
-          //       printInfo(info: "INFO PIN $pin");
-          //       ctlLogin.isCodeSending.value
-          //           ? const SpinKitWave(
-          //               color: Colors.deepOrange, type: SpinKitWaveType.center)
-          //           : null;
-          //       ctlLogin.envoyerCodeOTP(pin: pin);
-          //     },
-          //   ),
-          // ),
           PinFieldAutoFill(
             codeLength: 4,
             decoration: BoxLooseDecoration(
@@ -132,6 +112,89 @@ class ValidationLoginView extends GetView {
               }
             },
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class SmsAutoFillpage extends StatefulWidget {
+  @override
+  _SmsAutoFillpageState createState() => _SmsAutoFillpageState();
+}
+
+class _SmsAutoFillpageState extends State<SmsAutoFillpage> {
+  String _code = "";
+  String signature = "{{ app signature }}";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    SmsAutoFill().unregisterListener();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          PhoneFieldHint(),
+          Spacer(),
+          PinFieldAutoFill(
+            decoration: UnderlineDecoration(
+              textStyle: TextStyle(fontSize: 20, color: Colors.black),
+              colorBuilder: FixedColorBuilder(Colors.black.withOpacity(0.3)),
+            ),
+            currentCode: _code,
+            onCodeSubmitted: (code) {},
+            onCodeChanged: (code) {
+              if (code!.length == 6) {
+                FocusScope.of(context).requestFocus(FocusNode());
+              }
+            },
+          ),
+          Spacer(),
+          TextFieldPinAutoFill(
+            currentCode: _code,
+          ),
+          Spacer(),
+          ElevatedButton(
+            child: Text('Listen for sms code'),
+            onPressed: () async {
+              await SmsAutoFill().listenForCode;
+            },
+          ),
+          ElevatedButton(
+            child: Text('Set code to 123456'),
+            onPressed: () async {
+              setState(() {
+                _code = '123456';
+              });
+            },
+          ),
+          SizedBox(height: 8.0),
+          Divider(height: 1.0),
+          SizedBox(height: 4.0),
+          Text("App Signature : $signature"),
+          SizedBox(height: 4.0),
+          ElevatedButton(
+            child: Text('Get app signature'),
+            onPressed: () async {
+              signature = await SmsAutoFill().getAppSignature;
+              setState(() {});
+            },
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Navigator.of(context).push(MaterialPageRoute(builder: (_) => CodeAutoFillTestPage()));
+            },
+            child: Text("Test CodeAutoFill mixin"),
+          )
         ],
       ),
     );
