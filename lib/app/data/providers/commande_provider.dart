@@ -7,10 +7,12 @@ import 'package:http/http.dart' as http;
 
 class CommandeProvider {
   Future<String> postCommande(
-      {required proposition_id, required client_id}) async {
+      {required int proposition_id,
+      required int client_id,
+      required int montant_negocie}) async {
     var url = APPURL.BASE_URL +
         APPURL.ENREGISTRER_COMMANDE_URL +
-        "proposition_id=$proposition_id&client_id=$client_id";
+        "proposition_id=$proposition_id&client_id=$client_id&montant_negocie=$montant_negocie";
     var _res = "";
 
     final response = await http.post(Uri.parse(url));

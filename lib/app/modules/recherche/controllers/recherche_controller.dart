@@ -138,7 +138,8 @@ class RechercheController extends GetxController {
   Future<String> passerCommandeToApi() async {
     var resultat = await provCommande.postCommande(
         proposition_id: proposition_id.value,
-        client_id: ctlHome.user.value.id ?? 50);
+        client_id: ctlHome.user.value.id ?? 0,
+        montant_negocie: ctlNegociation.montantNegocie.value);
     checkCommandStatus();
 
     ctlMapCourse.addDestinationmarker(LatLng(

@@ -1,7 +1,5 @@
 import 'package:alfred_taxi_client/app/common/controllers.dart'
     show ctlHome, ctlLogin, ctlMapCourse;
-import 'package:alfred_taxi_client/app/common/keywords.dart';
-import 'package:alfred_taxi_client/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:otp_text_field/otp_field.dart';
@@ -9,8 +7,7 @@ import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
-import 'buttons.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class ValidationLoginView extends GetView {
   @override
@@ -85,35 +82,56 @@ class ValidationLoginView extends GetView {
               ),
             ),
           ),
-          Center(
-            child: OTPTextField(
-              length: 4,
-              width: MediaQuery.of(context).size.width,
-              textFieldAlignment: MainAxisAlignment.spaceAround,
-              fieldWidth: 55,
-              fieldStyle: FieldStyle.box,
-              outlineBorderRadius: 15,
-              style: TextStyle(fontSize: 17),
-              onChanged: (pin) async {},
-              onCompleted: (pin) async {
-                printInfo(info: "INFO PIN $pin");
-                ctlLogin.isCodeSending.value
-                    ? const SpinKitWave(
-                        color: Colors.deepOrange, type: SpinKitWaveType.center)
-                    : null;
-                ctlLogin.envoyerCodeOTP(pin: pin);
-              },
-            ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 16),
-          //   child: athenticationBTN(
-          //     title: 'VALIDER',
-          //     ontap: () {
-          //       ctlLogin.envoyerCodeOTP(pin: ctlLogin.pin.value);
+          // Center(
+          //   child: OTPTextField(
+          //     length: 4,
+          //     width: MediaQuery.of(context).size.width,
+          //     textFieldAlignment: MainAxisAlignment.spaceAround,
+          //     fieldWidth: 55,
+          //     fieldStyle: FieldStyle.box,
+          //     outlineBorderRadius: 15,
+          //     style: TextStyle(fontSize: 17),
+          //     onChanged: (pin) async {},
+          //     onCompleted: (pin) async {
+          //       printInfo(info: "INFO PIN $pin");
+          //       ctlLogin.isCodeSending.value
+          //           ? const SpinKitWave(
+          //               color: Colors.deepOrange, type: SpinKitWaveType.center)
+          //           : null;
+          //       ctlLogin.envoyerCodeOTP(pin: pin);
           //     },
           //   ),
           // ),
+          PinFieldAutoFill(
+            codeLength: 4,
+            decoration: BoxLooseDecoration(
+              textStyle: TextStyle(fontSize: 20, color: Colors.black),
+              strokeColorBuilder:
+                  FixedColorBuilder(Colors.black.withOpacity(0.3)),
+            ),
+            currentCode: ctlLogin.smsCode.value,
+            onCodeSubmitted: (code) {
+              ctlLogin.smsCode.value = ctlLogin.smsCode.value;
+              ctlLogin.envoyerCodeOTP(pin: code).then((value) {
+                if (value.bSuccess == true) {
+                  Get.back();
+                  Get.snackbar("Félicitation !!!",
+                      "Code confirmé avec succès, veuillez confirmer votre commande maintenant.");
+                } else {
+                  Get.snackbar("Echec Code",
+                      "Code erronné !\nVeuillez recommencer svp.");
+                }
+              });
+            },
+            onCodeChanged: (code) {
+              ctlLogin.smsCode.value = ctlLogin.smsCode.value;
+              if (code!.length == 4) {
+                ctlLogin.envoyerCodeOTP(pin: code);
+                FocusScope.of(context).requestFocus(FocusNode());
+                // ctlLogin.envoyerCodeOTP(pin: code);
+              }
+            },
+          ),
         ],
       ),
     );

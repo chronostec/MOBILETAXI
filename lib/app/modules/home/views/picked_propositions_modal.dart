@@ -1,5 +1,7 @@
 import 'package:alfred_taxi_client/app/common/controllers.dart';
 import 'package:alfred_taxi_client/app/common/keywords.dart';
+import 'package:alfred_taxi_client/app/modules/recherche/views/negociation_view.dart';
+import 'package:alfred_taxi_client/app/modules/utils/app_svg.dart';
 import 'package:alfred_taxi_client/app/modules/utils/images_path.dart';
 import 'package:alfred_taxi_client/app/modules/utils/spinkit_dialog.dart';
 import 'package:alfred_taxi_client/app/routes/app_pages.dart';
@@ -7,8 +9,10 @@ import 'package:alfred_taxi_client/app/themes/styles/app_colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 
 class PickedPropositions extends StatelessWidget {
   PickedPropositions({Key? key}) : super(key: key);
@@ -52,57 +56,101 @@ class PickedPropositions extends StatelessWidget {
                 child: SpinKitCircle(color: AppColor.CREDO),
               )
             else
-              for (var i = 0; i < ctlRecherche.propositionsList.length; i++)
-                ListTile(
-                  title: Text(
-                    '${ctlRecherche.propositionsList[i].libelle}',
-                    style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing:
-                      Text('${ctlRecherche.propositionsList[i].montant} Fcfa'),
-                  leading: Container(
-                    height: 100.0,
-                    width: 90.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(imgList[i]),
-                        fit: BoxFit.fill,
+              Column(
+                children: [
+                  for (var i = 0; i < ctlRecherche.propositionsList.length; i++)
+                    ListTile(
+                      title: Text(
+                        '${ctlRecherche.propositionsList[i].libelle}',
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
-                      // shape: BoxShape.circle,
-                    ),
-                  ),
-                  onTap: () async {
-                    ctlRecherche.proposition_id.value =
-                        ctlRecherche.propositionsList[i].id;
-                    showEndedCoursetDialog(context: context);
-                    Future.delayed(
-                      Duration(seconds: 4),
-                      () => Get.back,
-                    );
-                    ctlHome.verifierIdentite();
+                      trailing: Text(
+                          '${ctlRecherche.propositionsList[i].montant} Fcfa'),
+                      leading: Container(
+                        height: 100.0,
+                        width: 90.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(imgList[i]),
+                            fit: BoxFit.fill,
+                          ),
+                          // shape: BoxShape.circle,
+                        ),
+                      ),
+                      onTap: () async {
+                        ctlRecherche.proposition_id.value =
+                            ctlRecherche.propositionsList[i].id;
+                        ctlNegociation.montantNegocie.value =
+                            ctlRecherche.propositionsList[i].montant!.toInt();
+                        showEndedCoursetDialog(context: context);
+                        Future.delayed(
+                          Duration(seconds: 4),
+                          () => Get.back,
+                        );
+                        ctlHome.verifierIdentite();
 
-                    if (ctlHome.user_is_connected.value) {
-                      ctlRecherche.passerCommandeToApi().then((value) {
-                        if (value == "succes") {
-                          ctlMapCourse.statuscommand.value =
-                              CMDSTATUS.COMMAND_TRAITEMENT;
+                        if (ctlHome.user_is_connected.value) {
+                          ctlRecherche.passerCommandeToApi().then((value) {
+                            if (value == "succes") {
+                              ctlMapCourse.statuscommand.value =
+                                  CMDSTATUS.COMMAND_TRAITEMENT;
+                              Get.back();
+                              Get.back();
+                              Get.back();
+                              // Get.offAllNamed(Routes.MA_COURSE);
+                            }
+                          });
+                        } else {
                           Get.back();
-                          Get.back();
-                          Get.back();
-                          // Get.offAllNamed(Routes.MA_COURSE);
+                          ctlLogin.isOTPview.value = false;
+                          Get.toNamed(Routes.LOGIN);
                         }
-                      });
-                    } else {
-                      Get.back();
-                      ctlLogin.isOTPview.value = false;
-                      Get.toNamed(Routes.LOGIN);
-                    }
-                    // TODO
-                  },
-                ),
+                        // TODO
+                      },
+                    ),
+                  ListTile(
+                      title: Text(
+                        'Je veux négocier',
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      leading: Container(
+                        height: 100.0,
+                        width: 20.w,
+                        child: SvgPicture.asset(AppSvg.deal),
+                      ),
+                      onTap: () async {
+                        // ctlRecherche.proposition_id.value =
+                        //     ctlRecherche.propositionsList[i].id;
+
+                        ctlHome.verifierIdentite();
+
+                        ctlNegociation.selectedIndex.value = 0;
+                        ctlNegociation.montantNegocie.value =
+                            ctlRecherche.propositionsList[0].montant!.toInt();
+                        if (ctlHome.user_is_connected.value) {
+                          await showMaterialModalBottomSheet(
+                            expand: false,
+                            bounce: true,
+                            isDismissible: true,
+                            elevation: 15,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (context) => NegociationView(),
+                          );
+                        } else {
+                          Get.back();
+                          ctlLogin.isOTPview.value = false;
+                          Get.toNamed(Routes.LOGIN);
+                        }
+                      }),
+                ],
+              )
           ],
         ),
       ),

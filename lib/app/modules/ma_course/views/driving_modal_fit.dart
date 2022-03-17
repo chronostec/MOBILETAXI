@@ -42,7 +42,7 @@ class DrivingModalFit extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${ctlRecherche.maCommande.value.montantClient} Fcfa',
+                        '${ctlRecherche.maCommande.value.montantNegocie} Fcfa',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.notoMusic(
                             fontWeight: FontWeight.bold,

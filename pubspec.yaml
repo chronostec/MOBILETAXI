@@ -39,6 +39,7 @@ dependencies:
   google_maps_widget: ^1.0.1
   group_button: ^4.2.1
   count_stepper: ^0.0.4
+  sms_autofill: ^2.2.0
 
 dev_dependencies:
   flutter_test:

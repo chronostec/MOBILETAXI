@@ -83,6 +83,8 @@ class CategorieModalFit extends StatelessWidget {
                         onTap: () async {
                           ctlRecherche.proposition_id.value =
                               ctlRecherche.propositionsList[i].id;
+                          ctlNegociation.montantNegocie.value =
+                              ctlRecherche.propositionsList[i].montant!.toInt();
                           showEndedCoursetDialog(context: context);
                           Future.delayed(
                             Duration(seconds: 4),
@@ -126,6 +128,9 @@ class CategorieModalFit extends StatelessWidget {
 
                         ctlHome.verifierIdentite();
 
+                        ctlNegociation.selectedIndex.value = 0;
+                        ctlNegociation.montantNegocie.value =
+                            ctlRecherche.propositionsList[0].montant ?? 0;
                         if (ctlHome.user_is_connected.value) {
                           await showMaterialModalBottomSheet(
                             expand: false,

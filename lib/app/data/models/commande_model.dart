@@ -3,6 +3,7 @@ class Commande {
   int? dureeEffective;
   int? status;
   int? montantClient;
+  int? montantNegocie;
   String? immatriculation;
   String? marque;
   String? modele;
@@ -29,6 +30,7 @@ class Commande {
       this.dureeEffective,
       this.status,
       this.montantClient,
+      this.montantNegocie,
       this.immatriculation,
       this.marque,
       this.modele,
@@ -55,6 +57,7 @@ class Commande {
     dureeEffective = json['duree_effective'];
     status = json['status'];
     montantClient = json['montant_client'];
+    montantNegocie = json['montant_negocie'];
     immatriculation = json['immatriculation'];
     marque = json['marque'];
     modele = json['modele'];
@@ -83,6 +86,7 @@ class Commande {
     data['duree_effective'] = dureeEffective;
     data['status'] = status;
     data['montant_client'] = montantClient;
+    data['montant_negocie'] = montantNegocie;
     data['immatriculation'] = immatriculation;
     data['marque'] = marque;
     data['modele'] = modele;
