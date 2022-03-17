@@ -261,7 +261,7 @@ class CommandeController extends GetxController {
             chauffeur_id_saisir: ctlHome.driver.value.id ?? 0)
         .then((value) {
       if (value.bSuccess) {
-        ctlHome.rebaseCommandes().then((value) => Get.back());
+        ctlHome.rebaseCommandes();
       } else {
         Get.snackbar("REFUSER COURSE",
             "Quelque chose de s'est mal passé, veuillez recommencer svp !");

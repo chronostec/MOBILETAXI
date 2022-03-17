@@ -52,9 +52,7 @@ class CommandeDetailBottomButtons extends StatelessWidget {
                     if (res.toString().toLowerCase() ==
                         KEYWORD.YES.toString().toLowerCase()) {
                       ctlcommande.changeStatus(CMDSTATUS.COMMAND_EMPTY);
-                      // ctlcommande.listCommande.removeWhere((element) =>
-                      //     element.id == ctlcommande.commande.value.id);
-
+                      ctlcommande.refuserCourse();
                       Get.offAllNamed(Routes.HOME);
                     }
                   },
