@@ -11,7 +11,7 @@ class PartageProvider extends GetConnect {
     var url = APPURL.BASE_URL +
         APPURL.PARTAGE_URL +
         "numeropartage=$numeropartage&commande_id=$commande_id";
-    var _res = Partage();
+    var _res = Partage(bSuccess: false, message: 'succes');
 
     final response = await http.post(Uri.parse(url));
     print(response.body);

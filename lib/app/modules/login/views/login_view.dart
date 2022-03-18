@@ -1,5 +1,5 @@
 import 'package:alfred_taxi_client/app/common/controllers.dart' show ctlLogin;
-import 'package:alfred_taxi_client/app/modules/utils/spinkit_dialog.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:alfred_taxi_client/app/themes/styles/app_colors.dart';
 import 'package:alfred_taxi_client/app/themes/styles/styles.dart';
 import 'package:flutter/material.dart';
@@ -61,9 +61,13 @@ class LoginView extends GetView<LoginController> {
                                         ),
                                         // QUELLE ACTION EFFECTUER?
                                         onTap: () async {
+                                          final signcode = await SmsAutoFill()
+                                              .getAppSignature;
+                                          print("Signature: $signcode");
                                           ctlLogin.phoneNumber.value =
                                               ctlLogin.phoneTF.text;
                                           await ctlLogin.envoyerTelephone();
+                                          await SmsAutoFill().listenForCode;
                                         }),
                                     SizedBox(width: 2.w),
                                     Icon(CupertinoIcons.arrow_right_circle_fill,

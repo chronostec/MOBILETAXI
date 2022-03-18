@@ -31,10 +31,11 @@ class LoginController extends GetxController with CodeAutoFill {
   }
 
   @override
-  void onInit() {
-    SmsAutoFill().getAppSignature.then((signature) {
-      appSignature.value = signature;
-    });
+  void onInit() async {
+    // await SmsAutoFill().listenForCode;
+    // SmsAutoFill().getAppSignature.then((signature) {
+    //   appSignature.value = signature;
+    // });
     super.onInit();
   }
 
@@ -64,7 +65,7 @@ class LoginController extends GetxController with CodeAutoFill {
     );
     isOTPview.value = true;
     isPhoneSending.value = false;
-    await SmsAutoFill().listenForCode;
+    // await SmsAutoFill().listenForCode;
 
     return resultat;
   }
@@ -73,8 +74,7 @@ class LoginController extends GetxController with CodeAutoFill {
   Future<Otp> envoyerCodeOTP({required pin}) async {
     // assert(pin != "0000");
     isCodeSending.value = true;
-    var res = Otp();
-    var resultat = await provLogin.postOTP(
+    Otp resultat = await provLogin.postOTP(
         numero_client: codeDigit.value.substring(1, codeDigit.value.length) +
             phoneNumber.value,
         otp: pin);
@@ -99,6 +99,6 @@ class LoginController extends GetxController with CodeAutoFill {
 
     isCodeSending.value = false;
     onClose();
-    return res;
+    return resultat;
   }
 }
