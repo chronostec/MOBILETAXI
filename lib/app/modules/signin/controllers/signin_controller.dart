@@ -28,14 +28,14 @@ class SigninController extends GetxController {
   Future signinFN() async {
     isLoading.value = true;
     Proprio _signin = await provProprio.getConnexion(
-        telephone: phoneTC.text.trim().toLowerCase(),
+        telephone: phoneTC.text.toString().substring(1, phoneTC.text.length),
         password: passwordTC.text.trim().toLowerCase());
     isLoading.value = false;
 
     if (_signin.id! > 0) {
       Get.snackbar("Merci", "Connexion établie avec succès !");
 
-     await LocalStorage().saveUserData(_signin);
+      await LocalStorage().saveUserData(_signin);
       helper.authenticateUser();
 
       phoneTC.text = "";

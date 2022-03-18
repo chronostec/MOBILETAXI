@@ -122,7 +122,7 @@ class DashboardView extends GetView<DashboardController> {
                     icon: FontAwesomeIcons.car,
                     title: "Véhicules en activité",
                     data:
-                        "${ctlDashboard.dashboardResume.value.nombreVehculeActif ?? 0} F",
+                        "${ctlDashboard.dashboardResume.value.nombreVehculeActif ?? 0}",
                   ),
                 ),
               ],
@@ -354,11 +354,6 @@ class DashboardView extends GetView<DashboardController> {
               style: whiteText.copyWith(
                   fontWeight: FontWeight.bold, fontSize: 20.0),
             ),
-            // trailing: const CircleAvatar(
-            //   radius: 25.0,
-            //   backgroundColor: AppColor.PGREY,
-            //   backgroundImage: NetworkImage(AppImage.userImage),
-            // ),
           ),
           const SizedBox(height: 10.0),
           Row(
@@ -382,7 +377,7 @@ class DashboardView extends GetView<DashboardController> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
-                      "+${helper.proprioInfo.value.telephone}",
+                      "${helper.proprioInfo.value.telephone}",
                       style: const TextStyle(
                           color: Colors.white, letterSpacing: 2),
                     ),

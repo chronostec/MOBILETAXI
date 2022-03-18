@@ -71,7 +71,7 @@ class VehiculeAddView extends GetView {
                           //TODO
                           if (ctlVehicule.categorieTC.text.isEmpty) {
                             ctlVehicule.categorieTC.text =
-                                ctlVehicule.categoriesList[1].libelle ?? "";
+                                ctlVehicule.categoriesList[10].libelle ?? "";
                           }
                           if (_formKey.currentState!.validate()) {
                             ctlVehicule.isEditing.value

@@ -117,6 +117,7 @@ class SettingView extends GetView<SettingController> {
                         trailing: const Icon(Icons.logout),
                         onTap: () {
                           LocalStorage().eraseUserData();
+                          ctlHome.currentPage.value = 0;
                           Get.offAllNamed(Routes.SIGNIN);
                         },
                       ),

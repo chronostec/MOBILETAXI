@@ -94,7 +94,7 @@ class DriverController extends GetxController {
     istLoading.value = true;
     vehiculeResume.value = await provVehicule.getVehiculeResume(
         proprio_id: helper.proprioInfo.value.id ?? 0,
-        vehicule_id: vehicule_id,
+        vehicule_id: vehicule_id ?? 0,
         date_jour: _jour);
     istLoading.value = false;
     return vehiculeResume.value;
