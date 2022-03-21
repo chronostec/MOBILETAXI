@@ -43,7 +43,7 @@ Future checkEchangePeriodicEvent({bool res = false}) async {
 }
 
 Future periodicPosition() async {
-  Timer.periodic(const Duration(seconds: 3), (Timer timer) async {
+  Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
     fournirposition();
   });
 }

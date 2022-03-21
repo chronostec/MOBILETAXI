@@ -171,11 +171,10 @@ class _MaPickerState extends State<MaPicker> {
                                     );
                                     List<Placemark> placemarks =
                                         await placemarkFromCoordinates(
-                                      ctlHome
-                                          .cameraPosition.value.target.latitude,
-                                      ctlHome.cameraPosition.value.target
-                                          .longitude,
-                                    );
+                                            ctlHome.cameraPosition.value.target
+                                                .latitude,
+                                            ctlHome.cameraPosition.value.target
+                                                .longitude);
 
                                     // update the ui with the address
                                     ctlRecherche.departTC.text =
@@ -187,8 +186,7 @@ class _MaPickerState extends State<MaPicker> {
                                     ctlHome.cameraIsMoved.value = false;
                                   } else {
                                     if (textController.text.isNotEmpty) {
-                                      rechercherSelectiondestination(
-                                          context, textController.text);
+                                      rechercherSelectiondestination(context);
                                     } else {
                                       Get.snackbar("Recherche destination",
                                           "Veuillez choisir une destion en déplaçant l'icone avant!");
