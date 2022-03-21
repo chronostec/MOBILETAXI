@@ -94,39 +94,39 @@ class SigninView extends GetView<SigninController> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(right: 16.0, bottom: 16),
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {
-                        print("Mot de passe oublié");
-                        Get.offAllNamed(Routes.RESETPASS);
-                      },
-                      child: const Text(
-                        "Mot de passe oublié?",
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      )),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {
-                        print("Créer un compte");
-                        Get.offAllNamed(Routes.SIGNUP);
-                      },
-                      child: const Text(
-                        "Créer un compte",
-                        style: TextStyle(
-                            color: AppColor.PBLUEDARK,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline),
-                      )),
-                ),
-                const SizedBox(height: 60.0),
+                // Container(
+                //   padding: const EdgeInsets.only(right: 16.0, bottom: 16),
+                //   alignment: Alignment.centerRight,
+                //   child: TextButton(
+                //       onPressed: () {
+                //         print("Mot de passe oublié");
+                //         Get.offAllNamed(Routes.RESETPASS);
+                //       },
+                //       child: const Text(
+                //         "Mot de passe oublié?",
+                //         style: TextStyle(
+                //           color: Colors.black,
+                //         ),
+                //       )),
+                // ),
+                // Container(
+                //   padding: const EdgeInsets.only(right: 16.0),
+                //   alignment: Alignment.centerRight,
+                //   child: TextButton(
+                //       onPressed: () {
+                //         print("Créer un compte");
+                //         Get.offAllNamed(Routes.SIGNUP);
+                //       },
+                //       child: const Text(
+                //         "Créer un compte",
+                //         style: TextStyle(
+                //             color: AppColor.PBLUEDARK,
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold,
+                //             decoration: TextDecoration.underline),
+                //       )),
+                // ),
+                const SizedBox(height: 10.0),
                 Align(
                   alignment: Alignment.centerRight,
                   child: RaisedButton(

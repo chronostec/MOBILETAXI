@@ -24,6 +24,7 @@ class Driver {
     numeroPermis = json['numero_permis'];
     imagePermis = json['image_permis'];
     vehiculeId = json['vehicule_id'];
+    // vehiculeId = int.tryParse( json['vehicule_id']); //TODO try to correct this in db before receive it
   }
 
   Map<String, dynamic> toJson() {

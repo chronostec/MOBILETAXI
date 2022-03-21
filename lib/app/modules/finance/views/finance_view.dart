@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/financeresume_model.dart';
-import 'package:fredy_proprio/app/data/models/sales_model.dart';
-import 'package:fredy_proprio/app/modules/finance/children/repport/views/repport_view.dart';
-import 'package:fredy_proprio/app/utils/custom_alert_dialog.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';

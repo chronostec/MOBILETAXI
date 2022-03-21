@@ -29,68 +29,68 @@ class DriverAddView extends GetView {
           // mainAxisSize: MainAxisSize.min,
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Center(
-              child: SizedBox(
-                width: 100,
-                height: 100,
-                child: Stack(
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 4),
-                        child: ctlDriver.photoTC.text.isNotEmpty
-                            ? Container(
-                                height: 20.h,
-                                width: 50.w,
-                                child: Image.file(File(ctlDriver.photoTC.text),
-                                    scale: 1))
-                            : Ink(
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image:
-                                            AssetImage(AppImage.person1Image),
-                                        fit: BoxFit.cover)))),
-                    Align(
-                      alignment: const Alignment(1.5, 1.5),
-                      child: MaterialButton(
-                        onPressed: () {
-                          showModalBottomSheet<void>(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return SafeArea(
-                                  child: ImagePickerHelper(
-                                    // isSave: true,  //if you want to save image in directory
+            // Center(
+            //   child: SizedBox(
+            //     width: 100,
+            //     height: 100,
+            //     child: Stack(
+            //       children: [
+            //         Padding(
+            //             padding: const EdgeInsets.symmetric(
+            //                 vertical: 4, horizontal: 4),
+            //             child: ctlDriver.photoTC.text.isNotEmpty
+            //                 ? Container(
+            //                     height: 20.h,
+            //                     width: 50.w,
+            //                     child: Image.file(File(ctlDriver.photoTC.text),
+            //                         scale: 1))
+            //                 : Ink(
+            //                     decoration: const BoxDecoration(
+            //                         shape: BoxShape.circle,
+            //                         image: DecorationImage(
+            //                             image:
+            //                                 AssetImage(AppImage.person1Image),
+            //                             fit: BoxFit.cover)))),
+            //         Align(
+            //           alignment: const Alignment(1.5, 1.5),
+            //           child: MaterialButton(
+            //             onPressed: () {
+            //               showModalBottomSheet<void>(
+            //                   context: context,
+            //                   builder: (BuildContext context) {
+            //                     return SafeArea(
+            //                       child: ImagePickerHelper(
+            //                         // isSave: true,  //if you want to save image in directory
 
-                                    size: const Size(300, 300),
-                                    onDone: (file) {
-                                      if (file == null) {
-                                        print(null);
-                                      } else {
-                                        ctlDriver.photoTC.text = file.path;
-                                        printInfo(
-                                            info:
-                                                "PHOTO PICKED at ${file.path}");
-                                      }
-                                    },
-                                  ),
-                                );
+            //                         size: const Size(300, 300),
+            //                         onDone: (file) {
+            //                           if (file == null) {
+            //                             print(null);
+            //                           } else {
+            //                             ctlDriver.photoTC.text = file.path;
+            //                             printInfo(
+            //                                 info:
+            //                                     "PHOTO PICKED at ${file.path}");
+            //                           }
+            //                         },
+            //                       ),
+            //                     );
 
-                                /// If you dont want to safe area you can remove it
-                              });
-                        },
-                        minWidth: 0,
-                        child: const Icon(Icons.camera_alt),
-                        textColor: Colors.white,
-                        color: Theme.of(context).primaryColor,
-                        elevation: 0,
-                        shape: const CircleBorder(),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            //                     /// If you dont want to safe area you can remove it
+            //                   });
+            //             },
+            //             minWidth: 0,
+            //             child: const Icon(Icons.camera_alt),
+            //             textColor: Colors.white,
+            //             color: Theme.of(context).primaryColor,
+            //             elevation: 0,
+            //             shape: const CircleBorder(),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             ListView(
               shrinkWrap: true,
               children: [
