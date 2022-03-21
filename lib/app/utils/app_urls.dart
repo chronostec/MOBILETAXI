@@ -20,6 +20,7 @@ class APPURL {
 
   ///`LOGIN`
   static const GET_DRIVER_INFO = "postLoginDriverInfo?";
+  static const PUT_DRIVER_PWD = "DriverUpdateMdp?";
   static const PUT_DRIVER_GPS = "vehiculePosition?";
   static const PUT_DRIVER_POSITION = "setPostion?";
 

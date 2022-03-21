@@ -150,15 +150,15 @@ class BuildDrawer extends StatelessWidget {
                     },
                   ),
                   _buildDivider(),
-                  _buildRow(
-                    Icons.info_outline,
-                    "Aide",
-                    ontap: () {
-                      Get.toNamed(Routes.AIDE);
-                      ctlHome.ghomeKey.currentState!.openEndDrawer();
-                    },
-                  ),
-                  _buildDivider(),
+                  // _buildRow(
+                  //   Icons.info_outline,
+                  //   "Aide",
+                  //   ontap: () {
+                  //     Get.toNamed(Routes.AIDE);
+                  //     ctlHome.ghomeKey.currentState!.openEndDrawer();
+                  //   },
+                  // ),
+                  // _buildDivider(),
                 ],
               ),
             ),

@@ -5,6 +5,8 @@ import 'package:alfred_taxi_driver/app/utils/app_urls.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/partage_model.dart';
+
 class DriverProvider extends GetConnect {
   Future<Driver> getDriver({
     required telephone,
@@ -27,6 +29,22 @@ class DriverProvider extends GetConnect {
       _res = Driver(id: 0);
     }
 
+    return _res;
+  }
+
+  Future putDriverPwd({
+    required numero_driver,
+    required ancien_password,
+    required new_password,
+  }) async {
+    var _res = Resultat(bSuccess: false, message: "echec");
+    var url = APPURL.BASE_URL +
+        APPURL.PUT_DRIVER_PWD +
+        "numero_driver=$numero_driver&ancien_password=$new_password&new_password=$new_password";
+    var _response = await http.put(Uri.parse(url));
+    if (_response.statusCode == 200) {
+      _res = parseResultats(_response.body);
+    }
     return _res;
   }
 
@@ -66,5 +84,10 @@ class DriverProvider extends GetConnect {
     } else {
       return Driver();
     }
+  }
+
+  Resultat parseResultats(responseBody) {
+    final parsed = json.decode(responseBody);
+    return Resultat.fromJson(parsed);
   }
 }

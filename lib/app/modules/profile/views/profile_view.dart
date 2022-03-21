@@ -6,6 +6,7 @@ import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:alfred_taxi_driver/app/themes/styles/app_styles.dart';
 import 'package:alfred_taxi_driver/app/utils/images_path.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,6 +14,10 @@ import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
+  final focus1 = FocusNode();
+  final focus2 = FocusNode();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -50,6 +55,7 @@ class ProfileView extends GetView<ProfileController> {
               FocusScope.of(context).unfocus();
             },
             child: Form(
+              key: _formKey,
               child: ListView(
                 children: [
                   const Text(
@@ -59,32 +65,32 @@ class ProfileView extends GetView<ProfileController> {
                   const SizedBox(
                     height: 15,
                   ),
-                  Center(
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 130,
-                          height: 130,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 4,
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor),
-                              boxShadow: [
-                                BoxShadow(
-                                    spreadRadius: 2,
-                                    blurRadius: 10,
-                                    color: Colors.black.withOpacity(0.1),
-                                    offset: const Offset(0, 10))
-                              ],
-                              shape: BoxShape.circle,
-                              image: const DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(PathImage.person_icon))),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Center(
+                  //   child: Stack(
+                  //     children: [
+                  //       Container(
+                  //         width: 130,
+                  //         height: 130,
+                  //         decoration: BoxDecoration(
+                  //             border: Border.all(
+                  //                 width: 4,
+                  //                 color: Theme.of(context)
+                  //                     .scaffoldBackgroundColor),
+                  //             boxShadow: [
+                  //               BoxShadow(
+                  //                   spreadRadius: 2,
+                  //                   blurRadius: 10,
+                  //                   color: Colors.black.withOpacity(0.1),
+                  //                   offset: const Offset(0, 10))
+                  //             ],
+                  //             shape: BoxShape.circle,
+                  //             image: const DecorationImage(
+                  //                 fit: BoxFit.cover,
+                  //                 image: AssetImage(PathImage.person_icon))),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 35,
                   ),
@@ -105,39 +111,133 @@ class ProfileView extends GetView<ProfileController> {
                       isPasswordTextField: false,
                       controller: ctlProfile.phoneTF.value,
                       inputType: TextInputType.phone),
-                  buildTextField(
-                      labelText: 'Mot de pass',
-                      placeholder: "********",
-                      isPasswordTextField: true,
-                      controller: ctlProfile.passwordTF.value),
-                  const SizedBox(height: 35),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      OutlinedButton(
-                        style: outlinedButtonStyle(),
+
+                  ///CHANGER MOT DE PASSE
+                  Column(mainAxisSize: MainAxisSize.min, children: [
+                    /// OLD PASSWORD
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: TextFormField(
+                            maxLength: 6,
+                            controller: ctlProfile.oldpasswordTC.value,
+                            onChanged: (value) {
+                              if (value.isNotEmpty &&
+                                  value.toString().length == 6) {
+                                ctlProfile.isNewPasswordEditing.value = true;
+                                FocusScope.of(context).requestFocus(focus1);
+                              } else {
+                                ctlProfile.isNewPasswordEditing.value = false;
+                              }
+                            },
+                            validator: (value) {
+                              if (value!.isNotEmpty &&
+                                  value.toString().length == 6) {
+                                ctlProfile.isNewPasswordEditing.value = true;
+                                return null;
+                              } else {
+                                ctlProfile.isNewPasswordEditing.value = false;
+                                return "minimum 6 caractères requis!";
+                              }
+                            },
+                            keyboardType: TextInputType.visiblePassword,
+                            textInputAction: TextInputAction.next,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                                labelText: "Mot de passe Actuel"))),
+
+                    /// NEW PASSWORD
+                    ctlProfile.isNewPasswordEditing.value
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            child: TextFormField(
+                                maxLength: 6,
+                                controller: ctlProfile.passwordTC.value,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty &&
+                                      value.toString().length == 6) {
+                                    ctlProfile.isPasswordEditing.value = true;
+                                    FocusScope.of(context).requestFocus(focus2);
+                                  } else {
+                                    ctlProfile.isPasswordEditing.value = false;
+                                  }
+                                },
+                                validator: (value) {
+                                  if (value!.isNotEmpty &&
+                                      value.toString().length == 6) {
+                                    ctlProfile.isPasswordEditing.value = true;
+                                    return null;
+                                  } else {
+                                    ctlProfile.isPasswordEditing.value = false;
+                                    return "minimum 6 caractères requis!";
+                                  }
+                                },
+                                focusNode: focus1,
+                                keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.next,
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  labelText: "Nouveau Mot de passe",
+                                )))
+                        : const SizedBox(),
+
+                    /// CONFIRM PASSWORD
+                    ctlProfile.isPasswordEditing.value
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            child: TextFormField(
+                                maxLength: 6,
+                                controller: ctlProfile.confirmpasswordTC.value,
+                                validator: (value) {
+                                  if (value!.isNotEmpty &&
+                                      value.toString().length == 6) {
+                                    if (ctlProfile
+                                            .confirmpasswordTC.value.text !=
+                                        ctlProfile.passwordTC.value.text) {
+                                      return "mot de pass non identiques !";
+                                    }
+                                    return null;
+                                  } else {
+                                    return "minimum 6 caractères requis!";
+                                  }
+                                },
+                                focusNode: focus2,
+                                keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.done,
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  labelText: "Confirmer mot de passe",
+                                )))
+                        : const SizedBox()
+                  ]),
+                  // const SizedBox(height: 35),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    // OutlinedButton(
+                    //   style: outlinedButtonStyle(),
+                    //   onPressed: () {
+                    //     //TODO reset editing
+                    //   },
+                    //   child: const Text("ANNULER",
+                    //       style: TextStyle(
+                    //           fontSize: 14,
+                    //           letterSpacing: 2.2,
+                    //           color: Colors.black)),
+                    // ),
+                    ElevatedButton(
+                        style: elevatedButtonStyle(color: AppColors.DRED1),
                         onPressed: () {
-                          //TODO reset editing
+                          if (_formKey.currentState!.validate()) {
+                            ctlProfile.updatePassword();
+                          } else {
+                            Get.snackbar("MOT DE PASSE",
+                                "Les mots de passe ne correspondent pas!");
+                          }
                         },
-                        child: const Text("ANNULER",
+                        child: const Text("ENREGISTRER",
                             style: TextStyle(
                                 fontSize: 14,
                                 letterSpacing: 2.2,
-                                color: Colors.black)),
-                      ),
-                      ElevatedButton(
-                        style: elevatedButtonStyle(color: AppColors.DRED1),
-                        onPressed: () {},
-                        child: const Text(
-                          "ENREGISTRER",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.white),
-                        ),
-                      )
-                    ],
-                  )
+                                color: Colors.white)))
+                  ])
                 ],
               ),
             ),
@@ -160,23 +260,9 @@ class ProfileView extends GetView<ProfileController> {
         controller: controller,
         textInputAction: TextInputAction.next,
         keyboardType: inputType,
-        obscureText:
-            isPasswordTextField ? ctlProfile.showPassword.value : false,
+        readOnly: true,
         onChanged: (value) => print(controller.text),
         decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    onPressed: () {
-                      ctlProfile.showPassword.value =
-                          !ctlProfile.showPassword.value;
-                      // print(ctlProfile.showPassword.value);
-                    },
-                    icon: const Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                  )
-                : null,
             contentPadding: const EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
