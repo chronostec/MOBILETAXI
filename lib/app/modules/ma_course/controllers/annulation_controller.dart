@@ -33,8 +33,8 @@ class AnnulationController extends GetxController {
     var resultat = await provAnnulation.postAnnulationTaxi(
         motif_id: motif_id, proposition_id: proposition_id);
 
-    ctlMapCourse.statuscommand.value = CMDSTATUS.COMMAND_EMPTY;
-    Get.back();
+    ctlMapCourse.statuscommand.value = CMDSTATUS.COMMAND_ANNULEE;
+    // Get.back();
     ctlHome.reinitialiserTout();
     is_annulation_requesting.value = false;
     return resultat.message;
