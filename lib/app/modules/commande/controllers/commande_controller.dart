@@ -234,6 +234,7 @@ class CommandeController extends GetxController {
         Get.snackbar("COMMENCER COURSE",
             "Quelque chose de s'est mal passé, veuillez recommencer svp !");
       }
+      updateDriverPositionRemaingDistMatrix();
     });
   }
 

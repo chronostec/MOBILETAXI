@@ -1,4 +1,3 @@
-import 'package:alfred_taxi_driver/app/modules/support/views/support_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/aide/bindings/aide_binding.dart';
@@ -15,17 +14,28 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/notifications/bindings/notifications_binding.dart';
 import '../modules/notifications/views/notifications_view.dart';
+import '../modules/otp/bindings/otp_binding.dart';
+import '../modules/otp/views/otp_view.dart';
 import '../modules/parametres/bindings/parametres_binding.dart';
 import '../modules/parametres/views/parametres_view.dart';
 import '../modules/payment/bindings/payment_binding.dart';
 import '../modules/payment/views/payment_view.dart';
+import '../modules/phoneauth/bindings/phoneauth_binding.dart';
+import '../modules/phoneauth/views/phoneauth_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/recovery/bindings/recovery_binding.dart';
 import '../modules/recovery/views/recovery_view.dart';
+import '../modules/resetpwd/bindings/resetpwd_binding.dart';
+import '../modules/resetpwd/views/resetpwd_view.dart';
 import '../modules/service_client/bindings/service_client_binding.dart';
 import '../modules/service_client/views/service_client_view.dart';
+import '../modules/signin/bindings/signin_binding.dart';
+import '../modules/signin/views/signin_view.dart';
+import '../modules/signup/bindings/signup_binding.dart';
+import '../modules/signup/views/signup_view.dart';
 import '../modules/support/bindings/support_binding.dart';
+import '../modules/support/views/support_view.dart';
 
 part 'app_routes.dart';
 
@@ -101,6 +111,31 @@ class AppPages {
       name: _Paths.DRIVER_MAP,
       page: () => DriverMapView(),
       binding: DriverMapBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNIN,
+      page: () => SigninView(),
+      binding: SigninBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESETPWD,
+      page: () => ResetpwdView(),
+      binding: ResetpwdBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => SignupView(),
+      binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP,
+      page: () => OtpView(),
+      binding: OtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.PHONEAUTH,
+      page: () => PhoneauthView(),
+      binding: PhoneauthBinding(),
     ),
   ];
 }

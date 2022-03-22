@@ -3,6 +3,7 @@ import 'package:alfred_taxi_driver/app/routes/app_pages.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+// import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import 'package:get/get.dart';
 
@@ -99,6 +100,36 @@ class AuthenticationView extends GetView<AuthenticationController> {
                                   borderSide:
                                       BorderSide(color: AppColors.DRED1))),
                         ),
+                        // Card(
+                        //   child: InternationalPhoneNumberInput(
+                        //       selectorConfig: const SelectorConfig(
+                        //         selectorType:
+                        //             PhoneInputSelectorType.BOTTOM_SHEET,
+                        //       ),
+                        //       ignoreBlank: false,
+                        //       autoValidateMode: AutovalidateMode.disabled,
+                        //       selectorTextStyle:
+                        //           const TextStyle(color: Colors.black),
+                        //       initialValue: ctlAuth.number.value,
+                        //       // textFieldController: _shareTF,
+                        //       hintText: '01 01 01 01 01',
+                        //       formatInput: false,
+                        //       keyboardType: TextInputType.phone,
+                        //       onInputValidated: (bool value) {},
+                        //       inputBorder: InputBorder.none,
+                        //       onSaved: (value) {
+                        //         // print(
+                        //         //     "PHONE NUMBER: ${ctlLogin.phoneNumber.value}");
+                        //         // ctlLogin.phoneNumber.value =
+                        //         //     value.phoneNumber.toString();
+                        //       },
+                        //       onInputChanged: (value) {
+                        //         // print(
+                        //         //     "PHONE NUMBER: ${ctlLogin.phoneNumber.value}");
+                        //         _phoneTF.text = value.phoneNumber.toString();
+                        //       }),
+                        // ),
+                        
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _passTF,
@@ -112,7 +143,7 @@ class AuthenticationView extends GetView<AuthenticationController> {
                               labelStyle: TextStyle(color: AppColors.DRED1),
                               hintText: "* * * * * * *  * * ",
                               prefixIcon:
-                                  Icon(Icons.phone, color: AppColors.DRED1),
+                                  Icon(Icons.key, color: AppColors.DRED1),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: AppColors.DRED1))),

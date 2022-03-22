@@ -1,10 +1,12 @@
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   var lightThemeData = ThemeData(
     fontFamily: 'Poppins',
     brightness: Brightness.light,
+    textTheme: GoogleFonts.poppinsTextTheme(),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.DRED1,
       centerTitle: true,

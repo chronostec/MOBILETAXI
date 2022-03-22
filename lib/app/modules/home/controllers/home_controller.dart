@@ -30,7 +30,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     readDriverLocalInfo();
-    readCommandeLocalInfo();
+    // readCommandeLocalInfo();
 
     super.onInit();
   }

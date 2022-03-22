@@ -19,4 +19,6 @@ class AppColors {
   static const Color DBLUE1 = Color(0xFFE1F5FE);
   static const Color DBLUEDARK = Color(0xFF0D47A1);
   static const Color DBLACK = Color(0xFF000000);
+  static const Color DTITLE = Color.fromRGBO(30, 60, 87, 1);
+  static const Color DTEXT = Color.fromRGBO(133, 153, 170, 1);
 }

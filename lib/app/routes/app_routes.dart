@@ -19,6 +19,11 @@ abstract class Routes {
   static const PARAMETRES = _Paths.PARAMETRES;
   static const DRIVER_MAP = _Paths.DRIVER_MAP;
   static const DRIVING_MAP = _Paths.DRIVING_MAP;
+  static const SIGNIN = _Paths.SIGNIN;
+  static const RESETPWD = _Paths.RESETPWD;
+  static const SIGNUP = _Paths.SIGNUP;
+  static const OTP = _Paths.OTP;
+  static const PHONEAUTH = _Paths.PHONEAUTH;
 }
 
 abstract class _Paths {
@@ -39,4 +44,9 @@ abstract class _Paths {
   static const PARAMETRES = '/parametres';
   static const DRIVER_MAP = '/driver-map';
   static const DRIVING_MAP = '/driving-map';
+  static const SIGNIN = '/signin';
+  static const RESETPWD = '/resetpwd';
+  static const SIGNUP = '/signup';
+  static const OTP = '/otp';
+  static const PHONEAUTH = '/phoneauth';
 }

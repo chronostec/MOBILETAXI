@@ -67,9 +67,7 @@ Future updateDriverPosition() async {
 
 Future updateDriverPositionRemaingDistMatrix() async {
   Timer.periodic(const Duration(seconds: 6), (Timer timer) async {
-    if (ctlcommande.commande.value.status == CMDSTATUS.COMMAND_ACCEPTEE ||
-        ctlcommande.commande.value.status == CMDSTATUS.COMMAND_COMMENCEE ||
-        ctlcommande.commande.value.status == CMDSTATUS.COMMAND_PAIEMENT) {
+    if (ctlcommande.commande.value.status != CMDSTATUS.COMMAND_EMPTY) {
       if (ctlHome.driverGPS.value.latitude == 0 &&
           ctlHome.driverGPS.value.longitude == 0) {
         var _pos = await Geolocator.getCurrentPosition();
@@ -82,7 +80,7 @@ Future updateDriverPositionRemaingDistMatrix() async {
               distance_en_metre: ctlDrivermap.distanceDuree.value.distance ?? 0,
               duree_en_seconde: ctlDrivermap.distanceDuree.value.duree ?? 0);
           print(
-              "CHAUFFEUR=================>${LatLng(double.parse(_pos.latitude.toString()), double.parse(_pos.longitude.toString()))}");
+              "CHAUFFEUR=================> ${LatLng(double.parse(_pos.latitude.toString()), double.parse(_pos.longitude.toString()))}");
         }
       } else {
         proDriver.updateDriverPositionRemaingDistMatrix(
@@ -95,9 +93,7 @@ Future updateDriverPositionRemaingDistMatrix() async {
     } else {
       timer.cancel();
     }
-  });
-}
 
-Future reinitialiserLaCourse() async {
-  ctlcommande.statuscommand.value = CMDSTATUS.COMMAND_EMPTY;
+    ctlDrivermap.refreshMarkers();
+  });
 }
