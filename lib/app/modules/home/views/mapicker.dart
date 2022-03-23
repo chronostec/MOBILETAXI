@@ -148,7 +148,7 @@ class _MaPickerState extends State<MaPicker> {
                                 ),
                                 label: Text(
                                   ctlHome.cameraIsMoved.value
-                                      ? "Valider Position"
+                                      ? "Valider destination"
                                       : "Commander maintenant",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w800,
