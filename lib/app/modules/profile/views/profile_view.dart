@@ -139,7 +139,7 @@ class ProfileView extends GetView<ProfileController> {
                                 return "minimum 6 caractères requis!";
                               }
                             },
-                            keyboardType: TextInputType.visiblePassword,
+                            keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
                             obscureText: true,
                             decoration: const InputDecoration(
@@ -172,7 +172,7 @@ class ProfileView extends GetView<ProfileController> {
                                   }
                                 },
                                 focusNode: focus1,
-                                keyboardType: TextInputType.visiblePassword,
+                                keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 obscureText: true,
                                 decoration: const InputDecoration(
@@ -201,7 +201,7 @@ class ProfileView extends GetView<ProfileController> {
                                   }
                                 },
                                 focusNode: focus2,
-                                keyboardType: TextInputType.visiblePassword,
+                                keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.done,
                                 obscureText: true,
                                 decoration: const InputDecoration(

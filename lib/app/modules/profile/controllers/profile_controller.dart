@@ -33,7 +33,7 @@ class ProfileController extends GetxController {
   Future updatePassword() async {
     isLoading.value = true;
     Resultat _resultat = await proDriver.putDriverPwd(
-        numero_driver: ctlHome.driver.value.id ?? 0,
+        driver_telephone: ctlHome.driver.value.telephone ?? 0,
         ancien_password: oldpasswordTC.value.text.trim(),
         new_password: passwordTC.value.text.trim());
     if (_resultat.bSuccess) {

@@ -33,14 +33,14 @@ class DriverProvider extends GetConnect {
   }
 
   Future putDriverPwd({
-    required numero_driver,
+    required driver_telephone,
     required ancien_password,
     required new_password,
   }) async {
     var _res = Resultat(bSuccess: false, message: "echec");
     var url = APPURL.BASE_URL +
         APPURL.PUT_DRIVER_PWD +
-        "numero_driver=$numero_driver&ancien_password=$new_password&new_password=$new_password";
+        "driver_telephone=$driver_telephone&ancien_password=$new_password&new_password=$new_password";
     var _response = await http.put(Uri.parse(url));
     if (_response.statusCode == 200) {
       _res = parseResultats(_response.body);
