@@ -26,6 +26,7 @@ abstract class Routes {
   static const CHANGERNEWPASSWORD = _Paths.CHANGERNEWPASSWORD;
   static const RAPPORTACTIVITE =
       _Paths.DASHBOARD + _Paths.CHILDREN + _Paths.RAPPORTACTIVITE;
+  static const REVERSEMENT = _Paths.REVERSEMENT;
 }
 
 abstract class _Paths {
@@ -52,4 +53,5 @@ abstract class _Paths {
   static const CHANGEPASSWORD = '/changepassword';
   static const CHANGERNEWPASSWORD = '/changernewpassword';
   static const RAPPORTACTIVITE = '/rapportactivite';
+  static const REVERSEMENT = '/reversement';
 }

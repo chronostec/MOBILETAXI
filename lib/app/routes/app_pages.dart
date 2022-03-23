@@ -26,6 +26,8 @@ import '../modules/otp/bindings/otp_binding.dart';
 import '../modules/otp/views/otp_view.dart';
 import '../modules/resetpass/bindings/resetpass_binding.dart';
 import '../modules/resetpass/views/resetpass_view.dart';
+import '../modules/reversement/bindings/reversement_binding.dart';
+import '../modules/reversement/views/reversement_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/children/account/bindings/account_binding.dart';
 import '../modules/setting/children/account/views/account_view.dart';
@@ -161,6 +163,11 @@ class AppPages {
       name: _Paths.CHANGERNEWPASSWORD,
       page: () => ChangernewpasswordView(),
       binding: ChangernewpasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVERSEMENT,
+      page: () => ReversementView(),
+      binding: ReversementBinding(),
     ),
   ];
 }

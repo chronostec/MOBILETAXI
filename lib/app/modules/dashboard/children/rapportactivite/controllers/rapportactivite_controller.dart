@@ -14,6 +14,7 @@ class RapportactiviteController extends GetxController {
   final resumeList = <Sales>[].obs;
 
   final RxBool isLoading = false.obs;
+  RxString dateJour = DateTime.now().toString().substring(0, 10).obs;
   Rx<Financeresume> rapportJournee = Financeresume().obs;
 
   @override
@@ -33,7 +34,8 @@ class RapportactiviteController extends GetxController {
   Future<Financeresume> getRapportJournee() async {
     isLoading.value = true;
     rapportJournee.value = await provDashboard.getRapportJournee(
-        proprio_id: helper.proprioInfo.value.id!.toInt(), date_jour: "2022-02-04");
+        proprio_id: helper.proprioInfo.value.id!.toInt(),
+        date_jour: dateJour.value);
     isLoading.value = false;
     return rapportJournee.value;
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/modules/dashboard/children/rapportactivite/views/rapportactivite_view.dart';
+import 'package:fredy_proprio/app/routes/app_pages.dart';
 import 'package:fredy_proprio/app/themes/colors/app_colors.dart';
 import 'package:fredy_proprio/app/utils/app_images.dart';
 
@@ -49,10 +50,7 @@ class DashboardView extends GetView<DashboardController> {
                           .toString();
                       reverserMontantDialog(context);
                     },
-                    child: const Text(
-                      "Reverser",
-                      // style: ThemeData.light().textTheme.bodyText1,
-                    )),
+                    child: const Text("Reverser")),
               ),
             ],
           ),
@@ -120,7 +118,7 @@ class DashboardView extends GetView<DashboardController> {
                   child: _buildTile(
                     color: Colors.blue,
                     icon: FontAwesomeIcons.car,
-                    title: "Véhicules en activité",
+                    title: "Véhicules actifs",
                     data:
                         "${ctlDashboard.dashboardResume.value.nombreVehculeActif ?? 0}",
                   ),
@@ -146,51 +144,25 @@ class DashboardView extends GetView<DashboardController> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Padding(
-                  //     padding: const EdgeInsets.all(0),
-                  //     child: IntlPhoneField(
-                  //         decoration: const InputDecoration(
-                  //           labelText: 'Téléphone',
-                  //           border: OutlineInputBorder(
-                  //             borderSide: BorderSide(),
-                  //           ),
-                  //         ),
-                  //         initialCountryCode: 'CI',
-                  //         // controller: ctlSignin.phoneTC,
-                  //         onChanged: (phone) {
-                  //           print(phone.completeNumber);
-                  //         },
-                  //         disableLengthCheck: false,
-                  //         validator: (value) {
-                  //           if (value!.isNotEmpty &&
-                  //               value.isPhoneNumber &&
-                  //               value.toString().length > 6) {
-                  //             print(value);
-                  //             return null;
-                  //           } else {
-                  //             return "téléphone requis !";
-                  //           }
-                  //         })),
-
                   /// MONEY FIELD
                   Padding(
                     padding: const EdgeInsets.all(0),
                     child: TextFormField(
                       controller: ctlDashboard.montantTC,
-                      // validator: (value) {
-                      //   if (value!.isNotEmpty &&
-                      //       ctlDashboard.montantTC.text.isNotEmpty &&
-                      //       double.parse(ctlDashboard
-                      //               .montantTC.text.removeAllWhitespace
-                      //               .toString()) <=
-                      //           double.parse(
-                      //               ctlDashboard.montantTC.text.toString())) {
-                      //     return null;
-                      //   } else {
-                      //     return "Montant invalide!";
-                      //   }
-                      // },
-                      keyboardType: TextInputType.visiblePassword,
+                      validator: (value) {
+                        if (value!.isNotEmpty &&
+                            ctlDashboard.montantTC.text.isNotEmpty &&
+                            double.parse(ctlDashboard
+                                    .montantTC.text.removeAllWhitespace
+                                    .toString()) <=
+                                double.parse(
+                                    ctlDashboard.montantTC.text.toString())) {
+                          return null;
+                        } else {
+                          return "Montant invalide!";
+                        }
+                      },
+                      keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.done,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
@@ -217,19 +189,26 @@ class DashboardView extends GetView<DashboardController> {
                   onPressed: () => Get.back(), child: const Text("retour")),
               OutlinedButton(
                   onPressed: () {
-                    // if (ctlDashboard.montantTC.text.isNotEmpty &&
-                    //     double.parse(ctlDashboard
-                    //             .montantTC.text.removeAllWhitespace
-                    //             .toString()) <=
-                    //         double.parse(
-                    //             ctlDashboard.montantTC.text.toString())) {
-                    //   Get.snackbar(
-                    //       "Merci", "Reversement effectué avec succès !");
-                    //   Get.back();
-                    // } else {
-                    //   Get.snackbar("Oups!!", "Saisissez une valeur valide");
-                    // }
-                    Get.back();
+                    if (ctlDashboard.montantTC.text.isNotEmpty &&
+                        double.parse(ctlDashboard
+                                .montantTC.text.removeAllWhitespace
+                                .toString()) <=
+                            double.parse(
+                                ctlDashboard.montantTC.text.toString())) {
+                      ctlReversement.genererLienPaiement(
+                          helper.proprioInfo.value.id ?? 0,
+                          ctlDashboard.montantTC.text);
+                      Get.toNamed(Routes.REVERSEMENT);
+                      Get.snackbar("Merci",
+                          "Veuillez à présent valider votre paiement via votre service mobile money!",
+                          colorText: AppColor.PWHITE0,
+                          duration: const Duration(seconds: 5),
+                          backgroundColor: AppColor.PRED1,
+                          snackPosition: SnackPosition.BOTTOM);
+                    } else {
+                      Get.snackbar("Oups!!", "Saisissez une valeur valide");
+                    }
+                    // Get.back();
                   },
                   child: const Text("valider"))
             ],
@@ -325,7 +304,7 @@ class DashboardView extends GetView<DashboardController> {
               ),
               title: const Text("Montant", style: TextStyle(fontSize: 13)),
               subtitle: Text(
-                "${ctlDashboard.dashboardResume.value.courseJour ?? 0} Fcfa",
+                "${ctlDashboard.dashboardResume.value.montantJour ?? 0} Fcfa",
                 style: const TextStyle(fontSize: 13),
               ),
             ),

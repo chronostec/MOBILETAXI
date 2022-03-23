@@ -9,3 +9,4 @@ ResumeProvider provResume = ResumeProvider();
 VehiculeProvider provVehicule = VehiculeProvider();
 ProprioProvider provProprio = ProprioProvider();
 FinanceProvider provFinance = FinanceProvider();
+ReversementProvider provReversement = ReversementProvider();

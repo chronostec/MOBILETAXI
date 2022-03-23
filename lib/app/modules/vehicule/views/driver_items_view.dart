@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/vehicule_model.dart';
 import 'package:fredy_proprio/app/utils/app_images.dart';
 import 'package:fredy_proprio/app/utils/app_styles.dart';
-import 'package:fredy_proprio/app/utils/modals/modal_with_nested_scroll.dart';
 
 import 'package:get/get.dart';
 
@@ -26,7 +24,7 @@ class VehiculeItemsView extends GetView {
         // color: Colors.white,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.green),
+          side: const BorderSide(color: Colors.green),
           borderRadius: BorderRadius.circular(10.0),
         ),
         onPressed: () {},

@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/driver_model.dart';
 import 'package:fredy_proprio/app/utils/app_images.dart';
 import 'package:fredy_proprio/app/utils/app_styles.dart';
-import 'package:fredy_proprio/app/utils/modals/modal_with_nested_scroll.dart';
 
 import 'package:get/get.dart';
 
-import 'driver_add_view.dart';
 import 'driver_detail_modal_with_nested_scroll copy.dart';
 
 class DriverItemsView extends GetView {
@@ -72,9 +69,17 @@ class DriverItemsView extends GetView {
                         IconButton(
                           icon: const Icon(CupertinoIcons.app_badge),
                           onPressed: () {
-                            ctlDriver.getVehiculeResume(driver.vehiculeId).then(
-                                (value) =>
-                                    showMoreAboutDriver(context, driver));
+                            if (driver.vehiculeId != null) {
+                              ctlDriver
+                                  .getVehiculeResume(driver.vehiculeId)
+                                  .then((value) =>
+                                      showCupertinoModalPopup<void>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              driverDetailNestedScrollModal(
+                                                driver: driver,
+                                              )));
+                            }
                           },
                         )
                       ],
@@ -85,13 +90,5 @@ class DriverItemsView extends GetView {
         ),
       ),
     );
-  }
-
-  Future<void> showMoreAboutDriver(BuildContext context, Driver driver) {
-    return showCupertinoModalPopup<void>(
-        context: context,
-        builder: (BuildContext context) => driverDetailNestedScrollModal(
-              driver: driver,
-            ));
   }
 }

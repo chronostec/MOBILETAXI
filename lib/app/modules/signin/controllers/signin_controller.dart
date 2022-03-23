@@ -40,7 +40,8 @@ class SigninController extends GetxController {
 
       phoneTC.text = "";
       passwordTC.text = "";
-
+      ctlHome.currentPage.value = 0;
+      ctlDashboard.loadDashboardresume();
       Get.offAllNamed(Routes.HOME);
     } else {
       Get.snackbar("Erreur connexion", "Téléphone ou mot de pass incorrects !",

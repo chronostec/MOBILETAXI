@@ -18,7 +18,8 @@ void showVehiculeAnneeDatePicker(BuildContext context, {selectedDate}) async {
               print(value);
             }
           },
-          initialDateTime: ctlVehicule.endedDate.value,
+          initialDateTime:
+              DateTime.parse(ctlVehicule.vehicule.value.annee ?? "2022-03-21"),
           minimumYear: 2010,
           maximumYear: DateTime.now().year,
           maximumDate: DateTime.now(),

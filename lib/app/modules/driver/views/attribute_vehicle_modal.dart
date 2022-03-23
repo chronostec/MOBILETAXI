@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/vehicule_model.dart';
-import 'package:fredy_proprio/app/modules/driver/views/vehicle_items_view.dart';
 import 'package:fredy_proprio/app/utils/app_images.dart';
 import 'package:fredy_proprio/app/utils/app_styles.dart';
 import 'package:fredy_proprio/app/utils/custom_alert_dialog.dart';
 import 'package:get/get.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:sizer/sizer.dart';
 
 class AttribuerVehiculeModal extends StatelessWidget {
   AttribuerVehiculeModal({Key? key}) : super(key: key);
@@ -36,7 +33,7 @@ class AttribuerVehiculeModal extends StatelessWidget {
                                 Get.back();
                                 Get.back();
                               } else {
-                                Get.snackbar("ATTRIBUTION NVEHICULOE",
+                                Get.snackbar("ATTRIBUTION VEHICULOE",
                                     "Echec de l'opération. Veuillez réessayer svp");
                               }
                             });

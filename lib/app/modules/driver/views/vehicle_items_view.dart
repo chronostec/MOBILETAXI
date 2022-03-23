@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/vehicule_model.dart';
 import 'package:fredy_proprio/app/utils/app_styles.dart';
@@ -11,6 +12,10 @@ class VehicleItemsView extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Material(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
@@ -39,13 +44,11 @@ class VehicleItemsView extends GetView {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text("${vLibre.marque}",
-                                  style: spacerTextStyle),
+                              Text("${vLibre.marque}", style: spacerTextStyle),
                               const SizedBox(
                                 height: 2,
                               ),
-                              Text("${vLibre.modele}",
-                                  style: spacerTextStyle),
+                              Text("${vLibre.modele}", style: spacerTextStyle),
                               const SizedBox(
                                 height: 5,
                               ),

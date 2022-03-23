@@ -9,7 +9,6 @@ import 'package:fredy_proprio/app/data/providers/providers.dart';
 import 'package:get/get.dart';
 
 class VehiculeController extends GetxController {
-  
   TextEditingController searchTextTC = TextEditingController();
 
   TextEditingController immatTC = TextEditingController();
@@ -28,6 +27,7 @@ class VehiculeController extends GetxController {
   Rx<DateTime> vehiculeAnnee = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endedDate = DateTime.now().obs;
+  Rx<DateTime> vehiculeDate = DateTime.now().obs;
   RxString dateJour = DateTime.now().toString().substring(0, 10).obs;
 
   final List<String> couleurList = <String>[
@@ -46,7 +46,7 @@ class VehiculeController extends GetxController {
   Rx<Vehicule> vehicule = Vehicule().obs;
   Rx<VehiculeResume> vehiculeResume = VehiculeResume().obs;
   RxList<Vehicule> vehiculesList = <Vehicule>[].obs;
-    RxList<Vehicule> tempVehiculeList = <Vehicule>[].obs;
+  RxList<Vehicule> tempVehiculeList = <Vehicule>[].obs;
   RxList<VehiculeHistoriqueCourse> vehiculeHistoriqueList =
       <VehiculeHistoriqueCourse>[].obs;
 
@@ -84,10 +84,13 @@ class VehiculeController extends GetxController {
   Future<VehiculeResume> getVehiculeResume(vehicule_id) async {
     String _jour = DateTime.now().toString().substring(0, 10);
     istLoading.value = true;
-    vehiculeResume.value = await provVehicule.getVehiculeResume(
+    var _res = await provVehicule.getVehiculeResume(
         proprio_id: helper.proprioInfo.value.id ?? 0,
-        vehicule_id: vehicule_id,
+        vehicule_id: vehicule_id ?? 0,
         date_jour: _jour);
+    if (_res.isNotEmpty) {
+      vehiculeResume.value = _res.first;
+    }
     istLoading.value = false;
     return vehiculeResume.value;
   }

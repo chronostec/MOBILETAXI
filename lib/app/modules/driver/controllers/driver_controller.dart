@@ -92,18 +92,23 @@ class DriverController extends GetxController {
   Future<VehiculeResume> getVehiculeResume(vehicule_id) async {
     String _jour = DateTime.now().toString().substring(0, 10);
     istLoading.value = true;
-    vehiculeResume.value = await provVehicule.getVehiculeResume(
+    var _res = await provVehicule.getVehiculeResume(
         proprio_id: helper.proprioInfo.value.id ?? 0,
         vehicule_id: vehicule_id ?? 0,
         date_jour: _jour);
+    if (_res.isNotEmpty) {
+      vehiculeResume.value = _res.first;
+    }
     istLoading.value = false;
+    printInfo(info: vehiculeResume.value.distanceJour.toString());
     return vehiculeResume.value;
   }
 
   ///`VEHICULES LIBRES`
   Future<List<VehiculeLibre>> getVehiculeLibre() async {
     istLoading.value = true;
-    vehiculelibreList.value = await provDriver.getListerVehiculeLibre();
+    vehiculelibreList.value = await provDriver.getListerVehiculeLibre(
+        proprio_id: helper.proprioInfo.value.id ?? 0);
     tempVehiculelibreList.value = vehiculelibreList.reversed.toList();
     istLoading.value = false;
     return vehiculelibreList.value;
@@ -119,7 +124,7 @@ class DriverController extends GetxController {
       prenom: prenomTC.text.trim().toUpperCase(),
       numero_permis: permisTC.text.trim().toUpperCase(),
       telephone: telephoneTC.text,
-      image_permis: "RIEN",
+      image_permis: "NO_IMAGE",
     );
     clearTextFields();
     ctlVehicule.listerVehicules();

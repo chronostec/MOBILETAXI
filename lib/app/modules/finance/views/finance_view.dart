@@ -220,22 +220,6 @@ class FinanceView extends GetView<FinanceController> {
             ],
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.fromLTRB(8, 3, 8, 0),
-        //   child: CupertinoSlidingSegmentedControl(
-        //       groupValue: ctlFinance.periodIndex.value,
-        //       children: const <int, Widget>{
-        //         0: Text('Tout'),
-        //         1: Text('Jour'),
-        //         2: Text('Semaine'),
-        //         3: Text('Mois'),
-        //         4: Text('Année')
-        //       },
-        //       onValueChanged: (value) {
-        //         print(value);
-        //         ctlFinance.periodIndex.value = value as int;
-        //       }),
-        // ),
 
         ///
         SingleChildScrollView(
@@ -251,8 +235,6 @@ class FinanceView extends GetView<FinanceController> {
                 name: 'montant',
                 title: AxisTitle(text: 'Montants'),
               ),
-
-              // adding multiple axis
               axes: <ChartAxis>[
                 NumericAxis(
                   name: 'duree',
@@ -260,7 +242,6 @@ class FinanceView extends GetView<FinanceController> {
                   opposedPosition: true,
                 )
               ],
-
               enableMultiSelection: true,
               enableSideBySideSeriesPlacement: false,
               tooltipBehavior: ctlFinance.tooltipBehavior,
@@ -285,8 +266,7 @@ class FinanceView extends GetView<FinanceController> {
                               .take(15)
                               .toList()
                           : ctlFinance.financeResume.value.objet!.toList(),
-                  xValueMapper: (Objet sales, _) =>
-                      DateTime.parse(sales.date.toString()),
+                  xValueMapper: (Objet sales, _) => DateTime.parse(sales.date!),
                   yValueMapper: (Objet sales, _) =>
                       int.parse(sales.montant.toString()),
                   enableTooltip: true,

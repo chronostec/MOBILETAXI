@@ -64,6 +64,9 @@ class VehiculeDetailNestedScrollModal extends StatelessWidget {
                       onPressed: () {
                         Get.back();
                         ctlVehicule.vehicule.value = vehicule;
+                        ctlVehicule.vehiculeDate.value =
+                            DateTime.tryParse(vehicule.annee.toString()) ??
+                                DateTime.now();
                         ctlVehicule.isEditing.value = true;
                         ctlVehicule.immatTC.text =
                             vehicule.immatriculation.toString();
@@ -71,7 +74,7 @@ class VehiculeDetailNestedScrollModal extends StatelessWidget {
                         ctlVehicule.marqueTC.text = vehicule.marque.toString();
                         ctlVehicule.couleurTC.text =
                             vehicule.couleur.toString();
-                       
+
                         Get.to(() => VehiculeAddView());
                       },
                       icon: const Icon(FontAwesomeIcons.edit)),

@@ -12,7 +12,7 @@ import 'package:image_picker_type/image_picker_type.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sizer/sizer.dart';
 
-import 'attribute_vehicle_modal_with_nested_scroll.dart';
+import 'attribute_vehicle_modal.dart';
 
 class DriverAddView extends GetView {
   @override

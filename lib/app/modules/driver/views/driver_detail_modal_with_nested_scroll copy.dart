@@ -6,12 +6,11 @@ import 'package:fredy_proprio/app/data/models/driver_model.dart';
 import 'package:fredy_proprio/app/data/models/vehicule_model.dart';
 import 'package:fredy_proprio/app/modules/driver/views/driver_add_view.dart';
 import 'package:fredy_proprio/app/modules/driver/views/driver_historique_view.dart';
-import 'package:fredy_proprio/app/routes/app_pages.dart';
 import 'package:fredy_proprio/app/utils/app_images.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import 'attribute_vehicle_modal_with_nested_scroll.dart';
+import 'attribute_vehicle_modal.dart';
 
 class driverDetailNestedScrollModal extends StatelessWidget {
   final Driver driver;
@@ -28,7 +27,7 @@ class driverDetailNestedScrollModal extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
-                child: Container(
+                child: SizedBox(
                   height: 10,
                   width: 50,
                   child: InkWell(
@@ -65,7 +64,7 @@ class driverDetailNestedScrollModal extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    trailing: driver.vehiculeId! > 0
+                    trailing: driver.id! > 0
                         ? IconButton(
                             onPressed: () {
                               Get.back();
@@ -120,33 +119,35 @@ class driverDetailNestedScrollModal extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         const SizedBox(height: 10.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32.0, vertical: 8.0),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                FontAwesomeIcons.car,
-                                color: primary,
+                        Obx(() => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32.0, vertical: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    FontAwesomeIcons.car,
+                                    color: primary,
+                                  ),
+                                  const SizedBox(width: 5.0),
+                                  Text(
+                                      "${ctlDriver.vehiculeResume.value.distanceJour ?? 0} km"),
+                                  const Spacer(),
+                                  Container(
+                                      height: 20.0,
+                                      width: 1.0,
+                                      color: Colors.grey),
+                                  const Spacer(),
+                                  Icon(
+                                    FontAwesomeIcons.coins,
+                                    color: secondary,
+                                  ),
+                                  const SizedBox(width: 5.0),
+                                  Text(
+                                      "${ctlDriver.vehiculeResume.value.montantJour ?? 0} F"),
+                                  const Spacer(),
+                                ],
                               ),
-                              const SizedBox(width: 5.0),
-                              Text(
-                                  "${ctlDriver.vehiculeResume.value.distanceJour ?? 0} km"),
-                              const Spacer(),
-                              Container(
-                                  height: 20.0, width: 1.0, color: Colors.grey),
-                              const Spacer(),
-                              Icon(
-                                FontAwesomeIcons.coins,
-                                color: secondary,
-                              ),
-                              const SizedBox(width: 5.0),
-                              Text(
-                                  "${ctlDriver.vehiculeResume.value.montantJour ?? 0} F"),
-                              const Spacer(),
-                            ],
-                          ),
-                        ),
+                            )),
                         const SizedBox(height: 20.0),
                         if (driver.vehiculeId != null && driver.vehiculeId! > 0)
                           Card(

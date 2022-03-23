@@ -146,7 +146,7 @@ class VehiculeAddView extends GetView {
     return showCupertinoModalBottomSheet(
         expand: true,
         context: context,
-        builder: (context) => NestedScrollModal());
+        builder: (context) => const NestedScrollModal());
   }
 
   Padding chapsSaisie(
@@ -268,22 +268,23 @@ class VehiculeAddView extends GetView {
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
           onTap: () => showVehiculeAnneeDatePicker(context),
           readOnly: true,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               labelText: "Année",
-              labelStyle: TextStyle(
+              hintText: ctlVehicule.vehicule.value.annee ?? "",
+              labelStyle: const TextStyle(
                 fontWeight: FontWeight.normal,
               ),
-              hintStyle:
-                  TextStyle(fontWeight: FontWeight.normal, color: Colors.grey),
+              hintStyle: const TextStyle(
+                  fontWeight: FontWeight.normal, color: Colors.grey),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-              border: OutlineInputBorder(
+                  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+              border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(32.0)),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                   borderSide:
                       BorderSide(color: Colors.lightBlueAccent, width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0))))),

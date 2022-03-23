@@ -34,21 +34,21 @@ class DriverProvider {
   }
 
   /// EXECUTER REQUETE GET
-  Future<List<VehiculeLibre>> getListerVehiculeLibre() async {
-    var url = APPURL.BASE_URL + APPURL.GET_VEHICULE_LIBRE;
+  Future<List<VehiculeLibre>> getListerVehiculeLibre(
+      {required proprio_id}) async {
+    var url =
+        APPURL.BASE_URL + APPURL.GET_VEHICULE_LIBRE + "proprio_id=$proprio_id";
     final response = await http.get(Uri.parse(url));
     return parseVehiculeLibre(response.body);
   }
 
   /// EXECUTER REQUETE PUT
-  Future<Retour> putAttribuerVehicule({
-    required int vehicule_id,
-    required int driver_id,
-  }) async {
+  Future<Retour> putAttribuerVehicule(
+      {required int vehicule_id, required int driver_id}) async {
     var url = APPURL.BASE_URL +
-        APPURL.GET_ATTRIBUER_VEHICULE +
-        "vehicule_id=$vehicule_id&driver_id=$driver_id";
-    final response = await http.get(Uri.parse(url));
+        APPURL.PUT_ATTRIBUER_VEHICULE +
+        "chauffeur_id=$driver_id&vehicule_id=$vehicule_id";
+    final response = await http.put(Uri.parse(url));
     return parseRetour(response.body);
   }
 
@@ -82,9 +82,7 @@ class DriverProvider {
     var url = APPURL.BASE_URL +
         APPURL.POST_DRIVER +
         "nom=$nom&prenom=$prenom&numero_permis=$numero_permis&telephone=$telephone&proprio_id=$proprio_id&image_permis=$image_permis";
-    final response = await http.post(
-      Uri.parse(url),
-    );
+    final response = await http.post(Uri.parse(url));
 
     return parseRetour(response.body);
   }

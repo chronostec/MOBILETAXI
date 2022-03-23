@@ -32,9 +32,12 @@ List<VehiculeHistoriqueCourse> parseRetourLVHC(responseBody) {
   // return VehiculeHistoriqueCourse.fromJson(parsed);
 }
 
-VehiculeResume parseVehiculeresume(responseBody) {
-  final parsed = json.decode(responseBody);
-  return VehiculeResume.fromJson(parsed);
+List<VehiculeResume> parseVehiculeresume(responseBody) {
+  final parsed =
+      json.decode(responseBody)["objet"].cast<Map<String, dynamic>>();
+  return parsed
+      .map<VehiculeResume>((json) => VehiculeResume.fromJson(json))
+      .toList();
 }
 
 /// DECODER LES DONNEES

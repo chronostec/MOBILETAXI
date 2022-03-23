@@ -33,6 +33,7 @@ dependencies:
   # sliding_up_panel: ^2.0.0+1
   flutter_spinkit: ^5.1.0
   flutter_svg: ^1.0.3
+  webviewx: ^0.2.1
   
   
 

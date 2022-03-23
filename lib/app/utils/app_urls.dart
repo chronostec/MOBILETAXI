@@ -24,6 +24,7 @@ class APPURL {
 
   ///`FINANCE`
   static const GET_FINANCE_RESUME = "GetFinanceResume?";
+  static const POST_REVERSEMENT = "ReversementProprio?";
 
   ///`DRIVER`
   static const GET_LISTER_DRIVERS = "GetListerDrivers?";
@@ -31,8 +32,8 @@ class APPURL {
       "GetListeDriverHistoriqueCourse?";
   static const POST_DRIVER = "PostDriver?";
   static const PUT_DRIVER = "PutDriver?";
-  static const GET_ATTRIBUER_VEHICULE = "AttribuVehicule?";
-  static const GET_VEHICULE_LIBRE = "VehiculeLibre";
+  static const PUT_ATTRIBUER_VEHICULE = "UpdateVehicule?";
+  static const GET_VEHICULE_LIBRE = "VehiculeLibre?";
 
   ///`VEHICULE`
   static const GET_VEHICULE_RESUME = "GetVehiculeResume?";
