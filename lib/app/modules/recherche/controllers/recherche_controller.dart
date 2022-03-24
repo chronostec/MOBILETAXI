@@ -173,8 +173,8 @@ class RechercheController extends GetxController {
             resultat[0].status != CMDSTATUS.COMMAND_TRAITEMENT &&
             resultat[0].status != CMDSTATUS.COMMAND_ANNULEE) {
           ctlMapCourse.addDrivermarker(LatLng(
-              double.parse(maCommande.value.driverLat.toString()),
-              double.parse(maCommande.value.driverLong.toString())));
+              double.parse(maCommande.value.gpsLat.toString()),
+              double.parse(maCommande.value.gpsLon.toString())));
 
           ///CHANGEMENT DE TRAJET
           if (resultat[0].status == CMDSTATUS.COMMAND_ACCEPTEE &&

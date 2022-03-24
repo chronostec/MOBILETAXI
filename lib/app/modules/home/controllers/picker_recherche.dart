@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-rechercherSelectiondestination(context, String depart) async {
+rechercherSelectiondestination(context) async {
   ctlMapCourse
       .calculerDistanceMatrix(
           ctlRecherche.departGps.value, ctlHome.cameraPosition.value.target)
       .then((DistanceMatrix value) {
     ctlRecherche.postRechercheEvaluationToApi(
         client_id: ctlHome.user.value.id,
-        origine_libelle: depart.isNotEmpty
-            ? depart
+        origine_libelle: ctlRecherche.departTC.text.isNotEmpty
+            ? ctlRecherche.departTC.text
             : ctlMapCourse.distMatrix.value.originAddresses![0],
         longitude: ctlRecherche.departGps.value.longitude,
         latitude: ctlRecherche.departGps.value.latitude,

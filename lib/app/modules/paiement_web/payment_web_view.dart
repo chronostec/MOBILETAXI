@@ -9,11 +9,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:alfred_taxi_client/app/common/controllers.dart';
-import 'package:alfred_taxi_client/app/modules/utils/spinkit_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

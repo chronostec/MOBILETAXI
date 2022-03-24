@@ -13,7 +13,7 @@ class PartageProvider extends GetConnect {
         "numeropartage=$numeropartage&commande_id=$commande_id";
     var _res = Partage(bSuccess: false, message: 'succes');
 
-    final response = await http.post(Uri.parse(url));
+    final response = await http.get(Uri.parse(url));
     print(response.body);
     if (response.statusCode == 200) {
       _res = parsePartages(response.body);
