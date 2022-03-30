@@ -1,14 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contact/contacts.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:full_text_search/searches.dart';
+import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:logging_config/logging_config.dart';
-import 'package:sunny_dart/helpers/strings.dart';
+import 'package:sizer/sizer.dart';
 import 'package:sunny_dart/sunny_dart.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PeopleListPage extends StatefulWidget {
+  const PeopleListPage({Key? key}) : super(key: key);
+
   @override
   _PeopleListPageState createState() => _PeopleListPageState();
 }
@@ -65,7 +71,7 @@ class _PeopleListPageState extends State<PeopleListPage> {
           withUnifyInfo: true,
           withThumbnails: true,
           withHiResPhoto: false,
-          sortBy: ContactSortOrder.firstName());
+          sortBy: const ContactSortOrder.firstName());
       var tmp = <Contact>[];
       while (await contacts.moveNext()) {
         (await contacts.current)?.let((self) => tmp.add(self));
@@ -99,53 +105,19 @@ class _PeopleListPageState extends State<PeopleListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Contacts Plugin Example',
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.create),
-            onPressed: _openContactForm,
-          ),
-          IconButton(
-            icon: _contactService.isAggregate
-                ? Icon(Icons.people)
-                : Icon(Icons.person),
-            onPressed: () {
-              setState(() {
-                if (_contactService.isAggregate) {
-                  _contactService = SingleContacts;
-                } else {
-                  _contactService = UnifiedContacts;
-                }
-              });
-              refreshContacts(true);
-            },
-          )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).pushNamed('/add').then((_) {
-            refreshContacts(false);
-          });
-        },
-      ),
       body: RefreshIndicator(
         onRefresh: () async {
           await refreshContacts();
         },
         child: CustomScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           slivers: [
             SliverToBoxAdapter(
               child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 child: _loading == true
-                    ? Padding(
-                        padding: const EdgeInsets.all(10),
+                    ? const Padding(
+                        padding: EdgeInsets.all(10),
                         child: Center(
                           child: CircularProgressIndicator(),
                         ),
@@ -154,16 +126,16 @@ class _PeopleListPageState extends State<PeopleListPage> {
               ),
             ),
             SliverToBoxAdapter(
-              key: Key('searchBox'),
+              key: const Key('searchBox'),
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Center(
                   child: PlatformTextField(
                     cupertino: (context, platform) => CupertinoTextFieldData(
-                      placeholder: 'Search',
+                      placeholder: 'Chercher',
                     ),
                     material: (context, platform) => MaterialTextFieldData(
-                      decoration: InputDecoration(hintText: 'Search'),
+                      decoration: const InputDecoration(hintText: 'Chercher'),
                     ),
                     onChanged: (term) async {
                       _searchTerm = term;
@@ -176,22 +148,24 @@ class _PeopleListPageState extends State<PeopleListPage> {
             ..._contacts.map((contact) {
               return SliverToBoxAdapter(
                 child: ListTile(
-                  onTap: () async {},
-                  leading:
-                      (contact.avatar != null && contact.avatar!.isNotEmpty)
-                          ? CircleAvatar(
-                              backgroundImage: MemoryImage(contact.avatar!))
-                          : CircleAvatar(child: Text(contact.initials())),
-                  title: Text(contact.displayName ?? ''),
-                  trailing: (contact.linkedContactIds.length) < 2
-                      ? null
-                      : InputChip(
-                          avatar: CircleAvatar(
-                              child:
-                                  Text('${contact.linkedContactIds.length}')),
-                          label: Text('Linked'),
-                        ),
-                ),
+                    leading:
+                        (contact.avatar != null && contact.avatar!.isNotEmpty)
+                            ? CircleAvatar(
+                                backgroundColor: Colors.primaries[
+                                    Random().nextInt(Colors.primaries.length)])
+                            : CircleAvatar(
+                                child: Text(contact.initials()),
+                                backgroundColor: Colors.primaries[
+                                    Random().nextInt(Colors.primaries.length)],
+                              ),
+                    title: Text(contact.displayName ?? ''),
+                    trailing: IconButton(
+                        onPressed: () {
+                          print(contact.phones.first.value.toString());
+                          _makePhoneCall(contact.phones.first.value.toString());
+                        },
+                        icon: Icon(CupertinoIcons.phone_down_circle,
+                            size: 28.sp, color: Colors.green))),
               );
             }),
           ],
@@ -205,5 +179,14 @@ class _PeopleListPageState extends State<PeopleListPage> {
       var id = _contacts.indexWhere((c) => c.identifier == contact.identifier);
       _contacts[id] = contact;
     });
+  }
+
+  Future<void> _makePhoneCall(String url) async {
+    String _url = "tel:$url";
+    if (await canLaunch(_url)) {
+      await launch(_url);
+    } else {
+      Get.snackbar("Appeler", "impossible de lancer ce appel");
+    }
   }
 }

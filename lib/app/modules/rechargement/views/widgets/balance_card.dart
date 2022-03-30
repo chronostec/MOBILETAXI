@@ -1,3 +1,4 @@
+import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,7 @@ class BalanceCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          '55000000 F',
+                          '${ctlRechargement.rechargements.value.solde} F',
                           style: GoogleFonts.mulish(
                               textStyle: Theme.of(context).textTheme.headline4,
                               fontSize: 35,

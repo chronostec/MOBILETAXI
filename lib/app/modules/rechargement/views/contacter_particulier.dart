@@ -1,6 +1,8 @@
+import 'package:alfred_taxi_driver/app/modules/rechargement/views/people_contact_list;.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:logging_config/logging_config.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -36,8 +38,8 @@ class _ContacterParticulierState extends State<ContacterParticulier> {
                 context: context,
                 builder: (context) {
                   return PlatformAlertDialog(
-                    title: Text('Contact Permissions'),
-                    content: Text(
+                    title: const Text('Contact Permissions'),
+                    content: const Text(
                         'We are having problems retrieving permissions.  Would you like to '
                         'open the app settings to fix?'),
                     actions: [
@@ -45,13 +47,13 @@ class _ContacterParticulierState extends State<ContacterParticulier> {
                         onPressed: () {
                           Navigator.pop(context, false);
                         },
-                        child: Text('Close'),
+                        child: const Text('Close'),
                       ),
                       PlatformDialogAction(
                         onPressed: () async {
                           await openAppSettings();
                         },
-                        child: Text('Settings'),
+                        child: const Text('Settings'),
                       ),
                     ],
                   );
@@ -62,7 +64,7 @@ class _ContacterParticulierState extends State<ContacterParticulier> {
       }
     }
 
-    await Navigator.of(context).pushReplacementNamed('/contactsList');
+    // await Get.to(() => PeopleListPage());
   }
 
   Future<PermissionStatus> _getContactPermission() async {
@@ -92,26 +94,7 @@ class _ContacterParticulierState extends State<ContacterParticulier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Contacts Plugin Example')),
-      body: _hasPermission == null
-          ? const Center(child: CircularProgressIndicator())
-          : SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  ElevatedButton(
-                    child: const Text('Contacts list'),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/contactsList'),
-                  ),
-                  ElevatedButton(
-                    child: const Text('Native Contacts picker'),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/nativeContactPicker'),
-                  ),
-                ],
-              ),
-            ),
-    );
+        appBar: AppBar(title: const Text('Appeler un particulier')),
+        body: const PeopleListPage());
   }
 }

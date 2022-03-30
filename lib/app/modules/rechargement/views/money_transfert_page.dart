@@ -1,4 +1,5 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
+import 'package:alfred_taxi_driver/app/modules/rechargement/views/webview_pay.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,7 +80,9 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
               ),
             ],
           )),
-      onTap: () {},
+      onTap: () {
+        Get.to(() => const WebViewPay());
+      },
     );
   }
 
