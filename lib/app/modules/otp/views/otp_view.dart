@@ -1,4 +1,5 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
+import 'package:alfred_taxi_driver/app/modules/otp/views/filled.dart';
 import 'package:alfred_taxi_driver/app/modules/otp/views/rounded_with_cursor.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,56 +26,44 @@ class _OtpViewState extends State<OtpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: SingleChildScrollView(
+        body: Stack(children: [
+      Center(
+          child: SingleChildScrollView(
               // padding: EdgeInsets.fromLTRB(24, 64, 24, 24),
-              child: Column(
-                children: [
-                  OtpHeader(),
-                  RoundedWithCustomCursor(),
-                  const SizedBox(height: 44),
-                  Text(
-                    "Vous n'avez pas reçu de code ?",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      color: Color.fromRGBO(62, 116, 165, 1),
-                    ),
-                  ),
-                  OtpTimerButton(
-                      buttonType: ButtonType.text_button,
-                      controller: _timerController,
-                      onPressed: () {
-                        _timerController.startTimer();
-                      },
-                      text: Text('Renvoyer',
-                          style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              decoration: TextDecoration.underline,
-                              color: Color.fromRGBO(62, 116, 165, 1))),
-                      duration: 80),
-                ],
-              ),
-            ),
+              child: Column(children: [
+        OtpHeader(),
+        // RoundedWithCustomCursor(),
+        Filled(),
+        const SizedBox(height: 44),
+        Text(
+          "Vous n'avez pas reçu de code ?",
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            color: const Color.fromRGBO(62, 116, 165, 1),
           ),
-          ctlOtp.isLoading.value
-              ? Center(
-                  child: Container(
-                  color: Colors.black45,
-                  height: 100.h,
-                  width: 100.w,
-                  child: SpinKitCircle(
-                    color: AppColors.DRED1,
-                    size: 100,
-                  ),
-                ))
-              : SizedBox()
-        ],
-      ),
-    );
+        ),
+        OtpTimerButton(
+            buttonType: ButtonType.text_button,
+            controller: _timerController,
+            onPressed: () {
+              _timerController.startTimer();
+            },
+            text: Text('Renvoyer',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                    color: const Color.fromRGBO(62, 116, 165, 1))),
+            duration: 60)
+      ]))),
+      ctlOtp.isLoading.value
+          ? Center(
+              child: Container(
+              color: Colors.black45,
+              height: 100.h,
+              width: 100.w,
+              child: const SpinKitCircle(color: AppColors.DRED1, size: 100),
+            ))
+          : const SizedBox()
+    ]));
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

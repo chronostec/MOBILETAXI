@@ -24,6 +24,8 @@ import '../modules/phoneauth/bindings/phoneauth_binding.dart';
 import '../modules/phoneauth/views/phoneauth_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/rechargement/bindings/rechargement_binding.dart';
+import '../modules/rechargement/views/rechargement_view.dart';
 import '../modules/recovery/bindings/recovery_binding.dart';
 import '../modules/recovery/views/recovery_view.dart';
 import '../modules/resetpwd/bindings/resetpwd_binding.dart';
@@ -136,6 +138,11 @@ class AppPages {
       name: _Paths.PHONEAUTH,
       page: () => PhoneauthView(),
       binding: PhoneauthBinding(),
+    ),
+    GetPage(
+      name: _Paths.RECHARGEMENT,
+      page: () => RechargementView(),
+      binding: RechargementBinding(),
     ),
   ];
 }

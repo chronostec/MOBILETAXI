@@ -21,12 +21,13 @@ class BuildDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: OvalRightBorderClipper(),
+      // clipper: OvalRightBorderClipper(),
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 40),
           decoration: BoxDecoration(
-              color: primary, boxShadow: [BoxShadow(color: Colors.black45)]),
+              color: primary,
+              boxShadow: [const BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
@@ -41,12 +42,11 @@ class BuildDrawer extends StatelessWidget {
                       ),
                       onPressed: () async {
                         final result = await showOkCancelAlertDialog(
-                          context: context,
-                          message:
-                              "Vous etes sur le point de vous déconnecter de votre compte, c'est bien cela",
-                          okLabel: 'Oui',
-                          cancelLabel: 'Non',
-                        );
+                            context: context,
+                            message:
+                                "Vous etes sur le point de vous déconnecter de votre compte, c'est bien cela",
+                            okLabel: 'Oui',
+                            cancelLabel: 'Non');
                         print(result);
                         if (result.toString().toLowerCase() ==
                             DIALOGRESULT.OK) {
@@ -71,7 +71,7 @@ class BuildDrawer extends StatelessWidget {
                   const SizedBox(height: 5.0),
                   Text(
                     "${ctlHome.driver.value.nom ?? "Votre nom"} ${ctlHome.driver.value.prenom ?? ""}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600),
@@ -113,6 +113,15 @@ class BuildDrawer extends StatelessWidget {
                   ),
                   _buildDivider(),
                   _buildRow(
+                    Icons.attach_money,
+                    "Rechargement",
+                    ontap: () {
+                      Get.toNamed(Routes.RECHARGEMENT);
+                      ctlHome.ghomeKey.currentState!.openEndDrawer();
+                    },
+                  ),
+                  _buildDivider(),
+                  _buildRow(
                     Icons.account_box,
                     "Mon profile",
                     ontap: () {
@@ -120,17 +129,7 @@ class BuildDrawer extends StatelessWidget {
                       ctlHome.ghomeKey.currentState!.openEndDrawer();
                     },
                   ),
-                  // _buildDivider(),
-                  // _buildRow(
-                  //   Icons.notifications,
-                  //   "Notifications",
-                  //   showBadge: ctlNotifications.unreadNotifications.value,
-                  //   badgeText: 1,
-                  //   ontap: () {
-                  //     Get.toNamed(Routes.NOTIFICATIONS);
-                  //     ctlHome.ghomeKey.currentState!.openEndDrawer();
-                  //   },
-                  // ),
+
                   _buildDivider(),
                   _buildRow(
                     Icons.settings,

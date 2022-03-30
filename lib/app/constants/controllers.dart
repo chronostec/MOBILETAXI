@@ -10,6 +10,7 @@ import 'package:alfred_taxi_driver/app/modules/parametres/controllers/parametres
 import 'package:alfred_taxi_driver/app/modules/payment/controllers/payment_controller.dart';
 import 'package:alfred_taxi_driver/app/modules/phoneauth/controllers/phoneauth_controller.dart';
 import 'package:alfred_taxi_driver/app/modules/profile/controllers/profile_controller.dart';
+import 'package:alfred_taxi_driver/app/modules/rechargement/controllers/rechargement_controller.dart';
 import 'package:alfred_taxi_driver/app/modules/recovery/controllers/recovery_controller.dart';
 import 'package:alfred_taxi_driver/app/modules/resetpwd/bindings/resetpwd_binding.dart';
 import 'package:alfred_taxi_driver/app/modules/resetpwd/controllers/resetpwd_controller.dart';
@@ -33,3 +34,4 @@ SigninController ctlSignin = Get.put(SigninController());
 ResetpwdController ctlResetpwd = Get.put(ResetpwdController());
 OtpController ctlOtp = Get.put(OtpController());
 PhoneauthController ctlPhoneauth = Get.put(PhoneauthController());
+RechargementController ctlRechargement = Get.put(RechargementController());

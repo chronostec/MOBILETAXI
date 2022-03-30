@@ -6,10 +6,8 @@ import 'package:alfred_taxi_driver/app/data/services/local_storage.dart';
 import 'package:get/get.dart';
 
 class AuthenticationController extends GetxController {
-  RxBool DIALOGSTATUS = false.obs;
   @override
   void onInit() {
-    DIALOGSTATUS.value = false;
     super.onInit();
   }
 

@@ -5,7 +5,7 @@ class ResetpwdController extends GetxController {
   TextEditingController phoneTC = TextEditingController();
   TextEditingController password1TC = TextEditingController();
   TextEditingController password2TC = TextEditingController();
-
+  final isLoading = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,4 +18,10 @@ class ResetpwdController extends GetxController {
 
   @override
   void onClose() {}
+
+  Future forcerChangerPwd() async {
+    isLoading.value = true;
+
+    isLoading.value = false;
+  }
 }

@@ -32,11 +32,10 @@ class DriverProvider extends GetConnect {
     return _res;
   }
 
-  Future putDriverPwd({
-    required driver_telephone,
-    required ancien_password,
-    required new_password,
-  }) async {
+  Future putDriverPwd(
+      {required driver_telephone,
+      required ancien_password,
+      required new_password}) async {
     var _res = Resultat(bSuccess: false, message: "echec");
     var url = APPURL.BASE_URL +
         APPURL.PUT_DRIVER_PWD +

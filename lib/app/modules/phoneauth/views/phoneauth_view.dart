@@ -1,4 +1,5 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
+import 'package:alfred_taxi_driver/app/modules/otp/views/otp_view.dart';
 import 'package:alfred_taxi_driver/app/modules/phoneauth/views/phone_header.dart';
 import 'package:alfred_taxi_driver/app/routes/app_pages.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
@@ -29,7 +30,7 @@ class PhoneauthView extends GetView<PhoneauthController> {
                           horizontal: 32, vertical: 8.0),
                       child: IntlPhoneField(
                         // controller: ctlPhoneauth.phoneTC,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Téléphone',
                         ),
@@ -62,7 +63,7 @@ class PhoneauthView extends GetView<PhoneauthController> {
                           borderRadius: BorderRadius.circular(30)),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Get.offNamed(Routes.OTP);
+                          Get.to(() => OtpView());
                         } else
                           Get.snackbar(
                               'Attention', "Attention, champs obligatoires.");

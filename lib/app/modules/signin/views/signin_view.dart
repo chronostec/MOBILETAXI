@@ -102,10 +102,9 @@ class SigninView extends GetView<SigninController> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          print('ok');
-                          ctlSignin.signinUser();
+                          await ctlSignin.signinUser();
                         } else
                           Get.snackbar(
                               'Attention', "Attention, champs obligatoires.");
@@ -136,7 +135,7 @@ class SigninView extends GetView<SigninController> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                         onPressed: () {
-                          print("Mot de passe oublié");
+                          print("Mot de passe oublié?");
                           Get.toNamed(Routes.PHONEAUTH);
                         },
                         child: const Text(

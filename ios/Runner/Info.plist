@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"[]>
 <plist version="1.0">
+<!-- S T A R T -->
+<key>NSContactsUsageDescription</key>
+<string>Effectuer des appels.</string>
 <dict>
 <key>NSLocationAlwaysUsageDescription</key>
 <string>Your position is required for the proper functioning of this App</string>
@@ -11,6 +14,7 @@
 <string>https</string>
 <string>http</string>
 </array>
+<!-- E N D -->
 <key>CFBundleDevelopmentRegion</key>
 <string>$(DEVELOPMENT_LANGUAGE)</string>
 <key>CFBundleDisplayName</key>

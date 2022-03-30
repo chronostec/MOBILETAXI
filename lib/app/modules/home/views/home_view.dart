@@ -26,7 +26,7 @@ class HomeView extends GetView<HomeController> {
             backgroundColor: AppColors.DGREEN1,
             key: ctlHome.ghomeKey,
             appBar: AppBar(
-              title: const Text('FREDY CLIENT'),
+              title: const Text('ALFRED DRIVER'),
               automaticallyImplyLeading: false,
               actions: [
                 IconButton(
