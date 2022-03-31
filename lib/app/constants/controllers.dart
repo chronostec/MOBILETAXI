@@ -9,6 +9,7 @@ import 'package:fredy_proprio/app/modules/finance/controllers/finance_controller
 import 'package:fredy_proprio/app/modules/home/controllers/home_controller.dart';
 import 'package:fredy_proprio/app/modules/newpassword/controllers/newpassword_controller.dart';
 import 'package:fredy_proprio/app/modules/otp/controllers/otp_controller.dart';
+import 'package:fredy_proprio/app/modules/rechargement/controllers/rechargement_controller.dart';
 import 'package:fredy_proprio/app/modules/resetpass/controllers/resetpass_controller.dart';
 import 'package:fredy_proprio/app/modules/reversement/controllers/reversement_controller.dart';
 import 'package:fredy_proprio/app/modules/setting/controllers/setting_controller.dart';
@@ -40,3 +41,4 @@ RapportactiviteController ctlRapportActivite =
     Get.put(RapportactiviteController());
 Helper helper = Get.put(Helper());
 ReversementController ctlReversement = Get.put(ReversementController());
+RechargementController ctlRechargement = Get.put(RechargementController());

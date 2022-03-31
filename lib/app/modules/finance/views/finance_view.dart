@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/financeresume_model.dart';
+import 'package:fredy_proprio/app/modules/rechargement/views/widgets/balance_card.dart';
+import 'package:fredy_proprio/app/routes/app_pages.dart';
+import 'package:fredy_proprio/app/themes/colors/light_color.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -300,6 +304,117 @@ class FinanceView extends GetView<FinanceController> {
             ),
           ),
         ),
+
+        /// RECHARGEMENT
+        soldeCard(context, titre: "Argent comptant", montant: "200000"),
+        soldeCard(context,
+            titre: "Solde actuel (unités)",
+            montant: "${ctlRechargement.rechargements.value.solde}",
+            active: true,
+            action: () => Get.toNamed(Routes.RECHARGEMENT))
+      ],
+    );
+  }
+
+  Stack soldeCard(BuildContext context,
+      {required String titre,
+      required String montant,
+      bool active = false,
+      action}) {
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              child: Container(
+                height: 10.h,
+                color: LightColor.navyBlue1,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          titre,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                '$montant F',
+                                style: GoogleFonts.mulish(
+                                    textStyle:
+                                        Theme.of(context).textTheme.headline4,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.w800,
+                                    color: LightColor.yellow2),
+                              )
+                            ])
+                      ],
+                    ),
+                    const Positioned(
+                      left: -170,
+                      top: -170,
+                      child: CircleAvatar(
+                        radius: 130,
+                        backgroundColor: LightColor.lightBlue2,
+                      ),
+                    ),
+                    const Positioned(
+                      left: -160,
+                      top: -190,
+                      child: CircleAvatar(
+                        radius: 130,
+                        backgroundColor: LightColor.lightBlue1,
+                      ),
+                    ),
+                    active
+                        ? const SizedBox()
+                        : const Positioned(
+                            right: -170,
+                            bottom: -170,
+                            child: CircleAvatar(
+                              radius: 130,
+                              backgroundColor: LightColor.yellow2,
+                            ),
+                          ),
+                    active
+                        ? const SizedBox()
+                        : const Positioned(
+                            right: -160,
+                            bottom: -190,
+                            child: CircleAvatar(
+                              radius: 130,
+                              backgroundColor: LightColor.yellow,
+                            ),
+                          )
+                  ],
+                ),
+              )),
+        ),
+        active
+            ? Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 8.sp, horizontal: 16.sp),
+                  child: IconButton(
+                      onPressed: action,
+                      icon: Icon(
+                          CupertinoIcons.arrowshape_turn_up_right_circle_fill,
+                          size: 48.sp,
+                          color: Colors.white)),
+                ),
+              )
+            : const SizedBox()
       ],
     );
   }

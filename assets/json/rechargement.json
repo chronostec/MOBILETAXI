@@ -1,0 +1,19 @@
+{
+    "proprio_id": 0,
+    "solde": 55.00,
+    "operation": [
+        {
+            "id": 0,
+            "ref": "",
+            "montant": "",
+            "destinataire_contact": "",
+            "beneficiaire_id": 1,
+            "beneficiaire_contact": "",
+            "beneficiaire_nom": "",
+            "beneficiaire_prenom": "",
+            "date": "",
+            "type": "",
+            "status": ""
+        }
+    ]
+}
