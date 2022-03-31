@@ -38,7 +38,8 @@ dependencies:
   sunny_dart: ^0.11.0+8
   full_text_search: ^0.8.0+3
   webview_flutter_plus: ^0.3.0+2
-  # webviewx: ^0.2.1
+  # flutter_masked_text2: ^0.9.1
+  currency_formatter: ^1.2.0
 
   flutter:
     sdk: flutter

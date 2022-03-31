@@ -5,15 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class BalanceCard extends StatelessWidget {
-  const BalanceCard({Key? key}) : super(key: key);
+  const BalanceCard({Key? key, this.montant}) : super(key: key);
 
+  final montant;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(40)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         child: Container(
-          width: 100.w,
-          height: 20.h,
+          height: 15.h,
           color: LightColor.navyBlue1,
           child: Stack(
             fit: StackFit.expand,
@@ -22,10 +22,10 @@ class BalanceCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     'Solde actuel',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
                         color: Colors.white),
                   ),
@@ -34,10 +34,11 @@ class BalanceCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          '${ctlRechargement.rechargements.value.solde} F',
+                          ctlRechargement.currency
+                              .format(montant, ctlRechargement.unitSettings),
                           style: GoogleFonts.mulish(
                               textStyle: Theme.of(context).textTheme.headline4,
-                              fontSize: 35,
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.w800,
                               color: LightColor.yellow2),
                         )

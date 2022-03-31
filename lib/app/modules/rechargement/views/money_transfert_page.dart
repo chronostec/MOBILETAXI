@@ -141,6 +141,27 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
                       flex: 1,
                       child: SizedBox(),
                     ),
+                    Text(
+                      'Bénéficiaire',
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: LightColor.darkgrey),
+                    ),
+                    Text("Tél. ${ctlRechargement.driver.value.telephone}",
+                        style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white)),
+                    Text(
+                        "${ctlRechargement.driver.value.nom} ${ctlRechargement.driver.value.prenom}",
+                        style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white)),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       'Saisir le montant',
                       style: TextStyle(
@@ -204,7 +225,8 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
                         color: Colors.white,
                       ),
                       SizedBox(width: 20),
-                      TitleText(text: "Rechargez-vous!", color: Colors.white)
+                      TitleText(
+                          text: "Rechargez votre chaufeur", color: Colors.white)
                     ],
                   )),
               _buttonWidget(),

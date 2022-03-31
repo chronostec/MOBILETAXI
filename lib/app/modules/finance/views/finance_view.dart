@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/financeresume_model.dart';
-import 'package:fredy_proprio/app/modules/rechargement/views/widgets/balance_card.dart';
 import 'package:fredy_proprio/app/routes/app_pages.dart';
 import 'package:fredy_proprio/app/themes/colors/light_color.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,13 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../controllers/finance_controller.dart';
 
 class FinanceView extends GetView<FinanceController> {
-  var _chartSeriesController1, _chartSeriesController2;
+  var _chartSeriesController2;
+
+  FinanceView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -252,9 +252,7 @@ class FinanceView extends GetView<FinanceController> {
               series: <ChartSeries<Objet, DateTime>>[
                 ColumnSeries<Objet, DateTime>(
                   animationDuration: 2000,
-                  onRendererCreated: (ChartSeriesController controller) {
-                    _chartSeriesController1 = controller;
-                  },
+                  onRendererCreated: (ChartSeriesController controller) {},
                   dataSource: ctlFinance.financeResume.value.objet!
                               .toList()
                               .length >=
@@ -306,9 +304,9 @@ class FinanceView extends GetView<FinanceController> {
         ),
 
         /// RECHARGEMENT
-        soldeCard(context, titre: "Argent comptant", montant: "200000"),
+        // soldeCard(context, titre: "Argent comptant", montant: "200000"),
         soldeCard(context,
-            titre: "Solde actuel (unités)",
+            titre: "Argent comptant",
             montant: "${ctlRechargement.rechargements.value.solde}",
             active: true,
             action: () => Get.toNamed(Routes.RECHARGEMENT))
@@ -349,11 +347,12 @@ class FinanceView extends GetView<FinanceController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                '$montant F',
+                                ctlRechargement.currency.format(
+                                    montant, ctlRechargement.unitSettings),
                                 style: GoogleFonts.mulish(
                                     textStyle:
                                         Theme.of(context).textTheme.headline4,
-                                    fontSize: 35,
+                                    fontSize: 20.sp,
                                     fontWeight: FontWeight.w800,
                                     color: LightColor.yellow2),
                               )

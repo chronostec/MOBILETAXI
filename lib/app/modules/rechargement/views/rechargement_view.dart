@@ -23,14 +23,12 @@ class RechargementView extends StatefulWidget {
 class _RechargementViewState extends State<RechargementView> {
   Widget _operationsWidget() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _icon(Icons.mobile_friendly, "Mobile money",
-            () => Get.to(() => const MoneyTransferPage())),
-        _icon(Icons.phone, "Particulier",
+        // _icon(Icons.mobile_friendly, "Moi",
+        //     () => Get.to(() => const MoneyTransferPage())),
+        _icon(Icons.drive_eta_outlined, "Chauffeur",
             () => Get.to(() => const ContacterParticulier())),
-        // _icon(Icons.payment, "Pay Bills"),
-        // _icon(Icons.code, "Qr Pay"),
       ],
     );
   }
@@ -42,7 +40,7 @@ class _RechargementViewState extends State<RechargementView> {
           onTap: openPage,
           child: Container(
             height: 80,
-            width: 80,
+            width: 85.w,
             margin: const EdgeInsets.symmetric(vertical: 10),
             decoration: const BoxDecoration(
                 color: Colors.white,
@@ -93,7 +91,8 @@ class _RechargementViewState extends State<RechargementView> {
             color: LightColor.lightGrey,
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
-          child: Text('+${operation.montant} F',
+          child: Text(
+              '+${ctlRechargement.currency.format(operation.montant, ctlRechargement.unitSettings)}',
               style: GoogleFonts.mulish(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -112,34 +111,32 @@ class _RechargementViewState extends State<RechargementView> {
           children: [
             SizedBox(
               height: 60.h,
-              child: ListView(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: const Icon(CupertinoIcons.left_chevron)),
-                        const TitleText(text: "Mon solde"),
-                      ],
-                    ),
-                    const BalanceCard(),
-                    const SizedBox(height: 10),
-                    const TitleText(
-                      text: "Recharger Compte",
-                    ),
-                    _operationsWidget(),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    const TitleText(
-                      text: "Historique Transactions",
-                    ),
-                    const Divider(thickness: 2)
-                  ]),
+              child: ListView(children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: const Icon(CupertinoIcons.left_chevron)),
+                    const TitleText(text: "Mon solde (Argent comptant)"),
+                  ],
+                ),
+                BalanceCard(montant: ctlRechargement.rechargements.value.solde),
+                const SizedBox(height: 10),
+                const TitleText(
+                  text: "Recharger Compte",
+                ),
+                _operationsWidget(),
+                const SizedBox(
+                  height: 40,
+                ),
+                const TitleText(
+                  text: "Historique Transactions",
+                ),
+                const Divider(thickness: 2)
+              ]),
             ),
             Align(
                 alignment: Alignment.bottomCenter,
