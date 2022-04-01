@@ -9,4 +9,9 @@ class PathImage {
   static const String cash = "assets/images/cash.png";
   static const String mobile = "assets/images/mobile.png";
   static const String bank = "assets/images/bank.png";
+
+  static const String orange = "assets/images/orange.png";
+  static const String moov = "assets/images/moov.png";
+  static const String mtn = "assets/images/mtn.png";
+  static const String serviceClientele = "assets/images/service_clientele.png";
 }

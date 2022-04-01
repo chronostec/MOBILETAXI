@@ -6,8 +6,9 @@
             "id": 0,
             "ref": "",
             "contact": "",
-            "montant": "",
+            "montant": 0,
             "date": "",
+            "type": "",
             "status": ""
         }
     ]

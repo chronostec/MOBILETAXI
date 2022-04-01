@@ -1,6 +1,7 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,18 +31,48 @@ class BalanceCard extends StatelessWidget {
                         color: Colors.white),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '${ctlRechargement.rechargements.value.solde} F',
-                          style: GoogleFonts.mulish(
-                              textStyle: Theme.of(context).textTheme.headline4,
-                              fontSize: 35,
-                              fontWeight: FontWeight.w800,
-                              color: LightColor.yellow2),
-                        )
-                      ])
+                  Obx(() => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            if (ctlRechargement.rechargements.value.solde !=
+                                null)
+                              if (ctlRechargement.rechargements.value.solde! >=
+                                  0)
+                                Text(
+                                  ctlRechargement.currency.format(
+                                      ctlRechargement
+                                              .rechargements.value.solde ??
+                                          0.0,
+                                      ctlRechargement.unitSettings),
+                                  style: GoogleFonts.mulish(
+                                      textStyle:
+                                          Theme.of(context).textTheme.headline4,
+                                      fontSize: 22.sp,
+                                      fontWeight: FontWeight.w800,
+                                      color: LightColor.yellow2),
+                                )
+                              else
+                                Text(
+                                  "-${ctlRechargement.currency.format(ctlRechargement.rechargements.value.solde.toString().substring(1, ctlRechargement.rechargements.value.solde.toString().length), ctlRechargement.unitSettings)}",
+                                  style: GoogleFonts.mulish(
+                                      textStyle:
+                                          Theme.of(context).textTheme.headline4,
+                                      fontSize: 22.sp,
+                                      fontWeight: FontWeight.w800,
+                                      color: LightColor.yellow2),
+                                )
+                            else
+                              Text(
+                                ctlRechargement.currency
+                                    .format(0.0, ctlRechargement.unitSettings),
+                                style: GoogleFonts.mulish(
+                                    textStyle:
+                                        Theme.of(context).textTheme.headline4,
+                                    fontSize: 22.sp,
+                                    fontWeight: FontWeight.w800,
+                                    color: LightColor.yellow2),
+                              )
+                          ]))
                 ],
               ),
               const Positioned(

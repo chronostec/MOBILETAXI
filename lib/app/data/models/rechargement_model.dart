@@ -31,12 +31,19 @@ class Operation {
   int? id;
   String? ref;
   String? contact;
-  String? montant;
+  int? montant;
   String? date;
+  String? type;
   String? status;
 
   Operation(
-      {this.id, this.ref, this.contact, this.montant, this.date, this.status});
+      {this.id,
+      this.ref,
+      this.contact,
+      this.montant,
+      this.date,
+      this.type,
+      this.status});
 
   Operation.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -44,6 +51,7 @@ class Operation {
     contact = json['contact'];
     montant = json['montant'];
     date = json['date'];
+    type = json['type'];
     status = json['status'];
   }
 
@@ -54,6 +62,7 @@ class Operation {
     data['contact'] = contact;
     data['montant'] = montant;
     data['date'] = date;
+    data['type'] = type;
     data['status'] = status;
     return data;
   }

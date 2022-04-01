@@ -10,9 +10,9 @@ class PaiementProvider {
         "mode_paiement_id=1&monnaie=0&etat=1&detail=neant&commande_id=$commande_id";
     final response = await http.post(Uri.parse(url));
     if (response.statusCode == 200) {
+      return Resultat.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load predictions');
     }
-    return Resultat.fromJson(json.decode(response.body));
   }
 }

@@ -5,8 +5,8 @@ import 'package:sizer/sizer.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 
 class WebViewPay extends StatefulWidget {
-  const WebViewPay({Key? key}) : super(key: key);
-
+  const WebViewPay({Key? key, this.url}) : super(key: key);
+  final url;
   @override
   State<WebViewPay> createState() => _WebViewPayState();
 }
@@ -14,6 +14,13 @@ class WebViewPay extends StatefulWidget {
 class _WebViewPayState extends State<WebViewPay> {
   WebViewPlusController? _controller;
   double _height = 1;
+  String _url = "";
+  @override
+  void initState() {
+    _url = widget.url;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +38,14 @@ class _WebViewPayState extends State<WebViewPay> {
         height: _height,
         child: WebViewPlus(
           serverPort: 5353,
+          allowsInlineMediaPlayback: true,
+          gestureNavigationEnabled: true,
+          initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
           javascriptChannels: null,
-          initialUrl: 'www.stackoverflow.com',
+          initialUrl: _url,
           onWebViewCreated: (controller) {
             _controller = controller;
-            controller.loadUrl('https://pub.dev/packages/webview_flutter_plus');
+            controller.loadUrl(_url);
           },
           onPageFinished: (url) {
             _controller?.getHeight().then((double height) {

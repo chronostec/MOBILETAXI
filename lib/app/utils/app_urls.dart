@@ -27,6 +27,8 @@ class APPURL {
   ///`ECHANGES`
   static const POST_DRIVER_ECRIRE = "driverEcrireMessage?";
   static const GET_DRIVER_LIRE = "getEchangeMessage?";
+  static const GET_CONTACT_SERVICE_RECHARGEMENT =
+      "getContactServiceRechargement";
 
   ///` COMMANDE`
   static const PUT_MANAGER_CMDE = "postManagerCommande?";
@@ -41,4 +43,9 @@ class APPURL {
   ///`PAIEMENT`
   static const POST_ESPECE = "paiement?";
   static const GET_ESPECE = "recuperationInfoPaiement?";
+
+  ///`RECHARGEMENT`
+  static const GET_LIEN_RECHARGE = "getLienRechargement?";
+  static const GET_LISTER_HISTORIQUE_RECHARGE =
+      "getListerHistoriqueRechargement?";
 }
