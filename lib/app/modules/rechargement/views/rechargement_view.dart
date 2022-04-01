@@ -1,7 +1,6 @@
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/rechargement_model.dart';
 import 'package:fredy_proprio/app/modules/rechargement/views/contacter_particulier.dart';
-import 'package:fredy_proprio/app/modules/rechargement/views/money_transfert_page.dart';
 import 'package:fredy_proprio/app/themes/colors/light_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +78,7 @@ class _RechargementViewState extends State<RechargementView> {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(),
       title: TitleText(
-        text: operation.destinataireContact ?? "",
+        text: operation.telDest ?? "",
         fontSize: 14,
       ),
       subtitle: Text(operation.date ?? ""),
@@ -105,54 +104,59 @@ class _RechargementViewState extends State<RechargementView> {
     return Scaffold(
         // appBar: AppBar(),
         body: SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Stack(
-          children: [
-            SizedBox(
-              height: 60.h,
-              child: ListView(children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: const Icon(CupertinoIcons.left_chevron)),
-                    const TitleText(text: "Mon solde (Argent comptant)"),
-                  ],
-                ),
-                BalanceCard(montant: ctlRechargement.rechargements.value.solde),
-                const SizedBox(height: 10),
-                const TitleText(
-                  text: "Recharger Compte",
-                ),
-                _operationsWidget(),
-                const SizedBox(
-                  height: 40,
-                ),
-                const TitleText(
-                  text: "Historique Transactions",
-                ),
-                const Divider(thickness: 2)
-              ]),
-            ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  height: 40.h,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      for (var operation
-                          in ctlRechargement.rechargements.value.operation ??
-                              [])
-                        _transection(operation: operation),
+      child: RefreshIndicator(
+        onRefresh: () async {
+          await ctlRechargement.listerHistoriqueRecharges();
+          // await ctlRechargement.listercontactServiceRecharge();
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            children: [
+              SizedBox(
+                height: 60.h,
+                child: ListView(children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: const Icon(CupertinoIcons.left_chevron)),
+                      const TitleText(text: "Mon solde (Argent comptant)"),
                     ],
                   ),
-                ))
-          ],
+                  BalanceCard(
+                      montant: ctlRechargement.rechargements.value.solde),
+                  const SizedBox(height: 10),
+                  const TitleText(
+                    text: "Recharger Compte",
+                  ),
+                  _operationsWidget(),
+                  const SizedBox(height: 40),
+                  const TitleText(
+                    text: "Historique Transactions",
+                  ),
+                  const Divider(thickness: 2)
+                ]),
+              ),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    height: 40.h,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        for (var operation
+                            in ctlRechargement.rechargements.value.operation ??
+                                [])
+                          _transection(operation: operation),
+                      ],
+                    ),
+                  ))
+            ],
+          ),
         ),
       ),
     ));

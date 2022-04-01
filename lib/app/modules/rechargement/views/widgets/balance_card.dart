@@ -34,8 +34,8 @@ class BalanceCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          ctlRechargement.currency
-                              .format(montant, ctlRechargement.unitSettings),
+                          ctlRechargement.currency.format(
+                              montant ?? 0, ctlRechargement.unitSettings),
                           style: GoogleFonts.mulish(
                               textStyle: Theme.of(context).textTheme.headline4,
                               fontSize: 22.sp,

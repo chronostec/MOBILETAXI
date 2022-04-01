@@ -152,12 +152,6 @@ class FinanceView extends GetView<FinanceController> {
                       );
                     },
                     textInputAction: TextInputAction.done,
-                    // onEditingComplete: () {
-                    //   ctlFinance.myFocusNode.unfocus();
-                    // },
-                    // onSubmitted: (value) {
-                    //   ctlFinance.myFocusNode.unfocus();
-                    // },
                   ),
                 ),
                 flex: 2,
@@ -307,7 +301,7 @@ class FinanceView extends GetView<FinanceController> {
         // soldeCard(context, titre: "Argent comptant", montant: "200000"),
         soldeCard(context,
             titre: "Argent comptant",
-            montant: "${ctlRechargement.rechargements.value.solde}",
+            montant: ctlRechargement.rechargements.value.solde ?? 0,
             active: true,
             action: () => Get.toNamed(Routes.RECHARGEMENT))
       ],
@@ -316,7 +310,7 @@ class FinanceView extends GetView<FinanceController> {
 
   Stack soldeCard(BuildContext context,
       {required String titre,
-      required String montant,
+      required int montant,
       bool active = false,
       action}) {
     return Stack(

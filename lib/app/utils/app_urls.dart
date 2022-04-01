@@ -43,6 +43,7 @@ class APPURL {
   static const POST_VEHICULE = "PostVehicule?";
   static const PUT_VEHICULE = "PutVehicule?";
 
-  ///`PARAMETRE`
-  // static const POST_LOGIN_DRIVER_INFO = "postLoginDriverInfo?";
+  ///`RECHARGEMENT`
+  static const GET_LIEN_RECHARGE = "getLienRechargementProprio?";
+  static const GET_LISTER_HISTORIQUE_RECHARGE = "getListerHistoriqueOperation?";
 }

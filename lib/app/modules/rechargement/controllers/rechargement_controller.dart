@@ -1,25 +1,22 @@
 import 'package:currency_formatter/currency_formatter.dart';
 import 'package:fredy_proprio/app/constants/controllers.dart';
 import 'package:fredy_proprio/app/data/models/driver_model.dart';
+import 'package:fredy_proprio/app/data/models/paiement_model.dart';
 import 'package:fredy_proprio/app/data/models/rechargement_model.dart';
+import 'package:fredy_proprio/app/data/providers/providers.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 class RechargementController extends GetxController {
+  final RxBool isLoading = false.obs;
   final RxInt saisie = 0.obs;
   final RxString url = "".obs;
   final RxList<int> montant = <int>[].obs;
+  final RxBool isOperationLoading = false.obs;
+  final RxBool isUrlLoading = false.obs;
 
   Rx<Rechargement> rechargements =
-      Rechargement(proprioId: 1, solde: 5500000, operation: [
-    for (var i = 0; i < 10; i++)
-      Operation(
-          id: i,
-          destinataireContact: "075777750$i",
-          montant: "${i * 10000}",
-          date: DateTime.now().toString().substring(0, 19),
-          ref: const Uuid().v1().substring(6, 15))
-  ]).obs;
+      Rechargement(proprioId: 1, solde: 5500000, operation: []).obs;
 
   final recharger = Rechargement().obs;
   final driver = Driver().obs;
@@ -82,5 +79,32 @@ class RechargementController extends GetxController {
                 .toLowerCase()
                 .contains(value.toString().trim().toLowerCase()))
         .toList();
+  }
+
+  Future chargerUrlRecharge() async {
+    isLoading.value = true;
+    Future.delayed(const Duration(seconds: 5))
+        .then((value) => isLoading.value = false);
+  }
+
+  Future<Rechargement> listerHistoriqueRecharges() async {
+    isOperationLoading.value = true;
+    rechargements.value = await proRechargement.getListerHistoriqueRechargement(
+        proprio_id: helper.proprioInfo.value.id ?? 0);
+    isOperationLoading.value = false;
+    print(rechargements.value.toJson());
+    return rechargements.value;
+  }
+
+  Future<Paiement> demanderUrlRecharge(
+      int driver_id, String contact, int montant) async {
+    isOperationLoading.value = true;
+    var _res = proRechargement.getLienRechargement(
+        proprio_id: helper.proprioInfo.value.id ?? 0,
+        driver_id: driver_id,
+        driver_contact: contact,
+        montant: montant);
+    isOperationLoading.value = false;
+    return _res;
   }
 }

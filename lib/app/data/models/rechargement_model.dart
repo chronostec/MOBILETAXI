@@ -1,84 +1,68 @@
 class Rechargement {
-  int? proprioId;
-  double? solde;
   List<Operation>? operation;
+  int? proprioId;
+  int? solde;
 
-  Rechargement({this.proprioId, this.solde, this.operation});
+  Rechargement({this.operation, this.proprioId, this.solde});
 
   Rechargement.fromJson(Map<String, dynamic> json) {
-    proprioId = json['proprio_id'];
-    solde = json['solde'];
     if (json['operation'] != null) {
       operation = <Operation>[];
       json['operation'].forEach((v) {
         operation?.add(Operation.fromJson(v));
       });
     }
+    proprioId = json['proprio_id'];
+    solde = json['solde'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['proprio_id'] = proprioId;
-    data['solde'] = solde;
     if (operation != null) {
       data['operation'] = operation?.map((v) => v.toJson()).toList();
     }
+    data['proprio_id'] = proprioId;
+    data['solde'] = solde;
     return data;
   }
 }
 
 class Operation {
   int? id;
-  String? ref;
-  String? montant;
-  String? destinataireContact;
-  int? beneficiaireId;
-  String? beneficiaireContact;
-  String? beneficiaireNom;
-  String? beneficiairePrenom;
-  String? date;
+  String? reference;
+  String? telDest;
+  int? montant;
   String? type;
-  String? status;
+  String? date;
+  int? status;
 
   Operation(
       {this.id,
-      this.ref,
+      this.reference,
+      this.telDest,
       this.montant,
-      this.destinataireContact,
-      this.beneficiaireId,
-      this.beneficiaireContact,
-      this.beneficiaireNom,
-      this.beneficiairePrenom,
-      this.date,
       this.type,
+      this.date,
       this.status});
 
   Operation.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    ref = json['ref'];
+    reference = json['reference'];
+    telDest = json['tel_dest'];
     montant = json['montant'];
-    destinataireContact = json['destinataire_contact'];
-    beneficiaireId = json['beneficiaire_id'];
-    beneficiaireContact = json['beneficiaire_contact'];
-    beneficiaireNom = json['beneficiaire_nom'];
-    beneficiairePrenom = json['beneficiaire_prenom'];
-    date = json['date'];
     type = json['type'];
+    date = json['date'];
     status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
-    data['ref'] = ref;
+    data['reference'] = reference;
+    data['tel_dest'] = telDest;
     data['montant'] = montant;
-    data['destinataire_contact'] = destinataireContact;
-    data['beneficiaire_id'] = beneficiaireId;
-    data['beneficiaire_contact'] = beneficiaireContact;
-    data['beneficiaire_nom'] = beneficiaireNom;
-    data['beneficiaire_prenom'] = beneficiairePrenom;
-    data['date'] = date;
     data['type'] = type;
+    data['date'] = date;
     data['status'] = status;
     return data;
   }
