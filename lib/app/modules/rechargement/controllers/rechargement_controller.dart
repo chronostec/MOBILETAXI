@@ -5,7 +5,6 @@ import 'package:fredy_proprio/app/data/models/paiement_model.dart';
 import 'package:fredy_proprio/app/data/models/rechargement_model.dart';
 import 'package:fredy_proprio/app/data/providers/providers.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
 
 class RechargementController extends GetxController {
   final RxBool isLoading = false.obs;
@@ -15,8 +14,7 @@ class RechargementController extends GetxController {
   final RxBool isOperationLoading = false.obs;
   final RxBool isUrlLoading = false.obs;
 
-  Rx<Rechargement> rechargements =
-      Rechargement(proprioId: 1, solde: 5500000, operation: []).obs;
+  Rx<Rechargement> rechargements = Rechargement().obs;
 
   final recharger = Rechargement().obs;
   final driver = Driver().obs;
@@ -81,12 +79,6 @@ class RechargementController extends GetxController {
         .toList();
   }
 
-  Future chargerUrlRecharge() async {
-    isLoading.value = true;
-    Future.delayed(const Duration(seconds: 5))
-        .then((value) => isLoading.value = false);
-  }
-
   Future<Rechargement> listerHistoriqueRecharges() async {
     isOperationLoading.value = true;
     rechargements.value = await proRechargement.getListerHistoriqueRechargement(
@@ -96,13 +88,12 @@ class RechargementController extends GetxController {
     return rechargements.value;
   }
 
-  Future<Paiement> demanderUrlRecharge(
-      int driver_id, String contact, int montant) async {
+  Future<Paiement> demanderUrlRecharge(int montant) async {
     isOperationLoading.value = true;
     var _res = proRechargement.getLienRechargement(
         proprio_id: helper.proprioInfo.value.id ?? 0,
-        driver_id: driver_id,
-        driver_contact: contact,
+        driver_id: driver.value.id ?? 0,
+        driver_contact: driver.value.telephone ?? '',
         montant: montant);
     isOperationLoading.value = false;
     return _res;

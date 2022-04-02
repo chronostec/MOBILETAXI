@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import 'payment_web_view.dart';
 import 'widgets/title_text.dart';
 
 class MoneyTransferPage extends StatefulWidget {
@@ -86,8 +87,19 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
             ],
           )),
       onTap: () async {
-        await ctlRechargement.chargerUrlRecharge();
-        // Get.to(() => const WebViewPay());
+        ctlRechargement
+            .demanderUrlRecharge(ctlRechargement.saisie.value >= 10
+                ? ctlRechargement.saisie.value
+                : 0)
+            .then((value) {
+          if (value.lien != null && value.lien!.isNotEmpty) {
+            Get.to(() => PaiementWeb(url: value.lien ?? ""));
+          } else {
+            Get.snackbar("Echec ouverture",
+                "La page de rechargement n'est pas disponible actuellement, veuillez réessayer svp!",
+                duration: const Duration(seconds: 4));
+          }
+        });
       },
     );
   }
