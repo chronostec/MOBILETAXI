@@ -1,4 +1,3 @@
-
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -25,101 +24,107 @@ class SupportView extends GetView<SupportController> {
       body: SafeArea(
         child: Form(
           key: ctlSupport.formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: DropdownSearch<String>(
-                  mode: Mode.MENU,
-                  items: ctlSupport.mesobjets,
-                  onChanged: (value) {
-                    ctlSupport.objet.value = value!;
-                  },
-                  selectedItem: ctlSupport.objet.value,
-                  hint: "Choisir objet",
-                  label: "Objet",
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: DropdownSearch<String>(
+                      mode: Mode.MENU,
+                      items: ctlSupport.mesobjets,
+                      onChanged: (value) {
+                        ctlSupport.objet.value = value!;
+                      },
+                      selectedItem: ctlSupport.objet.value,
+                      hint: "Choisir objet",
+                      label: "Objet",
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SizedBox(
+                      height: 35.h,
+                      width: 100.w,
+                      child: TextFormField(
+                        maxLength: 255,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        controller: ctlSupport.messageTF,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "Ecrire ici",
+                            labelText: "Contenu du message"),
+                        validator: (value) {
+                          if (value.toString().isEmpty) {
+                            return "Vous n'avez rien saisi encore!";
+                          } else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          print(value);
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+              Align(
+                alignment: Alignment.bottomCenter,
                 child: SizedBox(
-                  height: 35.h,
                   width: 100.w,
-                  child: TextFormField(
-                    maxLength: 255,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    controller: ctlSupport.messageTF,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Ecrire ici",
-                        labelText: "Contenu du message"),
-                    validator: (value) {
-                      if (value.toString().isEmpty) {
-                        return "Vous n'avez rien saisi encore!";
-                      } else {
-                        return null;
+                  child: CupertinoButton(
+                    onPressed: () async {
+                      if (ctlSupport.formKey.currentState!.validate()) {
+                        ctlSupport.isSending.value
+                            ? const Center(
+                                child: SpinKitWave(
+                                  color: Colors.blueGrey,
+                                ),
+                              )
+                            : null;
+                        await ctlSupport
+                            .postMessage(
+                                client_id: 1,
+                                objetc: ctlSupport.objet.value,
+                                contenu: ctlSupport.messageTF.text)
+                            .then((value) async {
+                          if (value.message == "succes") {
+                            await Alert(
+                              context: context,
+                              type: AlertType.success,
+                              title: "message envoyé",
+                              buttons: [
+                                DialogButton(
+                                  child: const Text(
+                                    "FERMER",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  onPressed: () {
+                                    ctlSupport.messageTF.text = "";
+                                    Get.back();
+                                  },
+                                  gradient: const LinearGradient(
+                                      colors: [AppColors.DRED, AppColors.DRED]),
+                                )
+                              ],
+                            ).show();
+                          } else {}
+                        });
                       }
                     },
-                    onChanged: (value) {
-                      print(value);
-                    },
+                    child: const Text(
+                      "ENVOYER",
+                      style: TextStyle(
+                          color: AppColors.DBLACK,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    color: AppColors.DGREY0,
                   ),
-                ),
-              ),
-              Spacer(),
-              SizedBox(
-                width: 100.w,
-                child: CupertinoButton(
-                  onPressed: () async {
-                    if (ctlSupport.formKey.currentState!.validate()) {
-                      ctlSupport.isSending.value
-                          ? const Center(
-                              child: SpinKitWave(
-                                color: Colors.blueGrey,
-                              ),
-                            )
-                          : null;
-                      await ctlSupport
-                          .postMessage(
-                              client_id: 1,
-                              objetc: ctlSupport.objet.value,
-                              contenu: ctlSupport.messageTF.text)
-                          .then((value) async {
-                        if (value.message == "succes") {
-                          await Alert(
-                            context: context,
-                            type: AlertType.success,
-                            title: "message envoyé",
-                            buttons: [
-                              DialogButton(
-                                child: const Text(
-                                  "FERMER",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                                onPressed: () {
-                                  ctlSupport.messageTF.text = "";
-                                  Get.back();
-                                },
-                                gradient: const LinearGradient(
-                                    colors: [AppColors.DRED, AppColors.DRED]),
-                              )
-                            ],
-                          ).show();
-                        } else {}
-                      });
-                    }
-                  },
-                  child: const Text(
-                    "ENVOYER",
-                    style: TextStyle(
-                        color: AppColors.DBLACK,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  color: AppColors.DGREY0,
                 ),
               )
             ],

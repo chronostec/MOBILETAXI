@@ -1,6 +1,6 @@
 class Rechargement {
   int? driverId;
-  double? solde;
+  int? solde;
   List<Operation>? operation;
 
   Rechargement({this.driverId, this.solde, this.operation});
@@ -33,7 +33,7 @@ class Operation {
   String? contact;
   int? montant;
   String? date;
-  String? type;
+  int? type;
   String? status;
 
   Operation(

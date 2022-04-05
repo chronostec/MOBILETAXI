@@ -15,7 +15,7 @@ class BalanceCard extends StatelessWidget {
         child: Container(
           width: 100.w,
           height: 20.h,
-          color: LightColor.navyBlue1,
+          color: LightColor.yellow.withAlpha(20),
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
@@ -28,7 +28,7 @@ class BalanceCard extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Colors.white),
+                        color: LightColor.yellow2),
                   ),
                   const SizedBox(height: 10),
                   Obx(() => Row(
@@ -80,7 +80,7 @@ class BalanceCard extends StatelessWidget {
                 top: -170,
                 child: CircleAvatar(
                   radius: 130,
-                  backgroundColor: LightColor.lightBlue2,
+                  backgroundColor: LightColor.grey,
                 ),
               ),
               const Positioned(
@@ -88,7 +88,7 @@ class BalanceCard extends StatelessWidget {
                 top: -190,
                 child: CircleAvatar(
                   radius: 130,
-                  backgroundColor: LightColor.lightBlue1,
+                  backgroundColor: LightColor.lightGrey,
                 ),
               ),
               const Positioned(

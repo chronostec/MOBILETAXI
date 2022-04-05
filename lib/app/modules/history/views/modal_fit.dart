@@ -1,5 +1,6 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,15 +22,17 @@ class HistoryModalFit extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ListTile(
+            tileColor: LightColor.yellow2.withAlpha(230),
             title: const Text(
               'CHERCHER PAR PÉRIODE',
               style: TextStyle(
-                  color: AppColors.DBLACK,
+                  color: LightColor.navyBlue1,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 2,
                   wordSpacing: 6),
             ),
-            leading: const Icon(Icons.calendar_today, color: AppColors.DBLUE),
+            leading:
+                const Icon(Icons.calendar_today, color: LightColor.navyBlue1),
             onTap: () async {
               var selectedDate = '';
               Get.back();
@@ -42,60 +45,65 @@ class HistoryModalFit extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text(
+            tileColor: LightColor.yellow2.withAlpha(230),
+            title: Text(
               'TOUTES LES VISITES',
               style: TextStyle(
-                  color: AppColors.DBLACK,
+                  color: LightColor.navyBlue1,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 2,
                   wordSpacing: 6),
             ),
-            leading: const Icon(Icons.calendar_today, color: AppColors.DBLUE),
+            leading:
+                const Icon(Icons.calendar_today, color: LightColor.navyBlue1),
             onTap: () {
               ctlHistory.findVisitesByDate(period: PERIODTYPE.ALLTIME);
               Get.back();
             },
           ),
           ListTile(
-            title: const Text(
+            tileColor: LightColor.yellow2.withAlpha(230),
+            title: Text(
               "AUJOURD'HUI",
               style: TextStyle(
-                  color: AppColors.DBLACK,
+                  color: LightColor.navyBlue1,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 2,
                   wordSpacing: 6),
             ),
-            leading: const Icon(Icons.today, color: AppColors.DBLUE),
+            leading: const Icon(Icons.today, color: LightColor.navyBlue1),
             onTap: () {
               ctlHistory.findVisitesByDate(period: PERIODTYPE.TODAY);
               Get.back();
             },
           ),
           ListTile(
-            title: const Text(
+            tileColor: LightColor.yellow2.withAlpha(230),
+            title: Text(
               'HIER',
               style: TextStyle(
-                  color: AppColors.DBLACK,
+                  color: LightColor.navyBlue1,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 2,
                   wordSpacing: 6),
             ),
-            leading: const Icon(Icons.view_day, color: AppColors.DBLUE),
+            leading: const Icon(Icons.view_day, color: LightColor.navyBlue1),
             onTap: () {
               ctlHistory.findVisitesByDate(period: PERIODTYPE.YESTERDAY);
               Get.back();
             },
           ),
           ListTile(
-            title: const Text(
+            tileColor: LightColor.yellow2.withAlpha(230),
+            title: Text(
               'LA SEMAINE',
               style: TextStyle(
-                  color: AppColors.DBLACK,
+                  color: LightColor.navyBlue1,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 2,
                   wordSpacing: 6),
             ),
-            leading: const Icon(Icons.view_week, color: AppColors.DBLUE),
+            leading: const Icon(Icons.view_week, color: LightColor.navyBlue1),
             onTap: () {
               ctlHistory.findVisitesByDate(period: PERIODTYPE.THISWEEK);
               Get.back();
@@ -120,6 +128,7 @@ class ModalFitDate extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
+              tileColor: LightColor.yellow2,
               title: DateTime.parse(ctlHistory.startDate.value.toString().substring(0, 10))
                           .isBefore(DateTime.parse(ctlHistory.endedDate.value
                               .toString()
@@ -164,6 +173,7 @@ class ModalFitDate extends StatelessWidget {
                     ),
             ),
             ListTile(
+              tileColor: LightColor.yellow2,
               title: Wrap(
                 direction: Axis.horizontal,
                 alignment: WrapAlignment.start,
@@ -177,10 +187,12 @@ class ModalFitDate extends StatelessWidget {
                   ),
                 ],
               ),
-              leading: const Icon(Icons.date_range, color: AppColors.DBLUE),
+              leading:
+                  const Icon(Icons.date_range, color: LightColor.navyBlue1),
               onTap: () => showStartDatePicker(context),
             ),
             ListTile(
+              tileColor: LightColor.yellow2,
               title: Wrap(
                 direction: Axis.horizontal,
                 alignment: WrapAlignment.start,
@@ -194,7 +206,8 @@ class ModalFitDate extends StatelessWidget {
                   ),
                 ],
               ),
-              leading: const Icon(Icons.date_range, color: AppColors.DBLUE),
+              leading:
+                  const Icon(Icons.date_range, color: LightColor.navyBlue1),
               onTap: () => showEndedDatePicker(context),
             ),
           ],

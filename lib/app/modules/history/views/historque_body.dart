@@ -1,4 +1,5 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/themes/styles/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class HistoryBody extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 10),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 236, 219),
+                            color: LightColor.yellow2.withAlpha(20),
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

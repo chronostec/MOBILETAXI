@@ -1,5 +1,6 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +11,17 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 AppBar CommandeAppBarView() {
   return AppBar(
-    backgroundColor: AppColors.DBLACK,
-    // leading: IconButton(
-    //     onPressed: () {
-    //       ctlHome.mapController.dispose();
-    //       Get.back();
-    //     },
-    //     icon: Icon(Icons.arrow_back)),
-    title: ctlcommande.commande.value.clientLibelle.toString().isNotEmpty
+    title: ctlcommande.commande.value.clientLibelle != null
         ? Text(
             "De ${ctlcommande.commande.value.clientLibelle ?? ''}",
             overflow: TextOverflow.clip,
             maxLines: 1,
           )
-        : const SizedBox(),
+        : Text(
+            "De ${ctlcommande.commande.value.clientLibelle}",
+            overflow: TextOverflow.clip,
+            maxLines: 1,
+          ),
     shape: const RoundedRectangleBorder(
 
         // borderRadius: BorderRadius.vertical(

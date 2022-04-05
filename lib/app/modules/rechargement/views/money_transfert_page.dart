@@ -1,5 +1,4 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
-import 'package:alfred_taxi_driver/app/modules/rechargement/views/webview_pay.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -136,7 +135,7 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: LightColor.yellow,
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Stack(
@@ -158,9 +157,7 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     Container(
                         width: 80.w,
                         padding: const EdgeInsets.symmetric(
@@ -169,7 +166,7 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
                         decoration: const BoxDecoration(
                             color: LightColor.navyBlue2,
                             borderRadius:
-                                BorderRadius.all(const Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                         child: Obx(() => TitleText(
                             text: ctlRechargement.saisie.value > 0
                                 ? ctlRechargement.saisie.value.toString()
@@ -184,14 +181,14 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
               const Positioned(
                 left: -140,
                 top: -270,
-                child: CircleAvatar(
-                    radius: 190, backgroundColor: LightColor.lightBlue2),
+                child:
+                    CircleAvatar(radius: 190, backgroundColor: LightColor.grey),
               ),
               const Positioned(
                 left: -130,
                 top: -300,
                 child: CircleAvatar(
-                    radius: 190, backgroundColor: LightColor.lightBlue1),
+                    radius: 190, backgroundColor: LightColor.lightGrey),
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * .4,
@@ -211,10 +208,12 @@ class _MoneyTransferPageState extends State<MoneyTransferPage> {
                   child: Row(
                     children: const <Widget>[
                       BackButton(
-                        color: Colors.white,
+                        color: LightColor.navyBlue2,
                       ),
                       SizedBox(width: 20),
-                      TitleText(text: "Rechargez-vous!", color: Colors.white)
+                      TitleText(
+                          text: "Rechargez votre compte",
+                          color: LightColor.navyBlue2)
                     ],
                   )),
               _buttonWidget(),

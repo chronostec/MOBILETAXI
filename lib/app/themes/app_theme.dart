@@ -17,7 +17,7 @@ class AppTheme {
     dividerColor: LightColor.lightGrey,
     textTheme: GoogleFonts.poppinsTextTheme(),
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.DRED1,
+      backgroundColor: LightColor.yellow2,
       centerTitle: true,
       elevation: 0,
       iconTheme: IconThemeData(
