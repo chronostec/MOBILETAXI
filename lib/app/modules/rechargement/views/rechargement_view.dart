@@ -73,7 +73,7 @@ class _RechargementViewState extends State<RechargementView> {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(),
       title: TitleText(
-        text: operation.contact ?? "",
+        text: operation.telDest ?? "",
         fontSize: 14,
       ),
       subtitle: Text(operation.date ?? ""),

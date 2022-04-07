@@ -1,14 +1,11 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
-import 'package:alfred_taxi_driver/app/data/models/commande_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/commandes_model.dart';
 import 'package:alfred_taxi_driver/app/data/models/partage_model.dart';
 import 'package:alfred_taxi_driver/app/data/providers/providers.dart';
 import 'package:alfred_taxi_driver/app/data/services/local_storage.dart';
 import 'package:alfred_taxi_driver/app/data/services/stream_commande_service.dart';
 import 'package:alfred_taxi_driver/app/modules/chatbox/views/chatbox_view.dart';
 import 'package:alfred_taxi_driver/app/modules/commande/views/commande_driving_view.dart';
-import 'package:alfred_taxi_driver/app/modules/commande/views/modals_and_paiement_modal_fit.dart';
-import 'package:alfred_taxi_driver/app/modules/profile/views/modals/modal_will_scope.dart';
 import 'package:alfred_taxi_driver/app/routes/app_pages.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
@@ -25,7 +22,7 @@ class CommandeController extends GetxController {
   final commande = Commande().obs;
 
   /////////////////////////////////////////////////////////////
-  RxList<Commande> listCommande = <Commande>[].obs;
+  Rx<Commandes> listCommande = Commandes().obs;
 
   RxInt statuscommand = 1000.obs;
   RxBool FINCOURSE = false.obs;
@@ -69,7 +66,8 @@ class CommandeController extends GetxController {
   Future getCommandeDisponible() async {
     var _res =
         await proCommande.getCommande(driver_id: ctlHome.driver.value.id ?? 0);
-    if (_res.isNotEmpty) {
+    printInfo(info: "COMMANDE EN COURS ${_res.commande!.length}");
+    if (_res.commande != null && _res.commande!.isNotEmpty) {
       listCommande.value = _res;
     }
     listCommande.value = _res;
@@ -81,9 +79,9 @@ class CommandeController extends GetxController {
     var _resultat =
         await proCommande.getCommandeDetail(cmde_id: commande.value.id);
 
-    if (_resultat.isNotEmpty) {
-      commande.value = _resultat[0];
-      changeZoom(_resultat[0].status as int);
+    if (_resultat.commande != null && _resultat.commande!.isNotEmpty) {
+      commande.value = _resultat.commande![0];
+      changeZoom(_resultat.commande![0].status as int);
       _isOk = true;
     } else {
       // commande.value = Commande();
@@ -104,8 +102,8 @@ class CommandeController extends GetxController {
     var _resultat = await proCommande.getCommandeDetailAcceptee(
         cmde_id: commande.value.id, driver_id: ctlHome.driver.value.id);
 
-    if (_resultat.isNotEmpty) {
-      commande.value = _resultat[0];
+    if (_resultat.commande!.isNotEmpty) {
+      commande.value = _resultat.commande![0];
       _isOk = true;
     } else {
       // commande.value = Commande();
@@ -303,7 +301,7 @@ class CommandeController extends GetxController {
         driver_id: ctlHome.driver.value.id as int,
         cmde_id: commande.value.id!.toInt(),
         status: CMDSTATUS.COMMAND_PAIEMENT);
-
+    isRequesting.value = false;
     return _res;
   }
 

@@ -363,15 +363,14 @@ class PayementModalFit extends StatelessWidget {
                             ctlcommande.isRequesting.value
                                 ? showEndedCoursetDialog(context: context)
                                 : null;
-                            Resultat _res =
-                                await ctlcommande.procederAuPaiment();
-                            ctlcommande.isRequesting.value = false;
-                            if (_res.message == "succes") {
-                              ctlcommande.PAIEMENTCOURSE.value = true;
-                            } else {
-                              Get.snackbar("PAIEMENT EN DEMATAERIALISER",
-                                  "Le paiement n'a pas été soumis, veuillez recommencer svp !");
-                            }
+                            ctlcommande.procederAuPaiment().then((value) {
+                              if (value.message == "succes") {
+                                ctlcommande.PAIEMENTCOURSE.value = true;
+                              } else {
+                                Get.snackbar("PAIEMENT DEMATAERIALISE",
+                                    "Le paiement n'a pas été soumis, veuillez recommencer svp !");
+                              }
+                            });
                           }
                           print(ctlcommande.statuscommand.value);
                         },

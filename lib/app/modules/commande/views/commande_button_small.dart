@@ -3,6 +3,7 @@ import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/modules/commande/views/commande_driving_view.dart';
 import 'package:alfred_taxi_driver/app/routes/app_pages.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
 import 'package:alfred_taxi_driver/app/utils/small_button.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class CommandeDetailBottomButtons extends StatelessWidget {
     return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          color: AppColors.DBLACK,
+          color: LightColor.yellow2,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Row(

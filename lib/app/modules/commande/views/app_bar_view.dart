@@ -1,10 +1,8 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
-import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
@@ -123,7 +121,7 @@ AppBar DrivingAppBarView() {
       maxLines: 1,
       style: const TextStyle(fontSize: 14),
     ),
-    backgroundColor: AppColors.DBLACK,
+    // backgroundColor: AppColors.DBLACK,
     bottom: PreferredSize(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 5),

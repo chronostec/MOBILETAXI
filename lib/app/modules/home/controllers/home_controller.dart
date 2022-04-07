@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
-import 'package:alfred_taxi_driver/app/data/models/commande_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/commandes_model.dart';
 import 'package:alfred_taxi_driver/app/data/models/driver_model.dart';
 import 'package:alfred_taxi_driver/app/data/providers/providers.dart';
 import 'package:alfred_taxi_driver/app/data/services/local_storage.dart';
@@ -59,7 +59,7 @@ class HomeController extends GetxController {
 
   /// READ CMDE
   Future readCommandeLocalInfo() async {
-    var res = <Commande>[];
+    var res = Commandes();
     await LocalStorage().readCurrentCmde().then((_cmde) async {
       if (_cmde.status != CMDSTATUS.COMMAND_ANNULEE ||
           _cmde.status != CMDSTATUS.COMMAND_TERMINEE ||

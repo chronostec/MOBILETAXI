@@ -1,6 +1,7 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/routes/app_pages.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 // import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -27,7 +28,7 @@ class AuthenticationView extends GetView<AuthenticationController> {
               children: [
                 Expanded(
                   child: Card(
-                    color: AppColors.DRED1,
+                    color: LightColor.yellow2,
                     margin: const EdgeInsets.all(0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
@@ -80,7 +81,7 @@ class AuthenticationView extends GetView<AuthenticationController> {
                               .textTheme
                               .headline5!
                               .copyWith(
-                                  color: AppColors.DRED1,
+                                  color: LightColor.navyBlue1,
                                   fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 40.0),
@@ -92,44 +93,15 @@ class AuthenticationView extends GetView<AuthenticationController> {
                               value!.isNotEmpty ? null : "champs requis !",
                           decoration: const InputDecoration(
                               labelText: "Entrer  téléphone",
-                              labelStyle: TextStyle(color: AppColors.DRED1),
+                              labelStyle:
+                                  TextStyle(color: LightColor.navyBlue1),
                               hintText: "07 07 07 07 07",
-                              prefixIcon:
-                                  Icon(Icons.phone, color: AppColors.DRED1),
+                              prefixIcon: Icon(Icons.phone,
+                                  color: LightColor.navyBlue1),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: AppColors.DRED1))),
+                                      BorderSide(color: LightColor.navyBlue1))),
                         ),
-                        // Card(
-                        //   child: InternationalPhoneNumberInput(
-                        //       selectorConfig: const SelectorConfig(
-                        //         selectorType:
-                        //             PhoneInputSelectorType.BOTTOM_SHEET,
-                        //       ),
-                        //       ignoreBlank: false,
-                        //       autoValidateMode: AutovalidateMode.disabled,
-                        //       selectorTextStyle:
-                        //           const TextStyle(color: Colors.black),
-                        //       initialValue: ctlAuth.number.value,
-                        //       // textFieldController: _shareTF,
-                        //       hintText: '01 01 01 01 01',
-                        //       formatInput: false,
-                        //       keyboardType: TextInputType.phone,
-                        //       onInputValidated: (bool value) {},
-                        //       inputBorder: InputBorder.none,
-                        //       onSaved: (value) {
-                        //         // print(
-                        //         //     "PHONE NUMBER: ${ctlLogin.phoneNumber.value}");
-                        //         // ctlLogin.phoneNumber.value =
-                        //         //     value.phoneNumber.toString();
-                        //       },
-                        //       onInputChanged: (value) {
-                        //         // print(
-                        //         //     "PHONE NUMBER: ${ctlLogin.phoneNumber.value}");
-                        //         _phoneTF.text = value.phoneNumber.toString();
-                        //       }),
-                        // ),
-                        
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _passTF,
@@ -140,13 +112,14 @@ class AuthenticationView extends GetView<AuthenticationController> {
                           obscureText: true,
                           decoration: const InputDecoration(
                               labelText: "Enter mot de passe",
-                              labelStyle: TextStyle(color: AppColors.DRED1),
+                              labelStyle:
+                                  TextStyle(color: LightColor.navyBlue1),
                               hintText: "* * * * * * *  * * ",
                               prefixIcon:
-                                  Icon(Icons.key, color: AppColors.DRED1),
+                                  Icon(Icons.key, color: LightColor.navyBlue1),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: AppColors.DRED1))),
+                                      BorderSide(color: LightColor.navyBlue1))),
                         ),
                         const SizedBox(height: 30.0),
                         ElevatedButton(
@@ -168,7 +141,7 @@ class AuthenticationView extends GetView<AuthenticationController> {
                                     width: 100,
                                     child: Center(
                                       child: SpinKitRing(
-                                        color: Colors.red,
+                                        color: LightColor.yellow2,
                                         size: 60,
                                         lineWidth: 10,
                                       ),
@@ -198,7 +171,7 @@ class AuthenticationView extends GetView<AuthenticationController> {
                           },
                           style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(AppColors.DRED1),
+                                MaterialStateProperty.all(LightColor.yellow2),
                             padding: MaterialStateProperty.all(
                                 const EdgeInsets.all(16)),
                           ),

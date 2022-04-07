@@ -3,6 +3,7 @@ import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/data/services/local_storage.dart';
 import 'package:alfred_taxi_driver/app/routes/app_pages.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/themes/styles/app_styles.dart';
 import 'package:alfred_taxi_driver/app/utils/images_path.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';
@@ -223,7 +224,7 @@ class ProfileView extends GetView<ProfileController> {
                     //           color: Colors.black)),
                     // ),
                     ElevatedButton(
-                        style: elevatedButtonStyle(color: AppColors.DRED1),
+                        style: elevatedButtonStyle(color: LightColor.yellow2),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             ctlProfile.updatePassword();

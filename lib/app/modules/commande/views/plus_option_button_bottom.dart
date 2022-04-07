@@ -11,35 +11,6 @@ import 'package:sizer/sizer.dart';
 
 import 'modals_and_paiement_modal_fit.dart';
 
-// Align plusOptionBottomBar(BuildContext context) {
-//   return Align(
-//     alignment: Alignment.bottomCenter,
-//     child: Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
-//       child: SizedBox(
-//         width: 100.w,
-//         child: BigButton(
-//           title: "Plus d'options",
-//           color: AppColors.DAMBER,
-//           actionPrincipale: () async {
-//             showCupertinoModalBottomSheet(
-//               expand: false,
-//               context: context,
-//               backgroundColor: Colors.transparent,
-//               builder: (context) => ModalFit(),
-//             );
-//           },
-//         ),
-//       ),
-//     ),
-//   );
-// }
-
-/* Icon(
-          FontAwesomeIcons.chevronUp,
-          size: 64,
-          color: AppColors.DBLUE1,
-        ) */
 Align plusOptionBottomBar(BuildContext context) {
   return Align(
     alignment: Alignment.bottomCenter,

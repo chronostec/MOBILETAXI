@@ -1,4 +1,4 @@
-import 'package:alfred_taxi_driver/app/data/models/commande_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/commandes_model.dart';
 import 'package:alfred_taxi_driver/app/data/models/driver_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -69,9 +69,9 @@ class LocalStorage extends GetxController {
       commande = Commande(
         id: data['id'] ?? 0,
         duree: data['duree'] ?? "",
-        distance: data['distance'] ?? "",
-        montantReel: data['montant_reel'] ?? "",
-        montantPercu: data['montant_percu'] ?? "",
+        // distance: data['distance'] ?? "",
+        montantReel: data['montant_reel'] ?? 0,
+        montantPercu: data['montant_percu'] ?? 0,
         destLibelle: data['dest_libelle'] ?? "",
         destLatitude: data['dest_latitude'] ?? 0.0,
         destLongitude: data['dest_longitude'] ?? 0.0,
@@ -96,7 +96,7 @@ class LocalStorage extends GetxController {
       {
         "id": commande.id ?? 0,
         "duree": commande.duree ?? "",
-        "distance": commande.distance ?? "",
+        // "distance": commande.distance ?? "",
         "montant_reel": commande.montantReel ?? "",
         "montant_percu": commande.montantPercu ?? "",
         "dest_libelle": commande.destLibelle ?? "",

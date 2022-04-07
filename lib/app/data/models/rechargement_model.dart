@@ -29,40 +29,40 @@ class Rechargement {
 
 class Operation {
   int? id;
-  String? ref;
-  String? contact;
+  String? reference;
+  String? telDest;
   int? montant;
+  String? type;
   String? date;
-  int? type;
   String? status;
 
   Operation(
       {this.id,
-      this.ref,
-      this.contact,
+      this.reference,
+      this.telDest,
       this.montant,
-      this.date,
       this.type,
+      this.date,
       this.status});
 
   Operation.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    ref = json['ref'];
-    contact = json['contact'];
+    reference = json['reference'];
+    telDest = json['tel_dest'];
     montant = json['montant'];
-    date = json['date'];
     type = json['type'];
+    date = json['date'];
     status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
-    data['ref'] = ref;
-    data['contact'] = contact;
+    data['reference'] = reference;
+    data['tel_dest'] = telDest;
     data['montant'] = montant;
-    data['date'] = date;
     data['type'] = type;
+    data['date'] = date;
     data['status'] = status;
     return data;
   }

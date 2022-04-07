@@ -1,4 +1,5 @@
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
+import 'package:alfred_taxi_driver/app/themes/colors/light_color.dart';
 import 'package:alfred_taxi_driver/app/utils/images_path.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class BigButton extends StatelessWidget {
       child: Container(
         height: 10.h,
         width: 100.w,
-        color: AppColors.DBLACK,
+        color: LightColor.yellow2,
         child: Image.asset(
           PathImage.more,
           width: double.maxFinite,

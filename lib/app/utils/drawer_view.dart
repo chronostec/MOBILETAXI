@@ -113,7 +113,10 @@ class BuildDrawer extends StatelessWidget {
                           CupertinoIcons.house,
                           "Accueil",
                           showBadge: true,
-                          badgeText: ctlcommande.listCommande.length,
+                          badgeText: ctlcommande.listCommande.value.commande !=
+                                  null
+                              ? ctlcommande.listCommande.value.commande!.length
+                              : 0,
                           ontap: () {
                             Get.back();
                             checkCommandedisponiblePeriodicEvent();
@@ -145,14 +148,14 @@ class BuildDrawer extends StatelessWidget {
                             ctlHome.ghomeKey.currentState!.openEndDrawer();
                           },
                         ),
-                        _buildRow(
-                          CupertinoIcons.settings,
-                          "Paramètres",
-                          ontap: () {
-                            Get.toNamed(Routes.PARAMETRES);
-                            ctlHome.ghomeKey.currentState!.openEndDrawer();
-                          },
-                        ),
+                        // _buildRow(
+                        //   CupertinoIcons.settings,
+                        //   "Paramètres",
+                        //   ontap: () {
+                        //     Get.toNamed(Routes.PARAMETRES);
+                        //     ctlHome.ghomeKey.currentState!.openEndDrawer();
+                        //   },
+                        // ),
                         _buildRow(
                           CupertinoIcons.chat_bubble_2,
                           "Nous contacter",

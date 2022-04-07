@@ -1,0 +1,29 @@
+{
+    "bSuccess": true,
+    "message": "succes",
+    "compte": [
+        {
+            "status_compte": 0,
+            "solde": null
+        }
+    ],
+    "commande": [
+        {
+            "id": 549,
+            "duree": 29,
+            "montant_reel": 1900,
+            "montant_percu": 2000,
+            "montant_negocie": 2000,
+            "dest_libelle": "Groupe Medical du plateau",
+            "dest_longitude": -4.0140304,
+            "dest_latitude": 5.320513,
+            "client_longitude": -3.9600874018154717,
+            "client_latitude": 5.3999657230755975,
+            "client_id": 59,
+            "client_telephone": "2250789642177",
+            "status": 5,
+            "client_libelle": "92XR J24, Abidjan, Côte d'Ivoire"
+            
+        }
+    ]
+}
