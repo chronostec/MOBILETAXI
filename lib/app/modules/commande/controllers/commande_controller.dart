@@ -76,8 +76,8 @@ class CommandeController extends GetxController {
   ///`DETAIL COMMAND`
   Future<bool> getDetailCommande() async {
     bool _isOk = false;
-    var _resultat =
-        await proCommande.getCommandeDetail(cmde_id: commande.value.id);
+    var _resultat = await proCommande.getCommandeDetail(
+        cmde_id: commande.value.id, driver_id: ctlHome.driver.value.id ?? 0);
 
     if (_resultat.commande != null && _resultat.commande!.isNotEmpty) {
       commande.value = _resultat.commande![0];
@@ -87,10 +87,6 @@ class CommandeController extends GetxController {
       // commande.value = Commande();
       _isOk = false;
     }
-
-    // await ctlDrivermap.getAddressFromLatLong(LatLng(
-    //     commande.value.clientLatitude ?? 0,
-    //     commande.value.clientLongitude ?? 0));
     await LocalStorage().saveCurrentCmde(commande.value);
     await LocalStorage().saveCurrentCmde(commande.value);
     return _isOk;

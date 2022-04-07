@@ -32,20 +32,26 @@ class CommandeProvider extends GetConnect {
   }
 
   //////////////////////////////
-  Future<Commandes> getCommandeDetail({required cmde_id}) async {
-    var url = APPURL.BASE_URL + APPURL.GET_DETAIL_CMDE + "cmde_id=$cmde_id";
+  Future<Commandes> getCommandeDetail(
+      {required cmde_id, required driver_id}) async {
+    var url = APPURL.BASE_URL +
+        APPURL.GET_DETAIL_CMDE +
+        "cmde_id=$cmde_id&&driver_id=$driver_id";
 
     var _list = Commandes();
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      _list = parseCommandes(response.body);
+      _list = Commandes.fromJson(json.decode(response.body));
     }
-
     if (_list.bSuccess == true) {
       return _list;
     } else {
-      return Commandes();
+      return Commandes(
+          bSuccess: true,
+          message: "succes",
+          commande: [],
+          compte: [Compte(solde: 0, statusCompte: 0)]);
     }
   }
 
