@@ -17,19 +17,19 @@ class LocalStorage extends GetxController {
       final data = box.read(tableName) as Map<String, dynamic>;
 
       currentUser = Driver(
-        id: data['id'] ?? 0,
-        nom: data['nom'] ?? '',
-        prenom: data['prenom'] ?? '',
-        telephone: data['telephone'] ?? '',
-        password: data['password'] ?? '',
-        gpsLatitude: data['gps_latitude'],
-        gpsLongitude: data['gps_longitude'],
-        proprioId: data['proprio_id'] ?? 0,
-        vehiculeId: data['vehicule_id'] ?? 0,
-        immatriculation: data['immatriculation'] ?? '',
-        language: data['language'] ?? '',
-        theme: data['theme'] ?? '',
-      );
+          id: data['id'] ?? 0,
+          nom: data['nom'] ?? '',
+          prenom: data['prenom'] ?? '',
+          telephone: data['telephone'] ?? '',
+          password: data['password'] ?? '',
+          gpsLatitude: data['gps_latitude'],
+          gpsLongitude: data['gps_longitude'],
+          proprioId: data['proprio_id'] ?? 0,
+          vehiculeId: data['vehicule_id'] ?? 0,
+          immatriculation: data['immatriculation'] ?? '',
+          language: data['language'] ?? '',
+          theme: data['theme'] ?? '',
+          licence: data['licence'] ?? 0);
     } else {
       currentUser = Driver(id: null);
     }
@@ -54,9 +54,10 @@ class LocalStorage extends GetxController {
         "immatriculation": model.immatriculation ?? '',
         "language": model.language ?? '',
         "theme": model.theme ?? '',
+        "licence": model.licence ?? 0,
       },
     );
-    await readUserData();
+    return await readUserData();
   }
 
   ///`READ CMDE DATA FROM LOCAL STORAGE AND RETURN`

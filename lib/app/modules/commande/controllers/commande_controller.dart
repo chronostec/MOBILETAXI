@@ -160,6 +160,7 @@ class CommandeController extends GetxController {
 
   /// ACCEPTER COMMANDE
   accepterCourse() async {
+    isPosting.value = true;
     await postManagerCmde(
             driver_id: ctlHome.driver.value.id as int,
             cmde_id: commande.value.id as int,
@@ -193,6 +194,7 @@ class CommandeController extends GetxController {
             "Quelque chose de s'est mal passé, veuillez recommencer svp !");
       }
     });
+    isPosting.value = false;
   }
 
   /// COMMENCER COURSE
@@ -250,6 +252,7 @@ class CommandeController extends GetxController {
 
   /// ANNULER COURSE
   refuserCourse() async {
+    isPosting.value = true;
     await proCommande
         .putRefuserCommande(
             commande_id_saisir: commande.value.id ?? 0,
@@ -262,6 +265,7 @@ class CommandeController extends GetxController {
             "Quelque chose de s'est mal passé, veuillez recommencer svp !");
       }
     });
+    isPosting.value = false;
   }
 
   /// EFFECTUER PAIEMENT EN ESPECE

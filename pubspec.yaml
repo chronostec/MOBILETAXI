@@ -45,6 +45,8 @@ dependencies:
   # full_text_search: ^0.8.0+3
   webview_flutter_plus: ^0.3.0+2
   currency_formatter: ^1.2.0
+  speech_to_text: ^5.4.3
+  text_to_speech: ^0.2.3
 
   
 
@@ -60,6 +62,7 @@ dev_dependencies:
 
 flutter:
   assets:
+    - assets/data/
     - assets/images/
     - assets/icons/
     - assets/json/map_style.txt

@@ -25,7 +25,13 @@ void main() async {
       builder: (p0, p1, p2) => GetMaterialApp(
         title: "DRIVER",
         debugShowCheckedModeBanner: false,
-        initialRoute:ctlHome.driver.value.id!=null &&ctlHome.driver.value.id!.toInt()>0? Routes.HOME:AppPages.INITIAL,
+        initialRoute: ctlHome.driver.value.licence == null ||
+                ctlHome.driver.value.licence! == 0
+            ? Routes.LICENCE
+            : ctlHome.driver.value.id != null &&
+                    ctlHome.driver.value.id!.toInt() > 0
+                ? Routes.HOME
+                : AppPages.INITIAL,
         getPages: AppPages.routes,
         theme: AppTheme().lightThemeData,
         defaultTransition: Transition.cupertinoDialog,

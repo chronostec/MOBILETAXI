@@ -25,6 +25,7 @@ abstract class Routes {
   static const OTP = _Paths.OTP;
   static const PHONEAUTH = _Paths.PHONEAUTH;
   static const RECHARGEMENT = _Paths.RECHARGEMENT;
+  static const LICENCE = _Paths.LICENCE;
 }
 
 abstract class _Paths {
@@ -51,4 +52,5 @@ abstract class _Paths {
   static const OTP = '/otp';
   static const PHONEAUTH = '/phoneauth';
   static const RECHARGEMENT = '/rechargement';
+  static const LICENCE = '/licence';
 }

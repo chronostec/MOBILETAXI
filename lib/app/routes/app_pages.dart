@@ -12,6 +12,8 @@ import '../modules/driver_map/bindings/driver_map_binding.dart';
 import '../modules/driver_map/views/driver_map_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/licence/bindings/licence_binding.dart';
+import '../modules/licence/views/licence_view.dart';
 import '../modules/notifications/bindings/notifications_binding.dart';
 import '../modules/notifications/views/notifications_view.dart';
 import '../modules/otp/bindings/otp_binding.dart';
@@ -143,6 +145,11 @@ class AppPages {
       name: _Paths.RECHARGEMENT,
       page: () => RechargementView(),
       binding: RechargementBinding(),
+    ),
+    GetPage(
+      name: _Paths.LICENCE,
+      page: () => LicenceView(),
+      binding: LicenceBinding(),
     ),
   ];
 }

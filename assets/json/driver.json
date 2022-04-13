@@ -4,6 +4,8 @@
     "prenom": "",
     "telephone": "",
     "password": "",
+    "status": 0,
+    "licence": 0,
     "gps_latitude": "",
     "gps_longitude": "",
     "proprio_id": 1,

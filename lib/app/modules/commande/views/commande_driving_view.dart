@@ -36,8 +36,7 @@ class CommandeView extends GetView<CommandeController> {
                       : const SizedBox(),
 
                   /// COMMAND ACCEPTED BOTTOM NUTTONS OPTIONS
-                  ctlcommande.statuscommand.value ==
-                          CMDSTATUS.COMMAND_ACCEPTEE
+                  ctlcommande.statuscommand.value == CMDSTATUS.COMMAND_ACCEPTEE
                       ? plusOptionBottomBar(context)
                       : const SizedBox(),
                 ],

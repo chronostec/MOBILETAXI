@@ -4,6 +4,8 @@ class Driver {
   String? prenom;
   String? telephone;
   String? password;
+  int? status;
+  int? licence;
   String? gpsLatitude;
   String? gpsLongitude;
   int? proprioId;
@@ -18,6 +20,8 @@ class Driver {
       this.prenom,
       this.telephone,
       this.password,
+      this.status,
+      this.licence,
       this.gpsLatitude,
       this.gpsLongitude,
       this.proprioId,
@@ -32,6 +36,8 @@ class Driver {
     prenom = json['prenom'];
     telephone = json['telephone'];
     password = json['password'];
+    status = json['status'];
+    licence = json['licence'];
     gpsLatitude = json['gps_latitude'];
     gpsLongitude = json['gps_longitude'];
     proprioId = json['proprio_id'];
@@ -48,6 +54,8 @@ class Driver {
     data['prenom'] = prenom;
     data['telephone'] = telephone;
     data['password'] = password;
+    data['status'] = status;
+    data['licence'] = licence;
     data['gps_latitude'] = gpsLatitude;
     data['gps_longitude'] = gpsLongitude;
     data['proprio_id'] = proprioId;
