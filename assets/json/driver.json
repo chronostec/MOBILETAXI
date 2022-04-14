@@ -12,5 +12,8 @@
     "vehicule_id": 1,
     "immatriculation": "",
     "language": "",
-    "theme": ""
+    "theme": "",
+    "b_changement_pass": "1",
+    "id_user": 1,
+    "cle_connexion": "28e030f3-bbf7-11ec-beb9-b47af12f6e90"
 }

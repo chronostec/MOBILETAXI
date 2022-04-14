@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,11 +13,16 @@ import 'app/routes/app_pages.dart';
 import 'app/translation/translation.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+
   await GetStorage.init();
 
   ctlHome.onInit();
   final String defaultLocale = Platform.localeName;
   ctlHome.defaultLanguage.value = defaultLocale;
+  print("defaut language: $defaultLocale");
 
   ctlHome.readDriverLocalInfo();
 

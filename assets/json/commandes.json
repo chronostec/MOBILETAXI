@@ -1,6 +1,7 @@
 {
     "bSuccess": true,
     "message": "succes",
+    "etat_connexion": true,
     "compte": [
         {
             "status_compte": 0,
@@ -26,4 +27,4 @@
             
         }
     ]
-}
+}  

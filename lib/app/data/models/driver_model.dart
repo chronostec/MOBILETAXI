@@ -13,6 +13,9 @@ class Driver {
   String? immatriculation;
   String? language;
   String? theme;
+  String? bChangementPass;
+  int? idUser;
+  String? cleConnexion;
 
   Driver(
       {this.id,
@@ -28,7 +31,10 @@ class Driver {
       this.vehiculeId,
       this.immatriculation,
       this.language,
-      this.theme});
+      this.theme,
+      this.bChangementPass,
+      this.idUser,
+      this.cleConnexion});
 
   Driver.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -45,6 +51,9 @@ class Driver {
     immatriculation = json['immatriculation'];
     language = json['language'];
     theme = json['theme'];
+    bChangementPass = json['b_changement_pass'];
+    idUser = json['id_user'];
+    cleConnexion = json['cle_connexion'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,6 +72,9 @@ class Driver {
     data['immatriculation'] = immatriculation;
     data['language'] = language;
     data['theme'] = theme;
+    data['b_changement_pass'] = bChangementPass;
+    data['id_user'] = idUser;
+    data['cle_connexion'] = cleConnexion;
     return data;
   }
 }

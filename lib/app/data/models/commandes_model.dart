@@ -1,14 +1,21 @@
 class Commandes {
   bool? bSuccess;
   String? message;
+  bool? etatConnexion;
   List<Compte>? compte;
   List<Commande>? commande;
 
-  Commandes({this.bSuccess, this.message, this.compte, this.commande});
+  Commandes(
+      {this.bSuccess,
+      this.message,
+      this.etatConnexion,
+      this.compte,
+      this.commande});
 
   Commandes.fromJson(Map<String, dynamic> json) {
     bSuccess = json['bSuccess'];
     message = json['message'];
+    etatConnexion = json['etat_connexion'];
     if (json['compte'] != null) {
       compte = <Compte>[];
       json['compte'].forEach((v) {
@@ -27,6 +34,7 @@ class Commandes {
     final data = <String, dynamic>{};
     data['bSuccess'] = bSuccess;
     data['message'] = message;
+    data['etat_connexion'] = etatConnexion;
     if (compte != null) {
       data['compte'] = compte?.map((v) => v.toJson()).toList();
     }

@@ -63,8 +63,10 @@ class RechargementController extends GetxController {
 
   Future<List<Contact>> listercontactServiceRecharge() async {
     isContactLoading.value = true;
-    contacts.value =
-        await proRechargement.getListerContactServiceRechargement();
+    contacts.value = await proRechargement.getListerContactServiceRechargement(
+      ctlHome.driver.value.cleConnexion ?? 'azerty',
+      ctlHome.driver.value.id ?? 0,
+    );
     isContactLoading.value = false;
     return contacts;
   }

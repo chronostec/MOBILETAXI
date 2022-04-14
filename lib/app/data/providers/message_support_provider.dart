@@ -7,10 +7,13 @@ import 'package:http/http.dart' as http;
 
 class MessageSupportProvider extends GetConnect {
   Future<MessageSupport> postMessageSupport(
-      {required client_id, required objetc, required contenu}) async {
+      {required client_id,
+      required objetc,
+      required contenu,
+      cleConnexion}) async {
     var url = APPURL.BASE_URL +
         APPURL.MESSAGE_SUPPORT_URL +
-        "objet=$objetc&contenu=$contenu&client_id=$client_id";
+        "objet=$objetc&contenu=$contenu&client_id=$client_id&cle_connexion=$cleConnexion&id_user=$client_id";
 
     var _res = MessageSupport();
 

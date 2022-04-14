@@ -30,6 +30,7 @@ class ChatboxController extends GetxController {
     var _res = await proEchange.postEchange(
         cmde_id: ctlcommande.commande.value.id,
         driver_id: ctlHome.driver.value.id,
+        cleConnexion: ctlHome.driver.value.cleConnexion ?? '',
         message: message);
     lireMessages();
     return _res.bSuccess;
@@ -38,8 +39,11 @@ class ChatboxController extends GetxController {
   lireMessages() async {
     int _length = chatboxList.length;
 
-    var _res =
-        await proEchange.getEchange(cmde_id: ctlcommande.commande.value.id);
+    var _res = await proEchange.getEchange(
+      cmde_id: ctlcommande.commande.value.id,
+      cleConnexion: ctlHome.driver.value.cleConnexion ?? '',
+      id_user: ctlHome.driver.value.id ?? 0,
+    );
     _res.length > chatboxList.length ? chatboxList.value = _res : null;
     if (chatboxList.length > _length && chatboxList.last.driverId == null) {
       Get.snackbar("NOUVEAU MESSAGE", "${chatboxList.last.contenu}",

@@ -1,5 +1,5 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
-import 'package:alfred_taxi_driver/app/data/models/partage_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/resultat_model.dart';
 import 'package:alfred_taxi_driver/app/data/providers/providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

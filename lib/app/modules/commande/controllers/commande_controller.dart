@@ -1,7 +1,8 @@
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
 import 'package:alfred_taxi_driver/app/data/models/commandes_model.dart';
-import 'package:alfred_taxi_driver/app/data/models/partage_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/resultat_model.dart';
 import 'package:alfred_taxi_driver/app/data/providers/providers.dart';
+import 'package:alfred_taxi_driver/app/data/services/deconnexion.dart';
 import 'package:alfred_taxi_driver/app/data/services/local_storage.dart';
 import 'package:alfred_taxi_driver/app/data/services/stream_commande_service.dart';
 import 'package:alfred_taxi_driver/app/modules/chatbox/views/chatbox_view.dart';
@@ -64,8 +65,9 @@ class CommandeController extends GetxController {
 
   ///`LISTE COMMANDES`
   Future getCommandeDisponible() async {
-    var _res =
-        await proCommande.getCommande(driver_id: ctlHome.driver.value.id ?? 0);
+    var _res = await proCommande.getCommande(
+        driver_id: ctlHome.driver.value.id ?? 0,
+        cleConnexion: ctlHome.driver.value.cleConnexion ?? '');
     printInfo(info: "COMMANDE EN COURS ${_res.commande!.length}");
     if (_res.commande != null && _res.commande!.isNotEmpty) {
       listCommande.value = _res;
@@ -77,7 +79,12 @@ class CommandeController extends GetxController {
   Future<bool> getDetailCommande() async {
     bool _isOk = false;
     var _resultat = await proCommande.getCommandeDetail(
-        cmde_id: commande.value.id, driver_id: ctlHome.driver.value.id ?? 0);
+        cmde_id: commande.value.id,
+        driver_id: ctlHome.driver.value.id ?? 0,
+        cleConnexion: ctlHome.driver.value.cleConnexion ?? '');
+    if (_resultat.etatConnexion == false) {
+      Deconnexion().seDeconnecter();
+    }
 
     if (_resultat.commande != null && _resultat.commande!.isNotEmpty) {
       commande.value = _resultat.commande![0];
@@ -96,8 +103,12 @@ class CommandeController extends GetxController {
   Future<bool> getDetailCommandeAcceptee() async {
     bool _isOk = false;
     var _resultat = await proCommande.getCommandeDetailAcceptee(
-        cmde_id: commande.value.id, driver_id: ctlHome.driver.value.id);
-
+        cmde_id: commande.value.id,
+        driver_id: ctlHome.driver.value.id,
+        cleConnexion: ctlHome.driver.value.cleConnexion ?? '');
+    if (_resultat.etatConnexion == false) {
+      Deconnexion().seDeconnecter();
+    }
     if (_resultat.commande!.isNotEmpty) {
       commande.value = _resultat.commande![0];
       _isOk = true;
@@ -166,6 +177,9 @@ class CommandeController extends GetxController {
             cmde_id: commande.value.id as int,
             status: CMDSTATUS.COMMAND_ACCEPTEE)
         .then((value) {
+      if (value.etatConnexion == false) {
+        Deconnexion().seDeconnecter();
+      }
       if (value.bSuccess) {
         statuscommand.value = CMDSTATUS.COMMAND_ACCEPTEE;
         ctlcommande.stopWatchTimer.onExecute.add(StopWatchExecute.reset);
@@ -204,6 +218,9 @@ class CommandeController extends GetxController {
             cmde_id: commande.value.id!.toInt(),
             status: CMDSTATUS.COMMAND_COMMENCEE)
         .then((value) {
+      if (value.etatConnexion == false) {
+        Deconnexion().seDeconnecter();
+      }
       if (value.bSuccess) {
         statuscommand.value = CMDSTATUS.COMMAND_COMMENCEE;
         ctlcommande.stopWatchTimer.onExecute.add(StopWatchExecute.reset);
@@ -256,7 +273,8 @@ class CommandeController extends GetxController {
     await proCommande
         .putRefuserCommande(
             commande_id_saisir: commande.value.id ?? 0,
-            chauffeur_id_saisir: ctlHome.driver.value.id ?? 0)
+            chauffeur_id_saisir: ctlHome.driver.value.id ?? 0,
+            cleConnexion: ctlHome.driver.value.cleConnexion ?? '')
         .then((value) {
       if (value.bSuccess) {
         ctlHome.rebaseCommandes();
@@ -272,8 +290,10 @@ class CommandeController extends GetxController {
   Future<Resultat> paiementEspeceCourse(BuildContext context) async {
     isRequesting.value = true;
 
-    Resultat _res =
-        await proPaiement.postPaiement(commande_id: commande.value.id!.toInt());
+    Resultat _res = await proPaiement.postPaiement(
+        commande_id: commande.value.id!.toInt(),
+        cleConnexion: ctlHome.driver.value.cleConnexion ?? '',
+        id_user: ctlHome.driver.value.id ?? 0);
 
     return _res;
     //     await proPaiement.postPaiement(commande_id: commande.value.id!.toInt());
@@ -285,7 +305,9 @@ class CommandeController extends GetxController {
         driver_id: ctlHome.driver.value.id as int,
         cmde_id: commande.value.id!.toInt(),
         status: CMDSTATUS.COMMAND_TERMINEE);
-
+    if (_res.etatConnexion == false) {
+      Deconnexion().seDeconnecter();
+    }
     if (_res.bSuccess) {
       ctlHome.rebaseCommandes();
       Get.offAllNamed(Routes.HOME);
@@ -310,7 +332,10 @@ class CommandeController extends GetxController {
       required int cmde_id,
       required int status}) async {
     Resultat res = await proCommande.putManagerCommande(
-        status: status, cmde_id: cmde_id, driver_id: driver_id);
+        status: status,
+        cmde_id: cmde_id,
+        driver_id: driver_id,
+        cleConnexion: ctlHome.driver.value.cleConnexion ?? '');
     return res;
   }
 

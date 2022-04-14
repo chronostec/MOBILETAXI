@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:alfred_taxi_driver/app/constants/controllers.dart';
-import 'package:alfred_taxi_driver/app/data/models/partage_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/resultat_model.dart';
 import 'package:alfred_taxi_driver/app/themes/colors/app_colors.dart';
 import 'package:alfred_taxi_driver/app/utils/images_path.dart';
 import 'package:alfred_taxi_driver/app/utils/keywords.dart';

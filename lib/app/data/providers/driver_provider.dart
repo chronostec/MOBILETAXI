@@ -5,7 +5,7 @@ import 'package:alfred_taxi_driver/app/utils/app_urls.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/partage_model.dart';
+import '../models/resultat_model.dart';
 
 class DriverProvider extends GetConnect {
   Future<Driver> getDriver({

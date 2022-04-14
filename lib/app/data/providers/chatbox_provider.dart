@@ -1,15 +1,19 @@
 import 'dart:convert';
 
 import 'package:alfred_taxi_driver/app/data/models/echange_model.dart';
-import 'package:alfred_taxi_driver/app/data/models/partage_model.dart';
+import 'package:alfred_taxi_driver/app/data/models/resultat_model.dart';
 import 'package:alfred_taxi_driver/app/utils/app_urls.dart';
 import 'package:http/http.dart' as http;
 
 class EchangeProvider {
   Future<List<Echange>> getEchange({
     required cmde_id,
+    required cleConnexion,
+    required id_user,
   }) async {
-    var url = APPURL.BASE_URL + APPURL.GET_DRIVER_LIRE + "cmde_id=$cmde_id";
+    var url = APPURL.BASE_URL +
+        APPURL.GET_DRIVER_LIRE +
+        "cmde_id=$cmde_id&cle_connexion=$cleConnexion&id_user=$id_user";
 
     var _list = <Echange>[];
 
@@ -28,10 +32,11 @@ class EchangeProvider {
     required cmde_id,
     required driver_id,
     required message,
+    required cleConnexion,
   }) async {
     var url = APPURL.BASE_URL +
         APPURL.POST_DRIVER_ECRIRE +
-        "driver_id=$driver_id&cmde_id=$cmde_id&message=$message";
+        "driver_id=$driver_id&cle_connexion=$cleConnexion&id_user=$driver_id&cmde_id=$cmde_id&message=$message";
 
     var _res = Resultat();
     final response = await http.post(Uri.parse(url));

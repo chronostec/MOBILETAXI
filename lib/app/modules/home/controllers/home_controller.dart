@@ -65,7 +65,9 @@ class HomeController extends GetxController {
           _cmde.status != CMDSTATUS.COMMAND_TERMINEE ||
           _cmde.status != CMDSTATUS.COMMAND_EMPTY) {
         res = await proCommande.getCommandeDetailAcceptee(
-            driver_id: driver.value.id as int, cmde_id: _cmde.id as int);
+            driver_id: driver.value.id as int,
+            cmde_id: _cmde.id as int,
+            cleConnexion: ctlHome.driver.value.cleConnexion ?? '');
       }
 
       // if (res.isNotEmpty && res[0].id == _cmde.id) {

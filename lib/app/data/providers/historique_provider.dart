@@ -6,10 +6,11 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HistoriqueProvider extends GetConnect {
-  Future<List<Historique>> getHistorique({
-    required driver_id,
-  }) async {
-    var url = APPURL.BASE_URL + APPURL.GET_HISTORIQUE + "driver_id=$driver_id";
+  Future<List<Historique>> getHistorique(
+      {required driver_id, cleConnexion}) async {
+    var url = APPURL.BASE_URL +
+        APPURL.GET_HISTORIQUE +
+        "driver_id=$driver_id&cle_connexion=$cleConnexion&id_user=$driver_id";
 
     var _list = <Historique>[];
 
