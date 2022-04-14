@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class Deconnexion {
   seDeconnecter() {
     LocalStorage().box.erase();
+    LocalStorage().readUserData();
     Get.snackbar("Déconnexion",
         "Vos identifiants sont corrompus, veuillez vous reconnecter à nous nouveau");
     Get.offAllNamed(Routes.AUTHENTICATION);

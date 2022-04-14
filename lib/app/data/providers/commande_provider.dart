@@ -12,7 +12,7 @@ class CommandeProvider extends GetConnect {
       {required driver_id, required cleConnexion}) async {
     var url = APPURL.BASE_URL +
         APPURL.GET_LISTER_CMDE +
-        "driver_id=$driver_id&cle_connexion=$cleConnexion";
+        "driver_id=$driver_id&cle_connexion=$cleConnexion&id_user=$driver_id";
     final response = await http.get(Uri.parse(url));
     print("LISTE COMMANDE ${response.body}");
     if (response.statusCode == 200) {

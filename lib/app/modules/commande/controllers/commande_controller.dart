@@ -68,7 +68,12 @@ class CommandeController extends GetxController {
     var _res = await proCommande.getCommande(
         driver_id: ctlHome.driver.value.id ?? 0,
         cleConnexion: ctlHome.driver.value.cleConnexion ?? '');
-    printInfo(info: "COMMANDE EN COURS ${_res.commande!.length}");
+    if (_res.etatConnexion == false &&
+        ctlHome.driver.value.cleConnexion != null &&
+        ctlHome.driver.value.cleConnexion!.isNotEmpty) {
+      Deconnexion().seDeconnecter();
+    }
+    // printInfo(info: "COMMANDE EN COURS ${_res.commande!.length}");
     if (_res.commande != null && _res.commande!.isNotEmpty) {
       listCommande.value = _res;
     }

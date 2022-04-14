@@ -46,19 +46,21 @@ class AuthenticationController extends GetxController {
   }) async {
     var _driver = await proAuth.getDriver(telephone: phone, password: password);
 
-    if (_driver.id!.toInt() > 0) {
+    if (_driver.cleConnexion != null && _driver.cleConnexion != '') {
       ctlHome.writeDriverLocalInfo(Driver(
-        id: _driver.id,
-        nom: _driver.nom,
-        prenom: _driver.prenom,
-        telephone: phone,
-        password: password,
-        language: ctlHome.defaultLanguage.value.substring(0, 2),
-        theme: ctlHome.defaultTheme.value,
-        vehiculeId: _driver.vehiculeId,
-        proprioId: _driver.proprioId,
-        immatriculation: _driver.immatriculation,
-      ));
+          id: _driver.id,
+          nom: _driver.nom,
+          prenom: _driver.prenom,
+          telephone: phone,
+          password: password,
+          language: ctlHome.defaultLanguage.value.substring(0, 2),
+          theme: ctlHome.defaultTheme.value,
+          vehiculeId: _driver.vehiculeId,
+          proprioId: _driver.proprioId,
+          immatriculation: _driver.immatriculation,
+          bChangementPass: _driver.bChangementPass,
+          idUser: _driver.idUser,
+          cleConnexion: _driver.cleConnexion));
       return true;
     } else {
       LocalStorage().box.erase();

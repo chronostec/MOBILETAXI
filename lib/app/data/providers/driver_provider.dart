@@ -16,20 +16,10 @@ class DriverProvider extends GetConnect {
         APPURL.GET_DRIVER_INFO +
         "password=$password&telephone=$telephone";
 
-    var _res = Driver();
+    // var _res = Driver();
 
     final response = await http.get(Uri.parse(url));
-
-    if (json.decode(response.body)["message"] == "succes") {
-      // print("***************SUCCES***************");
-      _res = parseDriver(response.body);
-    } else {
-      // print("***************ERREUR DE DONNEES***************");
-      print(response.body);
-      _res = Driver(id: 0);
-    }
-
-    return _res;
+    return parseDriver(response.body);
   }
 
   Future putDriverPwd(
