@@ -46,7 +46,7 @@ class AuthenticationController extends GetxController {
   }) async {
     var _driver = await proAuth.getDriver(telephone: phone, password: password);
 
-    if (_driver.cleConnexion != null && _driver.cleConnexion != '') {
+    if (_driver.id != null && _driver.cleConnexion != '') {
       ctlHome.writeDriverLocalInfo(Driver(
           id: _driver.id,
           nom: _driver.nom,
