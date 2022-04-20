@@ -9,19 +9,22 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 Future checkCommandedisponiblePeriodicEvent() async {
   if (ctlHome.driver.value.id != null && ctlHome.driver.value.id!.toInt() > 0) {
-    Timer.periodic(const Duration(seconds: 6), (Timer timer) async {
-      if (ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_EMPTY ||
-          ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_PAIEMENT ||
-          ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_PAIEMENT ||
-          ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_COMMENCEE) {
-        ctlcommande.getCommandeDisponible();
-        if (!ctlHome.cacheRead.value) {
-          // ctlHome.readCommandeLocalInfo();
+    if (ctlHome.driver.value.cleConnexion != null &&
+        ctlHome.driver.value.cleConnexion != '') {
+      Timer.periodic(const Duration(seconds: 6), (Timer timer) async {
+        if (ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_EMPTY ||
+            ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_PAIEMENT ||
+            ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_PAIEMENT ||
+            ctlcommande.statuscommand.value != CMDSTATUS.COMMAND_COMMENCEE) {
+          ctlcommande.getCommandeDisponible();
+          if (!ctlHome.cacheRead.value) {
+            // ctlHome.readCommandeLocalInfo();
+          }
+        } else {
+          timer.cancel();
         }
-      } else {
-        timer.cancel();
-      }
-    });
+      });
+    }
   }
 }
 
